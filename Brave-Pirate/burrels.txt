@@ -1,0 +1,4 @@
+barrel.png 1 10 10 20
+barrel.png 2 10 10 25
+barrel.png 3 10 10 30
+barrel.png 4 10 10 35
