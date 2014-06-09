@@ -16,7 +16,7 @@ public:
 	void setPositionX(const float x);
 	void setPositionY(void);
 
-	void update(void);
-	void draw(void)const;
+	virtual void update(void);
+	virtual void draw(void)const;
 };
 

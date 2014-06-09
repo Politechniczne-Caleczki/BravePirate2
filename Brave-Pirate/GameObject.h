@@ -39,12 +39,13 @@ public:
 	void setsize(const Vector2 size);
 	void setTexture(SDL_Texture* texture);	
 
-	void draw()const;
-	void update();	
+	virtual void draw()const;
+	virtual void update();	
+	 
 
-	void onCollision(void);	
-	void onCollision(const float strength);	
-	bool isDestroyed()const;
+	virtual void onCollision(void);	
+	virtual void onCollision(const float strength);	
+	virtual bool isDestroyed()const;
 
 	void operator=(GameObject &GameObject);
 };

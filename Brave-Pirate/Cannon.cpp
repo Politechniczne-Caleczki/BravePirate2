@@ -8,7 +8,7 @@ Cannon::Cannon(const float angle, const float power, const Vector2 position):ang
 
 Cannon::~Cannon(void)
 {
-	//this->cannonBalls.clear();
+	this->cannonBalls.clear();
 }
 
 //Getters and setters
