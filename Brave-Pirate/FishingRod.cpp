@@ -58,5 +58,5 @@ void FishingRod::update(void)
 void FishingRod::draw(void)const
 {
 	SDL_RenderDrawLine(GraphicDevice::getRenderer(),positionOfShip.get_X(),positionOfShip.get_Y(),position.get_X(),position.get_Y());
-	GraphicDevice::drawTexture(texture,Vector2(position.get_X()-10,position.get_Y()), Vector2(15,20), 0);
+	GraphicDevice::drawTexture(texture,Vector2(position.get_X()-10,position.get_Y()), Vector2(15,20));
 }

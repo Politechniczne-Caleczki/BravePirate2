@@ -42,10 +42,11 @@ while(gameStateManager.update())
 		ship.update();
 		sea.update();	
 		
+	
 		
 		graphicDivice.begin();
 			SDL_RenderCopy(graphicDivice.getRenderer() , Textures::getTexture("background.bmp"),NULL, NULL);
-			sea.draw();	
+			sea.draw();			
 			ship.draw();
 			barrelMenager.draw();
 			

@@ -1,5 +1,6 @@
 #pragma once 
 #include <list> 
+#include <SDL.h>
 #include <cstddef> 
 #include "Barrel.h" 
 #include "Fish.h"
@@ -31,7 +32,7 @@ InstantionManager<typ>::InstantionManager(string path, Vector2 startPosition, De
 }
 
 template <>
-InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition, Delay instantionDelay,Delay upgradeDelay):startPosition(startPosition), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(2)
+InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition, Delay instantionDelay,Delay upgradeDelay):startPosition(startPosition), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
 	FILE * myFile = fopen(path.data(),"r");
 		if (myFile!=NULL)//error
@@ -48,6 +49,8 @@ InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition,
 			}	
 		}
 	fclose(myFile);
+
+	SDL_Log("%i", listOfAllObjects.size());
 
 	instantionDelay.Start();
 	upgradeDelay.Start();
@@ -82,8 +85,7 @@ void InstantionManager<Barrel>::listUpdate()
 		(*iter)->update();		
 		if((*iter)->isDestroyed())
 		{		
-			delete *iter;
-			*iter = NULL;
+			delete *iter;			
 			iter = GameObject::barrelsArrayPointer.erase(iter);			
 		}
 		else
@@ -119,8 +121,10 @@ void InstantionManager<typ>::update()
 	if(upgradeDelay.idRedy())
 	{
 		if(range+1<listOfAllObjects.size())
-		upgradeDelay.Start();
-		range++;
+		{
+			upgradeDelay.Start();
+			range++;
+		}
 	}
 
 	if(instantionDelay.idRedy())

@@ -24,8 +24,8 @@ public:
 	void setWindowName(const string name);
 	static SDL_Renderer* getRenderer(void);//error
 
-	static void drawTexture(SDL_Texture *texture, Vector2 position, Vector2 size);
-	static void drawTexture(SDL_Texture *texture, Vector2 position, Vector2 size, float angle);
+	static void drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size);
+	static void drawTexture(SDL_Texture *texture,const Vector2 position,const Vector2 size, float angle);
 	static void begin(void);
 	static void end(void);
 };

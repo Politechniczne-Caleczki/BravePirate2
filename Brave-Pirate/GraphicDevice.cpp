@@ -61,7 +61,7 @@ void GraphicDevice::end()
 	SDL_RenderPresent(renderer);
 }
 
-void GraphicDevice::drawTexture(SDL_Texture *texture, Vector2 position, Vector2 size)
+void GraphicDevice::drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size)
 {
 	SDL_Rect rect;
 	rect.x = (int)position.get_X();
@@ -72,13 +72,14 @@ void GraphicDevice::drawTexture(SDL_Texture *texture, Vector2 position, Vector2 
 	SDL_RenderCopy(renderer,texture,NULL, &rect);
 }
 
-void GraphicDevice::drawTexture(SDL_Texture *texture, Vector2 position, Vector2 size, float angle)
+void GraphicDevice::drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size, float angle)
 {
 	SDL_Rect rect;
 	rect.x = (int)position.get_X();
 	rect.y = (int)position.get_Y();
 	rect.w = (int)size.get_X();
 	rect.h = (int)size.get_Y();
+
 
 	SDL_RenderCopyEx(renderer,texture,NULL,&rect,angle,NULL,SDL_FLIP_NONE);
 }
