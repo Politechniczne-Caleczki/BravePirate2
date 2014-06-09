@@ -12,7 +12,6 @@ private:
 	int gameState;
 
 public:	
-	GameStateManager(void);
 	GameStateManager(const int state);
 
 	void setGameState(int state);

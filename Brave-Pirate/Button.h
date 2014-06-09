@@ -15,8 +15,7 @@ private:
 
 public:
 	Button(const bool active, const bool available, const Vector2 position, SDL_Texture * textureInactive, SDL_Texture * textureActive, int ( * _action ) (void));
-	~Button(void);
-
+	~Button();
 	bool getActive(void)const;
 	bool getAvailability(void)const;
 	void setActive(bool active);

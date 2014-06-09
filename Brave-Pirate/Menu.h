@@ -17,7 +17,6 @@ private:
 
 public:
 	Menu(SDL_Texture * background);
-	Menu(void);
 	~Menu(void);
 
 	int update(void);

@@ -5,9 +5,7 @@ GameStateManager::GameStateManager(const int state):gameState(state)
 {
 }
 
-GameStateManager::GameStateManager(void):gameState(1)
-{
-}
+
 
 //Getters and setters
 int GameStateManager::getGameState(void)const

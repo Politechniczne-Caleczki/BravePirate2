@@ -1,7 +1,7 @@
 #include "Fish.h"
 
 //Constructors and destructors
-Fish::Fish(GameObject gameObject, float hp, float speed): GameObject(gameObject), hp(hp), speed(speed), isCought(false)
+Fish::Fish(GameObject & gameObject, float hp, float speed): GameObject(gameObject), hp(hp), speed(speed), isCought(false)
 {
 }
 
@@ -21,5 +21,10 @@ void Fish::update(void)
 bool Fish::cought(void)
 {
 	return isCought;
+}
+
+void Fish::draw()const
+{
+
 }
 

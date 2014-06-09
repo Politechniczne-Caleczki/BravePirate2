@@ -5,6 +5,7 @@
 #include "Vector2.h"
 #include "SDL.h"
 #include "GraphicDevice.h"
+#include "BasicObject.h"
 
 class GameObject;
 
@@ -15,37 +16,35 @@ class GameObject
 private:
 	static Lista getNewList();
 protected:
-	Vector2 position, scale;
+	Vector2 position, size;
 	float angle;
 	SDL_Texture * texture;
 	bool _isDestroyed; 
-	
+	void onDestroy(void);	
+	bool onCollision(GameObject &gameObject)const;
 public:
 	static Lista fishesArrayPointer;
 	static Lista barrelsArrayPointer;
 
-	GameObject(void);
-	GameObject(const Vector2 position, const Vector2 scale, const float angle, SDL_Texture* texture);
+	GameObject(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture);
 	virtual~GameObject(void);
 
 	Vector2 getPosition(void)const;
 	Vector2 getCenterPosition(void)const;
-	Vector2 getScale(void)const;
+	Vector2 getSize(void)const;
 	SDL_Texture* getTexture(void)const;
 	float getAngle(void)const;
 	void setAngle(const float angle);
 	void setPosition(const Vector2 position);
-	void setScale(const Vector2 scale);
-	void setTexture(SDL_Texture* texture);
-	
-	virtual void draw(void)const;
-	virtual void update(void);
-	virtual void onCollision(void);
-	virtual void onCollision(const float strength);
-	virtual void onDestroy(void);
-	bool isDestroyed()const;
+	void setsize(const Vector2 size);
+	void setTexture(SDL_Texture* texture);	
 
-	bool onCollision(GameObject &gameObject)const;
+	void draw()const;
+	void update();	
+
+	void onCollision(void);	
+	void onCollision(const float strength);	
+	bool isDestroyed()const;
 
 	void operator=(GameObject &GameObject);
 };

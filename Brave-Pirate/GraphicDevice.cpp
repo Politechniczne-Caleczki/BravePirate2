@@ -1,9 +1,6 @@
 #include "GraphicDevice.h"
 
 //Constructors and destructors
-GraphicDevice::GraphicDevice(void)
-{
-}
 
 GraphicDevice::GraphicDevice(string windowName, Vector2 windowPosition, Vector2 windowSize):
 	windowName(windowName), 

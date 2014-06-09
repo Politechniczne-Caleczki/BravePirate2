@@ -22,8 +22,8 @@ GraphicDevice graphicDivice("Dzielny Pirat", Vector2(200,100),Vector2(1000,600))
 Textures textures("ImagesName.txt", "images/");
 Time time;
 
-Ship ship(FloatingObject( GameObject(Vector2(100,0), Vector2(150,150), 0, Textures::getTexture("ship.png")), Vector2(200,145), Vector2(150, 145)));
-Sea sea(GameObject(Vector2(0,300),Vector2(1005,42),0,Textures::getTexture("sea.png")), 0.15f);
+Ship ship(FloatingObject(Vector2(100,0), Vector2(150,150), 0, Textures::getTexture("ship.png"), Vector2(200,145), Vector2(150, 145)));
+Sea sea(Vector2(0,300),Vector2(1005,42),0,Textures::getTexture("sea.png"), 0.15f);
 
 GameStateManager gameStateManager(1);
 
@@ -41,9 +41,7 @@ while(gameStateManager.update())
 		barrelMenager.update();
 		ship.update();
 		sea.update();	
-		
-	
-		
+			
 		graphicDivice.begin();
 			SDL_RenderCopy(graphicDivice.getRenderer() , Textures::getTexture("background.bmp"),NULL, NULL);
 			sea.draw();			

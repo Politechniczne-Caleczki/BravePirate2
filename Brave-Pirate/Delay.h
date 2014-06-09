@@ -9,7 +9,6 @@ private:
 
 public:
 	Delay(const float interval);
-	Delay(void);
 	~Delay(void);
 
 	void setDealy(const float interval);

@@ -3,15 +3,14 @@
 #include "Sea.h"
 
 
-class FloatingObject :public GameObject
+class FloatingObject : public GameObject
 {
 protected:
 	Vector2 front, back;
 	float difference;
 
 public:	
-	FloatingObject(void);
-	FloatingObject(const GameObject gameobject,const Vector2 front,const Vector2 back);
+	FloatingObject(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const Vector2 front,const Vector2 back);
 	~FloatingObject(void);
 
 	void setPositionX(const float x);

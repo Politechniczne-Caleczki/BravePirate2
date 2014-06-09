@@ -1,20 +1,16 @@
 #include "CannonBall.h"
 
 //Constructors and destructors
-CannonBall::CannonBall(void):speed(0),strikingDistance(0),strikingPower(0), posZero(Vector2(0,0)),startTime((float)Time::gameTime())
+CannonBall::~CannonBall(void)
 {
 }
 
-CannonBall::~CannonBall(void)
-{	
-}
-
-CannonBall::CannonBall(const GameObject gameObject, const float speed, const float strikingDistance, const float strikingPower):
-GameObject(gameObject), 
+CannonBall::CannonBall(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const float speed, const float strikingDistance, const float strikingPower):
+	GameObject(position,size,angle,texture),
 	speed(speed), 
 	strikingDistance(strikingDistance), 
 	strikingPower(strikingPower), 
-	posZero(gameObject.getPosition()), 
+	posZero(position),
 	startTime((float)Time::gameTime())
 {	
 	tcos = (float)cos(angle*PI/180);
@@ -51,3 +47,6 @@ float CannonBall::getPower()
 {
 	return strikingPower*strikingDistance;
 }
+
+
+

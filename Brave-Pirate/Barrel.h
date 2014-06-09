@@ -8,14 +8,13 @@ private:
 	float health, speed, damage;	
 
 public:
-	Barrel(void);
-	Barrel(const FloatingObject floatingObject, const float health, const float speed, const float damage);
+	Barrel(const FloatingObject & floatingObject, const float health, const float speed, const float damage);
 	~Barrel(void);
 
 	void decreaseHealth(const float decreaseValue);
-	void update();
-	void onCollision(const float);
+	void update(void);
 	void onCollision(void);
+	void onCollision(const float strength);
 	const float getDamage()const;
 	bool isDestroed()const;
 

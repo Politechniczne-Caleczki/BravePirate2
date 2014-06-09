@@ -8,8 +8,10 @@ private:
 	bool isCought;
 
 public:
-	Fish(GameObject gameobject, float hp, float speed);
+	Fish(GameObject & gameobject, float hp, float speed);
+
 	void update(void);
+	void draw(void)const;
 	float getHp(void);
 	bool cought(void);
 };

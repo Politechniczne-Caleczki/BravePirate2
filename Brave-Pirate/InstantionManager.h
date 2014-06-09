@@ -42,16 +42,11 @@ InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition,
 				char textureName[32];
 				float speed, hp, dmg, scl;
 				fscanf(myFile,"%s %f %f %f %f",textureName, &speed, &hp, &dmg, &scl);	
-				listOfAllObjects.push_back(Barrel(FloatingObject( 
-					GameObject(startPosition, Vector2(scl,scl), 0, Textures::getTexture(textureName)), 
-					Vector2(startPosition.get_X(),scl), Vector2(startPosition.get_X()+scl,scl)),
-					hp, speed, dmg));
+				listOfAllObjects.push_back(Barrel(FloatingObject(startPosition, Vector2(scl,scl), 0, Textures::getTexture(textureName), 
+					Vector2(startPosition.get_X(),scl), Vector2(startPosition.get_X()+scl,scl)), hp, speed, dmg));
 			}	
 		}
 	fclose(myFile);
-
-	SDL_Log("%i", listOfAllObjects.size());
-
 	instantionDelay.Start();
 	upgradeDelay.Start();
 }
@@ -67,7 +62,7 @@ InstantionManager<Fish>::InstantionManager(string path, Vector2 startPosition, D
 				char textureName[32];
 				float speed, hp, dmg, scl;
 				fscanf_s(myFile,"%s %f, %f, %f %f",textureName, &speed, &hp, &scl);	
-				listOfAllObjects.push_back(Fish(GameObject(startPosition,Vector2(scl,scl),0, Textures::getTexture(textureName)),hp,speed));
+//				listOfAllObjects.push_back(Fish(GameObject(startPosition,Vector2(scl,scl),0, Textures::getTexture(textureName)),hp,speed));
 			}
 		}
 	fclose(myFile);
@@ -81,12 +76,12 @@ template<>
 void InstantionManager<Barrel>::listUpdate()
 {
 	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end();)
-	{
-		(*iter)->update();		
+	{		
+		static_cast<Barrel*>(*iter)->update();
 		if((*iter)->isDestroyed())
 		{		
 			delete *iter;			
-			iter = GameObject::barrelsArrayPointer.erase(iter);			
+			iter = GameObject::barrelsArrayPointer.erase(iter);				
 		}
 		else
 			iter++;		
@@ -158,7 +153,7 @@ void InstantionManager<Barrel>::add(unsigned int index)
 {
 	list<Barrel>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
-	GameObject::barrelsArrayPointer.push_back(new Barrel(*iter));
+	GameObject::barrelsArrayPointer.push_back(new Barrel(*iter));	
 }
 
 template<>
@@ -166,7 +161,7 @@ void InstantionManager<Fish>::add(unsigned int index)
 {
 	list<Fish>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
-	GameObject::barrelsArrayPointer.push_back(new Fish(*iter));
+//	GameObject::barrelsArrayPointer.push_back(new Fish(*iter));
 }
 
 

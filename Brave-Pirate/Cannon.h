@@ -18,7 +18,6 @@ private:
 	list<CannonBall> cannonBalls;
 
 public:
-	Cannon(void);
 	Cannon(const float angle, const float power, const Vector2 position);
 	~Cannon(void);
 
@@ -27,7 +26,7 @@ public:
 	void setInterval(const Delay interval);
 
 	void update(void);
-	void draw(void);
+	void draw(void)const;
 	void fire(void);
 };
 

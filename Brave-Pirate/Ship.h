@@ -13,8 +13,7 @@ private:
 	FishingRod rod;
 
 public:
-	Ship(void);
-	Ship(const FloatingObject floatingObject);
+	Ship(const FloatingObject & floatingObject);
 	~Ship(void);
 
 	void changeShipHealth(const float health);
@@ -22,5 +21,6 @@ public:
 	void addPoints(const int point);
 	void addPoint(void);
 	void update(void);
-	void draw(void);
+	void draw(void)const;
+	bool onCollision(GameObject &gameObject)const;
 };

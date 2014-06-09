@@ -80,6 +80,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="GraphicDevice.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Sea.cpp" />
@@ -90,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Barrel.h" />
+    <ClInclude Include="BasicObject.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cannon.h" />
     <ClInclude Include="CannonBall.h" />
@@ -101,6 +103,7 @@
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GraphicDevice.h" />
     <ClInclude Include="InstantionManager.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Sea.h" />
     <ClInclude Include="Ship.h" />

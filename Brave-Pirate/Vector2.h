@@ -7,7 +7,6 @@ class Vector2
 private:
 	float x, y;
 public:
-
 	Vector2(void);
 	~Vector2(void);
 	Vector2(const float x, const float y);

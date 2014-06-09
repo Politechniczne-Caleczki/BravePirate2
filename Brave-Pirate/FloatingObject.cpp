@@ -1,22 +1,14 @@
 #include "FloatingObject.h"
 
 //Constructors and destructors
-FloatingObject::FloatingObject(void):difference(0)
-{
-}
 
 FloatingObject::~FloatingObject(void)
 {
 	GameObject::~GameObject();
 }
 
-FloatingObject::FloatingObject(const GameObject gameobject, const Vector2 front, const Vector2 back):
-GameObject(gameobject), 
-	front(front), 
-	back(back), 
-	difference((front.get_Y() + back.get_Y()) / 2)
-{
-}
+FloatingObject::FloatingObject(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const Vector2 front, const Vector2 back):
+	GameObject(position,size,angle,texture),front(front), 	back(back), difference((front.get_Y() + back.get_Y()) / 2){}
 
 //Getters and setters
 void FloatingObject::setPositionX(const float x)
@@ -45,5 +37,5 @@ void FloatingObject::update(void)
 
 void FloatingObject::draw(void)const
 {
-	GraphicDevice::drawTexture(texture, position, scale, angle);
+	GraphicDevice::drawTexture(texture, position, size, angle);
 }

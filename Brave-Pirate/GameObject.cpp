@@ -1,13 +1,10 @@
 #include "GameObject.h"
 
 //Constructors and destructors
-GameObject::GameObject(void):position(Vector2(0,0)),scale(Vector2(0,0)),angle(0), texture(NULL)
-{
-}
 
-GameObject::GameObject(const Vector2 position, const Vector2 scale, const float angle,SDL_Texture* texture):
+GameObject::GameObject(const Vector2 position, const Vector2 size, const float angle,SDL_Texture* texture):
 	position(position), 
-	scale(scale.module()), 
+	size(size.module()), 
 	angle(angle), 
 	texture(texture),
 	_isDestroyed(false)
@@ -30,9 +27,9 @@ Vector2 GameObject::getPosition()const
 	return this->position;
 }
 
-Vector2 GameObject::getScale()const
+Vector2 GameObject::getSize()const
 {
-	return this->scale;
+	return this->size;
 }
 
 SDL_Texture* GameObject::getTexture()const
@@ -50,9 +47,9 @@ void GameObject::setPosition(const Vector2 position)
 	this->position = position;
 }
 
-void GameObject::setScale(const Vector2 scale)
+void GameObject::setsize(const Vector2 size)
 {
-	this->scale = scale;
+	this->size = size;
 }
 
 void GameObject::setTexture(SDL_Texture* texture)
@@ -63,12 +60,13 @@ void GameObject::setTexture(SDL_Texture* texture)
 //Functions
 void GameObject::draw(void)const
 {
-	GraphicDevice::drawTexture(texture, position, scale); 
+	GraphicDevice::drawTexture(texture, position, size); 
 }
 
 void GameObject::update(void)
 {
 }
+
 
 void GameObject::onCollision(void)
 {
@@ -84,7 +82,7 @@ void GameObject::onDestroy(void)
 
 bool GameObject::onCollision(GameObject &gameObject)const
 {
-	return(getCenterPosition().distance(gameObject.getCenterPosition()) < scale.get_X()/2 + gameObject.scale.get_X()/2);
+	return(getCenterPosition().distance(gameObject.getCenterPosition()) < size.get_X()/2 + gameObject.size.get_X()/2);
 }
 
 Lista GameObject::getNewList(void)
@@ -100,7 +98,7 @@ bool GameObject::isDestroyed()const
 
 Vector2 GameObject::getCenterPosition()const
 {
-	return position + scale/2;
+	return position + size/2;
 }
 
 

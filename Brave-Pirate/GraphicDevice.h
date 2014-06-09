@@ -15,7 +15,6 @@ private:
 	void setWindow(void);
 
 public:
-	GraphicDevice(void);
 	GraphicDevice(string windowName, Vector2 windowPosition, Vector2 windowSize);
 	~GraphicDevice(void);
 

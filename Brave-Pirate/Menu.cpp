@@ -7,16 +7,6 @@ int leaveGame(){
 	return 0;
 }
 //Constructors and destructors
-Menu::Menu():selected(0),keyPressed(false)
-{	
-	background = Textures::getTexture("bacground.bmp");
-	buttonList = new Button*[5];
-	buttonList[0]=new Button(1,1,Vector2(340,30), Textures::getTexture("start.png"),	Textures::getTexture("start_pressed.png"),startGame);
-	buttonList[1]=new Button(0,1,Vector2(340,140),Textures::getTexture("load_game.png"),	Textures::getTexture("load_game_pressed.png"),startGame);	
-	buttonList[2]=new Button(0,1,Vector2(340,250),Textures::getTexture("save.png"),	Textures::getTexture("save_pressed.png"),startGame);	
-	buttonList[3]=new Button(0,1,Vector2(340,360),Textures::getTexture("credits.png"),	Textures::getTexture("credits_pressed.png"),startGame);	
-	buttonList[4]=new Button(0,1,Vector2(340,470),Textures::getTexture("exit.png"),	Textures::getTexture("exit_pressed.png"),leaveGame);		
-}
 
 Menu::Menu(SDL_Texture * background):background(background),selected(0),keyPressed(false)
 {

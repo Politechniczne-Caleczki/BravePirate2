@@ -10,7 +10,7 @@ private:
 	Vector2 positionOfShip;
 
 public:
-	FishingRod(const GameObject gameObject, const float descentRate, const float maxDepth, const Vector2 position);
+	FishingRod(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const float descentRate, const float maxDepth);
 	
 	float getDescentRate(void)const;
 	float getMasDepth(void)const;
@@ -20,5 +20,5 @@ public:
 	
 	void update(void);
 	void draw(void)const;
-	void checkCollision(void);
+
 };

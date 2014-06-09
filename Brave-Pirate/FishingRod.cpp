@@ -1,14 +1,11 @@
 #include "FishingRod.h"
 
 //Constructors and destructors
-FishingRod::FishingRod(const GameObject gameObject, const float descentRate, const float maxDepth, const Vector2 position):
-descentRate(fabs(descentRate)),
+FishingRod::FishingRod(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const float descentRate, const float maxDepth):
+	descentRate(fabs(descentRate)),
 	maxDepth(fabs(maxDepth)),
-	GameObject(gameObject),
-	descent(1)
-{
-	this->position = position;
-}
+	GameObject(position,size,angle,texture),
+	descent(1){}
 
 //Getters and setters
 float FishingRod::getDescentRate(void)const

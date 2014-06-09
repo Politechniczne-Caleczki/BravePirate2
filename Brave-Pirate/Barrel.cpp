@@ -1,11 +1,8 @@
 #include "Barrel.h"
 
 //Constructors and destructors
-Barrel::Barrel(void)
-{
-}
 
-Barrel::Barrel(const FloatingObject floatingObject, const float health, const float speed, const float damage):
+Barrel::Barrel(const FloatingObject & floatingObject, const float health, const float speed, const float damage):
 	FloatingObject(floatingObject), 
 	health(fabs(health)),
 	speed(fabs(speed)),
@@ -29,7 +26,7 @@ void Barrel::decreaseHealth(const float decreaseValue)
 }
 
 void Barrel::update()
-{	
+{		
 	FloatingObject::setPositionX(position.get_X()-speed);
 	FloatingObject::update();	
 }
@@ -51,3 +48,4 @@ const float Barrel::getDamage()const
 {
 	return this->damage;
 }
+
