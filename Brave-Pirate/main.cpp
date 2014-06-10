@@ -31,8 +31,8 @@ SDL_Surface *bmpp = IMG_Load("images/start.png");
 Menu menu(Textures::getTexture("background.bmp"));
 
 
-InstantionManager<Barrel> barrelMenager("burrels.txt", Vector2(1100,300), Delay(1000), Delay(30000));
-InstantionManager<Fish> fishesMenager("Fishes.txt", Vector2(1100,450), Delay(1000), Delay(30000));
+InstantionManager<Barrel> barrelMenager("burrels.txt", Vector2(1100,300),0, Delay(1000), Delay(30000));
+InstantionManager<Fish> fishesMenager("Fishes.txt", Vector2(1100,350),250, Delay(1000), Delay(30000));
 
 while(gameStateManager.update())
 {

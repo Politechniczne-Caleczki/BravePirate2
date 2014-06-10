@@ -16,7 +16,6 @@ float Fish::getHp(void)
 void Fish::update(void)
 {
 	position.set_X(position.get_X()-speed);
-	SDL_Log("edfds");
 }
 
 bool Fish::cought(void)

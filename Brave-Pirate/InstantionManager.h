@@ -14,25 +14,22 @@ private:
 	Delay instantionDelay, upgradeDelay;
 	Vector2 startPosition; 
 	int range;
+	int dispersion;
 	void add(unsigned int index);
 	void listUpdate();
 public: 
-	InstantionManager(const string path,Vector2 startPosition,  Delay instantionDelay,Delay upgradeDelay); 
+	InstantionManager(const string path,Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay); 
 	~InstantionManager(){};
 	void update();	
 	void draw();
 };
 
-
-
-template<class typ> 
-InstantionManager<typ>::InstantionManager(string path, Vector2 startPosition, Delay instantionDelay,Delay upgradeDelay)
-{
-	//error
-}
+template <class typ>
+InstantionManager<typ>::InstantionManager(const string path,Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay){}
 
 template <>
-InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition, Delay instantionDelay,Delay upgradeDelay):startPosition(startPosition), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
+InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay)
+:startPosition(startPosition), dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
 	FILE * myFile = fopen(path.data(),"r");
 		if (myFile!=NULL)//error
@@ -52,7 +49,8 @@ InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition,
 }
 
 template <>
-InstantionManager<Fish>::InstantionManager(string path, Vector2 startPosition, Delay instantionDelay,Delay upgradeDelay):startPosition(startPosition),instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(2)
+InstantionManager<Fish>::InstantionManager(string path, Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay)
+:startPosition(startPosition),dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
 	
 	FILE * myFile = fopen(path.data(),"r");
@@ -63,7 +61,7 @@ InstantionManager<Fish>::InstantionManager(string path, Vector2 startPosition, D
 				char textureName[32];
 				float speed, hp, dmg, scl;
 				fscanf(myFile,"%s %f %f %f",textureName, &speed, &hp, &scl);	
-				listOfAllObjects.push_back(Fish(Vector2(1100,500), Vector2(scl,scl), 0, Textures::getTexture("fish.png"),hp,speed));
+				listOfAllObjects.push_back(Fish(startPosition, Vector2(scl,scl), 0, Textures::getTexture("fish.png"),hp,speed));
 			}
 		}
 	fclose(myFile);
@@ -93,6 +91,10 @@ void InstantionManager<Fish>::listUpdate()
 	for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end();)
 	{
 		(*iter)->update();
+
+		if((*iter)->getPosition().get_X()- (*iter)->getSize().get_X()<0)
+			(*iter)->onCollision();
+
 		
 		if((*iter)->isDestroyed())
 		{		
@@ -115,7 +117,7 @@ void InstantionManager<typ>::update()
 
 	if(upgradeDelay.idRedy())
 	{
-		if(range+1<listOfAllObjects.size())
+		if(range<listOfAllObjects.size())
 		{
 			upgradeDelay.Start();
 			range++;
@@ -161,9 +163,8 @@ void InstantionManager<Fish>::add(unsigned int index)
 {
 	list<Fish>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
-	unsigned int y = rand()% 200 + 360;
-	iter->setPosition(Vector2(1100,y));
-    GameObject::barrelsArrayPointer.push_back(new Fish(*iter));
+	iter->setPosition(Vector2(startPosition.get_X(), (rand()%dispersion) + startPosition.get_Y()));
+	GameObject::fishesArrayPointer.push_back(new Fish(*iter));
 }
 
 

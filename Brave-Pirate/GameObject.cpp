@@ -70,6 +70,7 @@ void GameObject::update(void)
 
 void GameObject::onCollision(void)
 {
+	_isDestroyed = true;
 }
 
 void GameObject::onCollision(const float strength)
