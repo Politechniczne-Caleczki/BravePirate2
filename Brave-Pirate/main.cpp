@@ -32,6 +32,7 @@ Menu menu(Textures::getTexture("background.bmp"));
 
 
 InstantionManager<Barrel> barrelMenager("burrels.txt", Vector2(1100,300), Delay(1000), Delay(30000));
+InstantionManager<Fish> fishesMenager("Fishes.txt", Vector2(1100,450), Delay(1000), Delay(30000));
 
 while(gameStateManager.update())
 {
@@ -39,6 +40,7 @@ while(gameStateManager.update())
 	switch(gameStateManager.getGameState()){
 	case 2:
 		barrelMenager.update();
+		fishesMenager.update();
 		ship.update();
 		sea.update();	
 			
@@ -47,6 +49,7 @@ while(gameStateManager.update())
 			sea.draw();			
 			ship.draw();
 			barrelMenager.draw();
+			fishesMenager.draw();
 			
 		graphicDivice.end();
 		break;

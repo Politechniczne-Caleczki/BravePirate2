@@ -13,3 +13,5 @@ load_game_pressed.png
 save.png
 save_pressed.png
 hook.png
+fish.png
+barrel.png

@@ -1,7 +1,8 @@
 #include "Fish.h"
 
 //Constructors and destructors
-Fish::Fish(GameObject & gameObject, float hp, float speed): GameObject(gameObject), hp(hp), speed(speed), isCought(false)
+Fish::Fish(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, float hp, float speed): 
+GameObject(position, size, angle, texture), hp(hp), speed(speed), isCought(false)
 {
 }
 
@@ -14,8 +15,8 @@ float Fish::getHp(void)
 //Functions
 void Fish::update(void)
 {
-	if(!isCought)
-		position.set_X(position.get_X()+speed);
+	position.set_X(position.get_X()-speed);
+	SDL_Log("edfds");
 }
 
 bool Fish::cought(void)
@@ -23,8 +24,4 @@ bool Fish::cought(void)
 	return isCought;
 }
 
-void Fish::draw()const
-{
-
-}
 

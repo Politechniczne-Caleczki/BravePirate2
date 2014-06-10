@@ -54,6 +54,7 @@ InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition,
 template <>
 InstantionManager<Fish>::InstantionManager(string path, Vector2 startPosition, Delay instantionDelay,Delay upgradeDelay):startPosition(startPosition),instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(2)
 {
+	
 	FILE * myFile = fopen(path.data(),"r");
 		if (myFile!=NULL)//error
 		{				
@@ -61,15 +62,13 @@ InstantionManager<Fish>::InstantionManager(string path, Vector2 startPosition, D
 			{
 				char textureName[32];
 				float speed, hp, dmg, scl;
-				fscanf_s(myFile,"%s %f, %f, %f %f",textureName, &speed, &hp, &scl);	
-//				listOfAllObjects.push_back(Fish(GameObject(startPosition,Vector2(scl,scl),0, Textures::getTexture(textureName)),hp,speed));
+				fscanf(myFile,"%s %f %f %f",textureName, &speed, &hp, &scl);	
+				listOfAllObjects.push_back(Fish(Vector2(1100,500), Vector2(scl,scl), 0, Textures::getTexture("fish.png"),hp,speed));
 			}
 		}
 	fclose(myFile);
-
 	instantionDelay.Start();
 	upgradeDelay.Start();
-
 }
 
 template<>
@@ -77,7 +76,7 @@ void InstantionManager<Barrel>::listUpdate()
 {
 	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end();)
 	{		
-		static_cast<Barrel*>(*iter)->update();
+		(*iter)->update();
 		if((*iter)->isDestroyed())
 		{		
 			delete *iter;			
@@ -93,16 +92,17 @@ void InstantionManager<Fish>::listUpdate()
 {
 	for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end();)
 	{
-		(*iter)->update();		
+		(*iter)->update();
+		
 		if((*iter)->isDestroyed())
 		{		
 			delete *iter;
-			*iter = NULL;
 			iter = GameObject::fishesArrayPointer.erase(iter);			
 		}
 		else
 			iter++;		
 	}
+
 }
 
 template<class typ>
@@ -161,7 +161,9 @@ void InstantionManager<Fish>::add(unsigned int index)
 {
 	list<Fish>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
-//	GameObject::barrelsArrayPointer.push_back(new Fish(*iter));
+	unsigned int y = rand()% 200 + 360;
+	iter->setPosition(Vector2(1100,y));
+    GameObject::barrelsArrayPointer.push_back(new Fish(*iter));
 }
 
 

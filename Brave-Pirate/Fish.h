@@ -8,10 +8,9 @@ private:
 	bool isCought;
 
 public:
-	Fish(GameObject & gameobject, float hp, float speed);
+	Fish(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, float hp, float speed);
 
 	void update(void);
-	void draw(void)const;
 	float getHp(void);
 	bool cought(void);
 };
