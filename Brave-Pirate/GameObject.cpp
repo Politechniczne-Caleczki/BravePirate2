@@ -22,12 +22,12 @@ float GameObject::getAngle()const
 	return this->angle;
 }
 
-Vector2 GameObject::getPosition()const
+const Vector2 GameObject::getPosition()const
 {
 	return this->position;
 }
 
-Vector2 GameObject::getSize()const
+const Vector2 GameObject::getSize()const
 {
 	return this->size;
 }
@@ -47,7 +47,7 @@ void GameObject::setPosition(const Vector2 position)
 	this->position = position;
 }
 
-void GameObject::setsize(const Vector2 size)
+void GameObject::setSize(const Vector2 size)
 {
 	this->size = size;
 }
@@ -92,12 +92,12 @@ Lista GameObject::getNewList(void)
 	return list;
 }
 
-bool GameObject::isDestroyed()const
+const bool GameObject::isDestroyed()const
 {
 	return _isDestroyed;
 }
 
-Vector2 GameObject::getCenterPosition()const
+const Vector2 GameObject::getCenterPosition()const
 {
 	return position + size/2;
 }

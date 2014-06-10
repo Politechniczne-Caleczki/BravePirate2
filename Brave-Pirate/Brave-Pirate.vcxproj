@@ -81,8 +81,10 @@
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="GraphicDevice.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="InterfaceObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="ProgressIndicator.cpp" />
     <ClCompile Include="Sea.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Textures.cpp" />
@@ -104,7 +106,9 @@
     <ClInclude Include="GraphicDevice.h" />
     <ClInclude Include="InstantionManager.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="InterfaceObject.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="ProgressIndicator.h" />
     <ClInclude Include="Sea.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Textures.h" />

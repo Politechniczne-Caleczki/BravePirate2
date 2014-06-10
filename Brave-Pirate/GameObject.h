@@ -11,7 +11,7 @@ class GameObject;
 
 typedef list<GameObject*> Lista;
 
-class GameObject
+class GameObject : public BasicObject
 {
 private:
 	static Lista getNewList();
@@ -29,23 +29,22 @@ public:
 	GameObject(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture);
 	virtual~GameObject(void);
 
-	Vector2 getPosition(void)const;
-	Vector2 getCenterPosition(void)const;
-	Vector2 getSize(void)const;
+	const Vector2 getPosition(void)const;
+	const Vector2 getCenterPosition(void)const;
+	const Vector2 getSize(void)const;
 	SDL_Texture* getTexture(void)const;
 	float getAngle(void)const;
 	void setAngle(const float angle);
 	void setPosition(const Vector2 position);
-	void setsize(const Vector2 size);
+	void setSize(const Vector2 size);
 	void setTexture(SDL_Texture* texture);	
 
 	virtual void draw()const;
 	virtual void update();	
 	 
-
 	virtual void onCollision(void);	
 	virtual void onCollision(const float strength);	
-	virtual bool isDestroyed()const;
+	virtual const bool isDestroyed()const;
 
 	void operator=(GameObject &GameObject);
 };

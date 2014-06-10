@@ -2,8 +2,8 @@
 class BasicObject
 {
 public:
-	virtual ~BasicObject(void);
-	virtual void update() = 0;
-	virtual void draw()const = 0;
+	virtual ~BasicObject(void){};
+	virtual void update(void) = 0;
+	virtual void draw(void)const = 0;
 };
 

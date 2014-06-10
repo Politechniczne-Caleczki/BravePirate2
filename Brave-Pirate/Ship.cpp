@@ -4,10 +4,10 @@
 //{
 //}
 
-Ship::Ship(const FloatingObject & floatingObject):FloatingObject(floatingObject),
-	shipHealth(100), 
-	pirateHealth(100),
-	points(0),
+Ship::Ship(const FloatingObject & floatingObject,const float shipHealth,const float pirateHealth,const unsigned int points):FloatingObject(floatingObject),
+	shipHealth(fabs(shipHealth)), 
+	pirateHealth(fabs(shipHealth)),
+	points(points),
 	cannon(angle,1,position + Vector2(145,-75)),
 	rod(Vector2(100,300), Vector2(150,200), 0, Textures::getTexture("hook.png"),0.5,200)
 {
@@ -71,4 +71,14 @@ bool Ship::onCollision(GameObject &gameObject)const
 	return GameObject::onCollision(gameObject);
 }
 
+
+const float Ship::getShipHealth()const
+{
+	return shipHealth;
+}
+
+const float Ship::getPirateHealth()const
+{
+	return pirateHealth;
+}
 

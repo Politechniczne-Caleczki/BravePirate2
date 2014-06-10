@@ -13,6 +13,15 @@
 #include "FishingRod.h"
 #include "Barrel.h"
 #include "InstantionManager.h"
+#include "Interface.h"
+#include "ProgressIndicator.h"
+
+
+SDL_Color getColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
+{
+	SDL_Color color= {r,g,b,a};
+	return color;
+}
 
 int main( int argc, char* args[] )
 {
@@ -22,7 +31,7 @@ GraphicDevice graphicDivice("Dzielny Pirat", Vector2(200,100),Vector2(1000,600))
 Textures textures("ImagesName.txt", "images/");
 Time time;
 
-Ship ship(FloatingObject(Vector2(100,0), Vector2(150,150), 0, Textures::getTexture("ship.png"), Vector2(200,145), Vector2(150, 145)));
+Ship ship(FloatingObject(Vector2(100,0), Vector2(150,150), 0, Textures::getTexture("ship.png"), Vector2(200,145), Vector2(150, 145)), 200,200,0);
 Sea sea(Vector2(0,300),Vector2(1005,42),0,Textures::getTexture("sea.png"), 0.15f);
 
 GameStateManager gameStateManager(1);
@@ -31,8 +40,16 @@ SDL_Surface *bmpp = IMG_Load("images/start.png");
 Menu menu(Textures::getTexture("background.bmp"));
 
 
-InstantionManager<Barrel> barrelMenager("burrels.txt", Vector2(1100,300),0, Delay(1000), Delay(30000));
-InstantionManager<Fish> fishesMenager("Fishes.txt", Vector2(1100,350),250, Delay(1000), Delay(30000));
+InstantionManager<Barrel> barrelMenager("burrels.txt", Vector2(1100,300),0, Delay(5000), Delay(100000));
+InstantionManager<Fish> fishesMenager("Fishes.txt", Vector2(1100,350),250, Delay(5000), Delay(100000));
+
+Interface _interface(Vector2(0,0),Vector2(1000,100),NULL);
+
+ProgressIndicator *shipHealth = new ProgressIndicator(Vector2(10,10),Vector2(ship.getShipHealth(),20), getColor(240,0,0,255));
+ProgressIndicator *pirateHealth = new ProgressIndicator(Vector2(10,35),Vector2(ship.getPirateHealth(),20), getColor(0,240,0,255));
+_interface.addObject(shipHealth);
+_interface.addObject(pirateHealth);
+
 
 while(gameStateManager.update())
 {
@@ -43,6 +60,9 @@ while(gameStateManager.update())
 		fishesMenager.update();
 		ship.update();
 		sea.update();	
+		shipHealth->setValue(ship.getShipHealth());
+		pirateHealth->setValue(ship.getPirateHealth());
+	
 			
 		graphicDivice.begin();
 			SDL_RenderCopy(graphicDivice.getRenderer() , Textures::getTexture("background.bmp"),NULL, NULL);
@@ -50,6 +70,7 @@ while(gameStateManager.update())
 			ship.draw();
 			barrelMenager.draw();
 			fishesMenager.draw();
+			_interface.draw();
 			
 		graphicDivice.end();
 		break;
@@ -65,7 +86,9 @@ while(gameStateManager.update())
 	}
 }
 
-SDL_Quit();
+delete pirateHealth;
+delete shipHealth;
 
+SDL_Quit();
 return 0;
 }

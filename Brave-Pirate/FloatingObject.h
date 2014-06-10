@@ -11,7 +11,7 @@ protected:
 
 public:	
 	FloatingObject(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const Vector2 front,const Vector2 back);
-	~FloatingObject(void);
+	virtual~FloatingObject(void);
 
 	void setPositionX(const float x);
 	void setPositionY(void);

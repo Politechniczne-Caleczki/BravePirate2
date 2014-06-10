@@ -92,7 +92,7 @@ void InstantionManager<Fish>::listUpdate()
 	{
 		(*iter)->update();
 
-		if((*iter)->getPosition().get_X()- (*iter)->getSize().get_X()<0)
+		if((*iter)->getPosition().get_X()+ (*iter)->getSize().get_X()<0)
 			(*iter)->onCollision();
 
 		
