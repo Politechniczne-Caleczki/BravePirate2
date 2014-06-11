@@ -2,7 +2,7 @@
 #include <SDL_image.h>
 #include <iostream>
 #include "GameObject.h"
-
+#include "Fish.h"
 class FishingRod: public GameObject
 {
 private:

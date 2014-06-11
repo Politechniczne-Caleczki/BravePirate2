@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-
+#include "Fish.h"
 class Fish: public GameObject
 {
 private:
@@ -12,5 +12,6 @@ public:
 
 	void update(void);
 	float getHp(void);
-	bool cought(void);
+	bool getCought(void);
+	void cought(void);
 };

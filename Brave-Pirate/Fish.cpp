@@ -15,12 +15,17 @@ float Fish::getHp(void)
 //Functions
 void Fish::update(void)
 {
-	position.set_X(position.get_X()-speed);
+	if(isCought==false)
+		position.set_X(position.get_X()-speed);
 }
 
-bool Fish::cought(void)
+bool Fish::getCought(void)
 {
 	return isCought;
 }
 
+void Fish::cought(void)
+{
+	isCought = true;
+}
 

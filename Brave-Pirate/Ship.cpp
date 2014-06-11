@@ -9,7 +9,7 @@ Ship::Ship(const FloatingObject & floatingObject,const float shipHealth,const fl
 	pirateHealth(fabs(shipHealth)),
 	points(points),
 	cannon(angle,1,position + Vector2(145,-75)),
-	rod(Vector2(100,300), Vector2(150,200), 0, Textures::getTexture("hook.png"),0.5,200)
+	rod(Vector2(100,300), Vector2(15,20), 0, Textures::getTexture("hook.png"),0.5,200)
 {
 }
 
