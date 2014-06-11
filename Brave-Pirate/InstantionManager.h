@@ -117,7 +117,7 @@ void InstantionManager<typ>::update()
 
 	if(upgradeDelay.idRedy())
 	{
-		if(range<listOfAllObjects.size())
+		if(range < listOfAllObjects.size())
 		{
 			upgradeDelay.Start();
 			range++;

@@ -43,7 +43,7 @@ void FishingRod::update(void)
 			static_cast<Fish*>(*iter)->cought();
 		if(static_cast<Fish*>(*iter)->getCought()){
 			(*iter)->setPosition(position);
-			if(position.get_Y() <= positionOfShip.get_Y()+descent+5)
+			if(descent<=0)
 				static_cast<Fish*>(*iter)->onCollision();
 		}
 	}

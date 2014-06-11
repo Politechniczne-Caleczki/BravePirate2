@@ -50,6 +50,11 @@ SDL_Renderer* GraphicDevice::getRenderer()
 	return renderer;
 }
 
+Vector2 GraphicDevice::getWindowSize()
+{
+	return windowSize;
+}
+
 //Functions
 void GraphicDevice::begin()
 {

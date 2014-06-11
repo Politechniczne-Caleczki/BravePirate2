@@ -23,7 +23,9 @@ public:
 	void setWindowSize(const Vector2 size);
 	void setWindowPosition(const Vector2 position);
 	void setWindowName(const string name);
+	
 	static SDL_Renderer* getRenderer(void);//error
+	Vector2 getWindowSize(void);
 
 	static void drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size);
 	static void drawTexture(SDL_Texture *texture,const Vector2 position,const Vector2 size, float angle);
