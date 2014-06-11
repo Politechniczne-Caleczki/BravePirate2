@@ -8,9 +8,12 @@ private:
 	float value;
 	SDL_Rect frame, fill;
 	SDL_Color color;
+	string text;
 public:
 	ProgressIndicator(const Vector2 ,const Vector2, const SDL_Color color);
 	ProgressIndicator(const Vector2 ,const Vector2, const SDL_Color color, const float);
+	ProgressIndicator(const Vector2 ,const Vector2, const string , const SDL_Color color);
+	ProgressIndicator(const Vector2 ,const Vector2, const string , const SDL_Color color, const float);
 	~ProgressIndicator(void);
 
 	void update();

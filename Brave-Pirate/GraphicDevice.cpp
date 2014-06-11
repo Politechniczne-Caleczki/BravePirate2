@@ -9,6 +9,9 @@ GraphicDevice::GraphicDevice(string windowName, Vector2 windowPosition, Vector2 
 {
 	setWindow();
 	GraphicDevice::renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	font = TTF_OpenFont("arial.ttf",128);//error
+	if(font)
+		TTF_SetFontStyle(font,TTF_STYLE_BOLD);
 }
 
 GraphicDevice::~GraphicDevice(void)
@@ -76,9 +79,28 @@ void GraphicDevice::drawTexture(SDL_Texture *texture, const  Vector2 position,co
 	rect.y = (int)position.get_Y();
 	rect.w = (int)size.get_X();
 	rect.h = (int)size.get_Y();
-
-
 	SDL_RenderCopyEx(renderer,texture,NULL,&rect,angle,NULL,SDL_FLIP_NONE);
 }
 
+
+void GraphicDevice::drawText(const string text,const SDL_Color textColor,const  Vector2 position,const float size)
+{
+	SDL_Surface *textSurface;
+	if(textSurface = TTF_RenderText_Solid(font,text.c_str(),textColor))
+	{
+		SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer ,textSurface);
+		Vector2 surfaceSize(textSurface->w * size/textSurface->h , size);
+		drawTexture(textTexture,position,surfaceSize);			
+		SDL_DestroyTexture(textTexture);
+	}
+	SDL_FreeSurface(textSurface);
+}
+
+const SDL_Color GraphicDevice::getColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
+{
+	SDL_Color color= {r,g,b,a};
+	return color;
+}
+
 SDL_Renderer* GraphicDevice::renderer = NULL;
+TTF_Font * GraphicDevice::font = NULL;

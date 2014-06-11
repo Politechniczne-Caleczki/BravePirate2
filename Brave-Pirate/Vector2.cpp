@@ -96,4 +96,9 @@ const Vector2 Vector2::operator+(const Vector2 &vector2)const
 		return Vector2(x, y);
 }
 
+ const Vector2 Vector2::operator*(const float & value)const
+{
+	return Vector2(x*value, y*value);
+}
+
 

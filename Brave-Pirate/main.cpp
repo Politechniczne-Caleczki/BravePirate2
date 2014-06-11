@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <iostream>
 #include "GraphicDevice.h"
 #include "GameStateManager.h"
@@ -17,16 +18,14 @@
 #include "ProgressIndicator.h"
 
 
-SDL_Color getColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
-{
-	SDL_Color color= {r,g,b,a};
-	return color;
-}
 
 int main( int argc, char* args[] )
 {
 SDL_Init(SDL_INIT_EVERYTHING);
 IMG_Init(IMG_INIT_PNG);
+TTF_Init();
+
+
 GraphicDevice graphicDivice("Dzielny Pirat", Vector2(200,100),Vector2(1000,600));
 Textures textures("ImagesName.txt", "images/");
 Time time;
@@ -45,8 +44,8 @@ InstantionManager<Fish> fishesMenager("Fishes.txt", Vector2(1100,350),250, Delay
 
 Interface _interface(Vector2(0,0),Vector2(1000,100),NULL);
 
-ProgressIndicator *shipHealth = new ProgressIndicator(Vector2(10,10),Vector2(ship.getShipHealth(),20), getColor(240,0,0,255));
-ProgressIndicator *pirateHealth = new ProgressIndicator(Vector2(10,35),Vector2(ship.getPirateHealth(),20), getColor(0,240,0,255));
+ProgressIndicator *shipHealth = new ProgressIndicator(Vector2(10,10),Vector2(ship.getShipHealth(),20),"HP" ,graphicDivice.getColor(240,0,0,255));
+ProgressIndicator *pirateHealth = new ProgressIndicator(Vector2(10,35),Vector2(ship.getPirateHealth(),20), "Energy",graphicDivice.getColor(0,240,0,255));
 _interface.addObject(shipHealth);
 _interface.addObject(pirateHealth);
 
@@ -70,8 +69,7 @@ while(gameStateManager.update())
 			ship.draw();
 			barrelMenager.draw();
 			fishesMenager.draw();
-			_interface.draw();
-			
+			_interface.draw();			
 		graphicDivice.end();
 		break;
 	case 1:

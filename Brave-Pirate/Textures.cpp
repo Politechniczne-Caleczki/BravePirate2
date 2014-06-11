@@ -31,6 +31,7 @@ Textures::Textures(string filename, string path)
 			}
 		}
 	}
+	SDL_FreeSurface(surface);
 }
 
 Textures::~Textures(void)

@@ -24,6 +24,7 @@ public:
 	const Vector2 operator=(const Vector2 &);
 	const bool operator==(const Vector2 &v)const;
 	const Vector2 operator-(const Vector2 &v)const;
+	const Vector2 operator*(const float &v)const;
 	const Vector2 operator-=(const Vector2 &);
 	const Vector2 operator+(const Vector2 &)const;
 	const Vector2 operator/(const float&)const;
