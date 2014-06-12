@@ -9,6 +9,7 @@ private:
 
 public:
 	Fish(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, float hp, float speed);
+	virtual ~Fish(void);
 
 	void update(void);
 	float getHp(void);

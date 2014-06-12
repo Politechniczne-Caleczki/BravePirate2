@@ -5,7 +5,9 @@ FishingRod::FishingRod(const Vector2 position, const Vector2 size, const float a
 	descentRate(fabs(descentRate)),
 	maxDepth(fabs(maxDepth)),
 	GameObject(position,size,angle,texture),
-	descent(1){}
+	descent(1),
+	catchObject(NULL){}
+
 
 //Getters and setters
 float FishingRod::getDescentRate(void)const
@@ -37,18 +39,16 @@ void FishingRod::setPosition(const Vector2 newPosition)
 //Functions
 void FishingRod::update(void)
 {
-	for(Lista::iterator iter = fishesArrayPointer.begin(); iter != fishesArrayPointer.end(); iter++)
+	GameObject::update();
+
+	if(catchObject==NULL)
 	{
-		if(onCollision(*(*iter)))
-			static_cast<Fish*>(*iter)->cought();
-		if(static_cast<Fish*>(*iter)->getCought()){
-			(*iter)->setPosition(position);
-			if(descent<=0)
-				static_cast<Fish*>(*iter)->onCollision();
-		}
+		checkCollisions();
+	}else
+	{
+		catchObject->setPosition(position);
 	}
 
-	GameObject::update();
 	
 	if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_DOWN] && position.get_Y()<550)
 	{
@@ -61,8 +61,35 @@ void FishingRod::update(void)
 	}
 }
 
+void FishingRod::checkCollisions(void)
+{
+	for(Lista::iterator iter = fishesArrayPointer.begin(); iter != fishesArrayPointer.end(); iter++)
+	{
+		if(onCollision(*(*iter)))
+		{
+			catchObject = (*iter);
+			fishesArrayPointer.erase(iter);
+			break;
+		}
+	}
+}
+
 void FishingRod::draw(void)const
 {
 	SDL_RenderDrawLine(GraphicDevice::getRenderer(),positionOfShip.get_X(),positionOfShip.get_Y(),position.get_X(),position.get_Y());
-	GraphicDevice::drawTexture(texture,Vector2(position.get_X()-10,position.get_Y()), size);
+	GraphicDevice::drawTexture(texture,Vector2(position.get_X()- size.get_X()/2,position.get_Y()), size);
+	if(catchObject!=NULL)
+		catchObject->draw();
+}
+
+GameObject * FishingRod::getCatchObject(void)
+{
+	if(descent<=0)
+	{
+		GameObject *gO = catchObject;
+		catchObject=NULL;
+		return gO;
+	}
+	
+	return NULL;	
 }

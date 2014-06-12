@@ -11,7 +11,8 @@ private:
 	int points;
 	Cannon cannon;
 	FishingRod rod;
-
+	GameObject *catchObject;
+	void checkCollisions(void);
 public:
 	Ship(const FloatingObject & floatingObject,const float shipHealth,const float pirateHealth,const unsigned int points);
 	~Ship(void);

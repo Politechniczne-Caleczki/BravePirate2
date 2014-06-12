@@ -6,6 +6,10 @@ GameObject(position, size, angle, texture), hp(hp), speed(speed), isCought(false
 {
 }
 
+Fish::~Fish(void)
+{
+}
+
 //Getters and setters
 float Fish::getHp(void)
 {
