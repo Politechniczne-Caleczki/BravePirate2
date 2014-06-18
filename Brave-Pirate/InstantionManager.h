@@ -19,7 +19,7 @@ private:
 	void listUpdate();
 public: 
 	InstantionManager(const string path,Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay); 
-	~InstantionManager(){};
+	~InstantionManager();
 	void update();	
 	void draw();
 };
@@ -67,6 +67,29 @@ InstantionManager<Fish>::InstantionManager(string path, Vector2 startPosition, i
 	fclose(myFile);
 	instantionDelay.Start();
 	upgradeDelay.Start();
+}
+
+template <class typ>
+InstantionManager<typ>::~InstantionManager(){}
+
+template <>
+InstantionManager<Barrel>::~InstantionManager()
+{
+	/*for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end();iter++)
+	{
+		delete *iter;
+	}
+	GameObject::barrelsArrayPointer.clear();*/
+}
+
+template <>
+InstantionManager<Fish>::~InstantionManager()
+{
+	/*for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end();iter++)
+	{
+		delete *iter;
+	}
+	GameObject::fishesArrayPointer.clear();*/
 }
 
 template<>

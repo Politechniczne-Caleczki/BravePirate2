@@ -42,11 +42,3 @@ void CannonBall::update(void)
 }   
 
 
-
-float CannonBall::getPower()
-{
-	return strikingPower*strikingDistance;
-}
-
-
-

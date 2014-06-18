@@ -16,6 +16,7 @@
 #include "InstantionManager.h"
 #include "Interface.h"
 #include "ProgressIndicator.h"
+#include "GameLabel.h"
 
 
 
@@ -46,8 +47,11 @@ Interface _interface(Vector2(0,0),Vector2(1000,100),NULL);
 
 ProgressIndicator *shipHealth = new ProgressIndicator(Vector2(10,10),Vector2(ship.getShipHealth(),20),"HP" ,graphicDivice.getColor(240,0,0,255));
 ProgressIndicator *pirateHealth = new ProgressIndicator(Vector2(10,35),Vector2(ship.getPirateHealth(),20), "Energy",graphicDivice.getColor(0,240,0,255));
+GameLabel *scor = new GameLabel("Napis", graphicDivice.getColor(0,0,0,255),Vector2(700,10),30);
+
 _interface.addObject(shipHealth);
 _interface.addObject(pirateHealth);
+_interface.addObject(scor);
 
 
 while(gameStateManager.update())
@@ -59,16 +63,18 @@ while(gameStateManager.update())
 		fishesMenager.update();
 		ship.update();
 		sea.update();	
+
 		shipHealth->setValue(ship.getShipHealth());
-		pirateHealth->setValue(ship.getPirateHealth());
-	
+		pirateHealth->setValue(ship.getPirateHealth());	
 			
 		graphicDivice.begin();
+
 			SDL_RenderCopy(graphicDivice.getRenderer() , Textures::getTexture("background.bmp"),NULL, NULL);
 			sea.draw();			
 			ship.draw();
 			barrelMenager.draw();
 			fishesMenager.draw();
+
 			_interface.draw();			
 		graphicDivice.end();
 		break;
@@ -83,9 +89,6 @@ while(gameStateManager.update())
 		break;
 	}
 }
-
-delete pirateHealth;
-delete shipHealth;
 
 SDL_Quit();
 return 0;

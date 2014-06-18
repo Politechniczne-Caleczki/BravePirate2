@@ -39,13 +39,4 @@ void Barrel::onCollision(const float power)
 		onCollision();
 }
 
-void Barrel::onCollision(void)
-{
-	_isDestroyed= true;
-}
-
-const float Barrel::getDamage()const
-{
-	return this->damage;
-}
 

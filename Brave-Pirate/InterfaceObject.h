@@ -1,4 +1,5 @@
 #pragma once
+#include "GraphicDevice.h"
 #include "BasicObject.h"
 #include "Vector2.h"
 
@@ -9,8 +10,7 @@ protected:
 
 public:
 	InterfaceObject(const Vector2 ,const Vector2);
-	~InterfaceObject(void);
-
+	virtual~InterfaceObject(void);
 
 	void setPosition(const Vector2 position);
 	void setSize(const Vector2 size);

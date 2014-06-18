@@ -51,20 +51,7 @@ ProgressIndicator::ProgressIndicator(const Vector2 position,const Vector2 size, 
 
 ProgressIndicator::~ProgressIndicator(void){}
 
-void ProgressIndicator::setValue(const float value)
-{
-	if(value>=0)
-	{
-		this->value = value;
-		if(this->value>frame.w)
-			this->value=frame.w;
 
-		fill.w = value;
-	}
-}
-
-
-const float ProgressIndicator::getValue()const{return value;}
 void ProgressIndicator::draw()const
 {
 	SDL_SetRenderDrawColor(GraphicDevice::getRenderer(), color.r, color.g, color.b, color.a);

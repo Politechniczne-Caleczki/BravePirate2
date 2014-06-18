@@ -19,20 +19,7 @@ Ship::~Ship(void)
 }
 
 //Functions
-void Ship::changeShipHealth(const float health)
-{
-	this->shipHealth += health;
-}
 
-void Ship::changePirateHealth(const float health)
-{
-	this->shipHealth += health;
-}
-
-void Ship::addPoint(void)
-{
-	this->points++;
-}
 
 void Ship::draw(void)const
 {
@@ -44,8 +31,7 @@ void Ship::draw(void)const
 void Ship::update(void)
 {	
 	checkCollisions();
-	catchObject = rod.getCatchObject();
-	if(catchObject!=NULL)
+	if((catchObject=rod.getCatchObject())!=NULL)
 	{
 		delete catchObject;
 		catchObject = NULL;
@@ -73,24 +59,7 @@ void Ship::checkCollisions(void)
 	}
 }
 
-void Ship::addPoints(const int point)
-{
-	this->points += point;
-}
-
 bool Ship::onCollision(GameObject &gameObject)const
 {
 	return GameObject::onCollision(gameObject);
 }
-
-
-const float Ship::getShipHealth()const
-{
-	return shipHealth;
-}
-
-const float Ship::getPirateHealth()const
-{
-	return pirateHealth;
-}
-

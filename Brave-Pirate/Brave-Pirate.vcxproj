@@ -77,6 +77,7 @@
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="FishingRod.cpp" />
     <ClCompile Include="FloatingObject.cpp" />
+    <ClCompile Include="GameLabel.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="GraphicDevice.cpp" />
@@ -100,7 +101,9 @@
     <ClInclude Include="Delay.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FishingRod.h" />
+    <ClInclude Include="Fishs_Gifts_Types.h" />
     <ClInclude Include="FloatingObject.h" />
+    <ClInclude Include="GameLabel.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GraphicDevice.h" />

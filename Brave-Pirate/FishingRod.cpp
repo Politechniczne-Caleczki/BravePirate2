@@ -10,24 +10,7 @@ FishingRod::FishingRod(const Vector2 position, const Vector2 size, const float a
 
 
 //Getters and setters
-float FishingRod::getDescentRate(void)const
-{
-	return this->descentRate;
-}
 
-float FishingRod::getMasDepth(void)const
-{
-	return this->maxDepth;
-}
-void FishingRod::setDescentRate(const float rate)
-{
-	this->descentRate = rate;
-}
-
-void FishingRod::setMaxDepth(const float depth)
-{
-	this->maxDepth = depth;
-}
 
 void FishingRod::setPosition(const Vector2 newPosition)
 {

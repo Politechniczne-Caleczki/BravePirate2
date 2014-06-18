@@ -33,7 +33,7 @@ public:
 	const Vector2 getCenterPosition(void)const;
 	const Vector2 getSize(void)const;
 	SDL_Texture* getTexture(void)const;
-	float getAngle(void)const;
+	const float getAngle(void)const;
 	void setAngle(const float angle);
 	void setPosition(const Vector2 position);
 	void setSize(const Vector2 size);
@@ -50,56 +50,52 @@ public:
 };
 
 
-
-/*
-
-class GameState,....
-
-private: 
-	int gameState;
-
-0// exit game;
-1// menu update
-2// game update
-
-
-int GameStateMEnager::Update()
+inline const float GameObject::getAngle()const
 {
-	if( czy nacisniety klawisz X)
-		set 0;
-
-
-	if(gameState==2)
-	{
-		if(ESC);
-			return 1;
-		return 2;
-	}	
+	return this->angle;
 }
 
-
-
-GameStateMEnager gs(1);
-while(gs.getState())
+inline const Vector2 GameObject::getPosition()const
 {
-	swich(gs.Update())
-	{
-		case 1:
-		{
-			gs.setState(menu.Update());
-			menu.Draw();
-		}break;
-		case 2:
-		{
-			//
-			//
-			//
-			//
-			//
-			game.Update();
-			game.Draw();
-		}
-	}
+	return this->position;
 }
 
-*/
+inline const Vector2 GameObject::getSize()const
+{
+	return this->size;
+}
+
+inline SDL_Texture* GameObject::getTexture()const
+{
+	return this->texture;
+}
+
+inline void GameObject::setAngle(const float angle)
+{
+	this->angle = angle;
+}
+
+inline void GameObject::setPosition(const Vector2 position)
+{
+	this->position = position;
+}
+
+inline void GameObject::setSize(const Vector2 size)
+{
+	this->size = size;
+}
+
+inline void GameObject::setTexture(SDL_Texture* texture)
+{
+	this->texture = texture;
+}
+
+inline void GameObject::onCollision(void)
+{
+	_isDestroyed = true;
+}
+
+inline const bool GameObject::isDestroyed()const
+{
+	return _isDestroyed;
+}

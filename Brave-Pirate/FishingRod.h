@@ -25,3 +25,22 @@ public:
 	void draw(void)const;
 
 };
+
+inline float FishingRod::getDescentRate(void)const
+{
+	return this->descentRate;
+}
+
+inline float FishingRod::getMasDepth(void)const
+{
+	return this->maxDepth;
+}
+inline void FishingRod::setDescentRate(const float rate)
+{
+	this->descentRate = rate;
+}
+
+inline void FishingRod::setMaxDepth(const float depth)
+{
+	this->maxDepth = depth;
+}

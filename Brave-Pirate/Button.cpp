@@ -18,27 +18,6 @@ Button::~Button(void)
 	SDL_DestroyTexture(textureInactive);
 }
 
-//Getters and setters
-bool Button::getActive(void)const
-{
-	return active;
-}
-
-bool Button::getAvailability(void)const
-{
-	return available;
-}
-
-void Button::setActive(bool active)
-{
-	this->active = active;
-}
-
-void Button::setAvailability(bool available)
-{
-	available = available;
-}
-
 //Functions
 int Button::action(void)
 {

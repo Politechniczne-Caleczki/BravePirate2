@@ -6,16 +6,24 @@ Interface::Interface(const Vector2 position,const Vector2 size,SDL_Texture *back
 
 Interface::~Interface(void)
 {
+	
+	for(InterfaceList::iterator iter = interfaceList.begin() ; iter!= interfaceList.end(); iter++)
+	{		
+		delete *iter;
+	}
+	interfaceList.clear();
+	InterfaceObject::~InterfaceObject();
 }
-
 
 void Interface::addObject(InterfaceObject * interfaceObject)
 {
 	interfaceList.push_back(interfaceObject);
 }
 
+void Interface::update()
+{
+}
 
-void Interface::update(){}
 void Interface::draw()const
 {
 	GraphicDevice::drawTexture(background,position,size);

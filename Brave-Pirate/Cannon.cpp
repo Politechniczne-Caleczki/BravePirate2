@@ -11,21 +11,6 @@ Cannon::~Cannon(void)
 	this->cannonBalls.clear();
 }
 
-//Getters and setters
-void Cannon::setAngle(const float angle)
-{
-	this->angle = angle;
-}
-
-void Cannon::setPosition(const Vector2 position)
-{
-	this->position = position;
-}
-
-void Cannon::setInterval(const Delay interval)
-{
-	this->interval = interval;
-}
 
 //Functions
 void Cannon::fire(void)

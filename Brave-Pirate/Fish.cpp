@@ -10,26 +10,10 @@ Fish::~Fish(void)
 {
 }
 
-//Getters and setters
-float Fish::getHp(void)
-{
-	return hp;
-}
-
 //Functions
 void Fish::update(void)
 {
 	if(isCought==false)
 		position.set_X(position.get_X()-speed);
-}
-
-bool Fish::getCought(void)
-{
-	return isCought;
-}
-
-void Fish::cought(void)
-{
-	isCought = true;
 }
 

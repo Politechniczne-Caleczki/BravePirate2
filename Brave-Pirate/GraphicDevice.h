@@ -36,3 +36,25 @@ public:
 
 };
 
+
+inline SDL_Renderer* GraphicDevice::getRenderer()
+{
+	return renderer;//error
+}
+
+inline Vector2 GraphicDevice::getWindowSize()
+{
+	return windowSize;
+}
+
+//Functions
+inline void GraphicDevice::begin()
+{
+	SDL_RenderClear(renderer);
+}
+
+inline void GraphicDevice::end()
+{
+	SDL_RenderPresent(renderer);
+}
+

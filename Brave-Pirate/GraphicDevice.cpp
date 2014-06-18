@@ -45,27 +45,6 @@ void GraphicDevice::setWindowPosition(const Vector2 position)
 	setWindow();
 }
 
-SDL_Renderer* GraphicDevice::getRenderer()
-{
-	return renderer;
-}
-
-Vector2 GraphicDevice::getWindowSize()
-{
-	return windowSize;
-}
-
-//Functions
-void GraphicDevice::begin()
-{
-	SDL_RenderClear(renderer);
-}
-
-void GraphicDevice::end()
-{
-	SDL_RenderPresent(renderer);
-}
-
 void GraphicDevice::drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size)
 {
 	SDL_Rect rect;

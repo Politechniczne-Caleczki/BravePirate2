@@ -19,3 +19,14 @@ public:
 
 	int update(void);
 };
+
+//Getters and setters
+inline int GameStateManager::getGameState(void)const
+{
+	return gameState;
+}
+
+inline void GameStateManager::setGameState(int state)
+{
+	gameState=state;
+}

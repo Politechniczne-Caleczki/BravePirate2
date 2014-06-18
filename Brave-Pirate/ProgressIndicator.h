@@ -1,6 +1,5 @@
 #pragma once
 #include "InterfaceObject.h"
-#include "GraphicDevice.h"
 
 class ProgressIndicator:public InterfaceObject
 {
@@ -20,5 +19,48 @@ public:
 	void draw()const;
 	void setValue(const float);
 	const float getValue()const;
+
+	void setText(const string);
+	const string getText()const;
+
+	void setColor(const SDL_Color);
+	const SDL_Color getColor()const;
 };
 
+
+inline const float ProgressIndicator::getValue()const
+{
+	return value;
+}
+
+inline void ProgressIndicator::setText(const string text)
+{
+	this->text = text;
+}
+
+inline const string ProgressIndicator::getText()const
+{
+	return text;
+}
+
+inline const SDL_Color ProgressIndicator::getColor()const
+{
+	return color;
+}
+
+inline void ProgressIndicator::setColor(const SDL_Color)
+{
+	this->color = color;
+}
+
+inline void ProgressIndicator::setValue(const float value)
+{
+	if(value>=0)
+	{
+		this->value = value;
+		if(this->value>frame.w)
+			this->value=frame.w;
+
+		fill.w = value;
+	}
+}

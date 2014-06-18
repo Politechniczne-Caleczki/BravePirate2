@@ -22,3 +22,7 @@ public:
 	float getPower();
 };
 
+inline float CannonBall::getPower()
+{
+	return strikingPower*strikingDistance;
+}

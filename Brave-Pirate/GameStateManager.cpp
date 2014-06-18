@@ -6,18 +6,6 @@ GameStateManager::GameStateManager(const int state):gameState(state)
 }
 
 
-
-//Getters and setters
-int GameStateManager::getGameState(void)const
-{
-	return gameState;
-}
-
-void GameStateManager::setGameState(int state)
-{
-	gameState=state;
-}
-
 //Functions
 int GameStateManager::update(void)
 {

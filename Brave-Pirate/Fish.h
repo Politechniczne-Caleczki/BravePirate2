@@ -16,3 +16,18 @@ public:
 	bool getCought(void);
 	void cought(void);
 };
+
+inline bool Fish::getCought(void)
+{
+	return isCought;
+}
+
+inline void Fish::cought(void)
+{
+	isCought = true;
+}
+
+inline float Fish::getHp(void)
+{
+	return hp;
+}

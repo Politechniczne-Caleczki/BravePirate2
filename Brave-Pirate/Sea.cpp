@@ -28,11 +28,6 @@ void Sea::update(void)
 }
 
 
-float Sea::getWaveHeight(const float x)
-{
-	return Sea::position.get_Y()+ Sea::size.get_Y()/2+ 20*sin((x-Sea::shift)/40);
-}
-
 Vector2 Sea::position = Vector2(0,0);
 Vector2 Sea::size = Vector2(0,0);
 float Sea::shift = 0;

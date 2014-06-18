@@ -19,5 +19,7 @@ public:
 	static float getWaveHeight(const float x);
 };
 
-
-
+inline float Sea::getWaveHeight(const float x)
+{
+	return Sea::position.get_Y()+ Sea::size.get_Y()/2+ 20*sin((x-Sea::shift)/40);
+}

@@ -30,3 +30,18 @@ public:
 	void fire(void);
 };
 
+inline void Cannon::setAngle(const float angle)
+{
+	this->angle = angle;
+}
+
+inline void Cannon::setPosition(const Vector2 position)
+{
+	this->position = position;
+}
+
+inline void Cannon::setInterval(const Delay interval)
+{
+	this->interval = interval;
+}
+

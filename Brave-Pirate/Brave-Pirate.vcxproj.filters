@@ -84,6 +84,9 @@
     <ClCompile Include="ProgressIndicator.cpp">
       <Filter>Source Files\GameInterface</Filter>
     </ClCompile>
+    <ClCompile Include="GameLabel.cpp">
+      <Filter>Source Files\GameInterface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -150,6 +153,12 @@
       <Filter>Header Files\GameInterface</Filter>
     </ClInclude>
     <ClInclude Include="ProgressIndicator.h">
+      <Filter>Header Files\GameInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="Fishs_Gifts_Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLabel.h">
       <Filter>Header Files\GameInterface</Filter>
     </ClInclude>
   </ItemGroup>

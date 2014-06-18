@@ -15,7 +15,17 @@ public:
 	void update(void);
 	void onCollision(void);
 	void onCollision(const float strength);
-	const float getDamage()const;
-	bool isDestroed()const;
+	inline const float getDamage()const;
+	inline const bool isDestroed()const;
 
 };
+
+inline void Barrel::onCollision(void)
+{
+	_isDestroyed= true;
+}
+
+inline const float Barrel::getDamage()const
+{
+	return this->damage;
+}
