@@ -18,7 +18,9 @@ public:
 	void update();
 	void draw()const;
 	void setValue(const float);
+	void setPercentageValue(const float);
 	const float getValue()const;
+	const float getPercentageValue()const;
 
 	void setText(const string);
 	const string getText()const;
@@ -31,6 +33,11 @@ public:
 inline const float ProgressIndicator::getValue()const
 {
 	return value;
+}
+
+inline const float ProgressIndicator::getPercentageValue()const
+{
+	return value/frame.w;
 }
 
 inline void ProgressIndicator::setText(const string text)
@@ -63,4 +70,9 @@ inline void ProgressIndicator::setValue(const float value)
 
 		fill.w = value;
 	}
+}
+
+inline void ProgressIndicator::setPercentageValue(const float value)
+{
+	setValue(value/100 * frame.w);
 }

@@ -5,7 +5,7 @@ Textures::Textures(string filename, string path)
 {
 	SDL_Surface *surface =NULL;	
 	SDL_Texture *texture = NULL;
-	if((surface = IMG_Load("images/error.png"))!=NULL)//error
+	if((surface = IMG_Load("Resources/images/error.png"))!=NULL)//error
 	{
 		if((texture = SDL_CreateTextureFromSurface(GraphicDevice::getRenderer(),surface))!=NULL)//error
 		{

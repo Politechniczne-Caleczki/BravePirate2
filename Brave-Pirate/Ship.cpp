@@ -4,19 +4,12 @@
 //{
 //}
 
-Ship::Ship(const FloatingObject & floatingObject,const float shipHealth,const float pirateHealth,const unsigned int points):FloatingObject(floatingObject),
-	shipHealth(fabs(shipHealth)), 
-	pirateHealth(fabs(shipHealth)),
-	points(points),
+Ship::Ship(const FloatingObject & floatingObject):FloatingObject(floatingObject),
 	cannon(angle,1,position + Vector2(145,-75)),
 	rod(Vector2(100,300), Vector2(15,20), 0, Textures::getTexture("hook.png"),0.5,200),
-	catchObject(NULL)
-{
-}
+	catchObject(NULL){}
 
-Ship::~Ship(void)
-{
-}
+Ship::~Ship(void){}
 
 //Functions
 
@@ -54,12 +47,8 @@ void Ship::checkCollisions(void)
 		if(onCollision(*(*iter)))
 		{
 			(*iter)->onCollision();		
-			this->shipHealth-=  static_cast<Barrel*>(*iter)->getDamage();
+			Player::getInstance().removeShipHealth(static_cast<Barrel*>(*iter)->getDamage());
 		}
 	}
 }
 
-bool Ship::onCollision(GameObject &gameObject)const
-{
-	return GameObject::onCollision(gameObject);
-}

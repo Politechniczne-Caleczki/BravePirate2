@@ -8,7 +8,7 @@ Time::Time(void):last(0), interval(10)
 
 Time::Time(const Uint32 interval):last(0), interval(interval)
 {
-	myTimerID = SDL_AddTimer(interval, &increment ,this);
+	myTimerID = SDL_AddTimer(interval, &increment ,NULL);
 }
 
 Time::~Time(void)

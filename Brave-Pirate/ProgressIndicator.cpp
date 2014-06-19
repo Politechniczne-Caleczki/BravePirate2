@@ -51,7 +51,6 @@ ProgressIndicator::ProgressIndicator(const Vector2 position,const Vector2 size, 
 
 ProgressIndicator::~ProgressIndicator(void){}
 
-
 void ProgressIndicator::draw()const
 {
 	SDL_SetRenderDrawColor(GraphicDevice::getRenderer(), color.r, color.g, color.b, color.a);

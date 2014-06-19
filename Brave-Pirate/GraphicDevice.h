@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include "Vector2.h"
+#include "ConstantAndDefinitions.h"
 
 using namespace std;
 
@@ -10,22 +12,23 @@ class GraphicDevice
 {
 private:	
 	SDL_Window* window;
-	static SDL_Renderer* renderer;
+	SDL_Renderer* renderer;
 	string windowName; 
 	Vector2 windowPosition, windowSize;
-	static TTF_Font *font;
-	void setWindow(void);
-
-public:
-	GraphicDevice(string windowName, Vector2 windowPosition, Vector2 windowSize);
+	TTF_Font *font;
+	void setWindow(void);	
 	~GraphicDevice(void);
+	GraphicDevice(void);
+	static GraphicDevice * instance;
+public:
+	static GraphicDevice & getInstance();
 
 	void setWindowSize(const Vector2 size);
 	void setWindowPosition(const Vector2 position);
 	void setWindowName(const string name);
 	
-	static SDL_Renderer* getRenderer(void);//error
-	Vector2 getWindowSize(void);
+	static SDL_Renderer* getRenderer(void);
+	static Vector2 getWindowSize(void);
 
 	static void drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size);
 	static void drawTexture(SDL_Texture *texture,const Vector2 position,const Vector2 size, float angle);
@@ -34,27 +37,36 @@ public:
 	static void end(void);
 	static const SDL_Color getColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a);
 
+	static void free();
 };
 
 
+inline GraphicDevice & GraphicDevice::getInstance()
+{
+	if(instance==NULL)	
+		instance = new GraphicDevice();	
+
+	return *instance;
+}
+
 inline SDL_Renderer* GraphicDevice::getRenderer()
 {
-	return renderer;//error
+	return getInstance().renderer;//error
 }
 
 inline Vector2 GraphicDevice::getWindowSize()
 {
-	return windowSize;
+	return getInstance().windowSize;
 }
 
 //Functions
 inline void GraphicDevice::begin()
 {
-	SDL_RenderClear(renderer);
+	SDL_RenderClear(getInstance().getRenderer());
 }
 
 inline void GraphicDevice::end()
 {
-	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(getInstance().getRenderer());
 }
 

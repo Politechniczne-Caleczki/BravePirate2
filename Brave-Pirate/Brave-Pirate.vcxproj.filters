@@ -87,6 +87,9 @@
     <ClCompile Include="GameLabel.cpp">
       <Filter>Source Files\GameInterface</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -160,6 +163,12 @@
     </ClInclude>
     <ClInclude Include="GameLabel.h">
       <Filter>Header Files\GameInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantAndDefinitions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
