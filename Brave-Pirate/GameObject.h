@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <list>
 #include <cstddef>
 #include <math.h>
@@ -6,6 +7,7 @@
 #include "SDL.h"
 #include "GraphicDevice.h"
 #include "BasicObject.h"
+#include "Textures.h"
 
 class GameObject;
 
@@ -14,8 +16,9 @@ typedef list<GameObject*> Lista;
 class GameObject : public BasicObject
 {
 private:
-	static Lista getNewList();
+	static Lista getNewList();	
 protected:
+	std::string textureName;
 	Vector2 position, size;
 	float angle;
 	SDL_Texture * texture;
@@ -26,7 +29,7 @@ public:
 	static Lista fishesArrayPointer;
 	static Lista barrelsArrayPointer;
 
-	GameObject(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture);
+	GameObject(const Vector2 position, const Vector2 size, const float angle, const std::string);
 	virtual~GameObject(void);
 
 	const Vector2 getPosition(void)const;
@@ -45,8 +48,6 @@ public:
 	virtual void onCollision(void);	
 	virtual void onCollision(const float strength);	
 	virtual const bool isDestroyed()const;
-
-	void operator=(GameObject &GameObject);
 };
 
 

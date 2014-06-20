@@ -1,10 +1,10 @@
 #include "FishingRod.h"
 
 //Constructors and destructors
-FishingRod::FishingRod(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const float descentRate, const float maxDepth):
+FishingRod::FishingRod(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, const float descentRate, const float maxDepth):
 	descentRate(fabs(descentRate)),
 	maxDepth(fabs(maxDepth)),
-	GameObject(position,size,angle,texture),
+	GameObject(position,size,angle,textureName),
 	descent(1),
 	catchObject(NULL){}
 
@@ -35,12 +35,12 @@ void FishingRod::update(void)
 	
 	if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_DOWN] && position.get_Y()<550)
 	{
-		descent+=1*descentRate;
+		descent+= Time::deltaTime() *descentRate;
 	}
 
 	else if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_UP] && position.get_Y()>positionOfShip.get_Y())
 	{
-		descent-=1*descentRate;
+		descent-=Time::deltaTime() *descentRate;
 	}
 }
 

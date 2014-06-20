@@ -4,7 +4,7 @@
 
 //Constructors and destructors
 
-Sea::Sea(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, float speed):GameObject(position,size,angle,texture),speed(speed)
+Sea::Sea(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, float speed):GameObject(position,size,angle,textureName),speed(speed)
 {
 	Sea::position = GameObject::position;
 	Sea::size = GameObject::size;
@@ -23,7 +23,7 @@ void Sea::draw(void)const
 
 void Sea::update(void)
 {	
-	Sea::shift -= Time::delay()*speed;
+	Sea::shift -= Time::deltaTime()*speed;
 	Sea::shift = (int)Sea::shift%(int)size.get_X();
 }
 

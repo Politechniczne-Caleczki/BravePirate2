@@ -12,7 +12,7 @@ private:
 	Vector2 positionOfShip;
 	void checkCollisions(void);
 public:
-	FishingRod(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const float descentRate, const float maxDepth);
+	FishingRod(const Vector2 position, const Vector2 size, const float angle, const std::string, const float descentRate, const float maxDepth);
 	
 	GameObject *getCatchObject(void);
 	float getDescentRate(void)const;

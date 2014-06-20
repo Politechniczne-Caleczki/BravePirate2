@@ -5,10 +5,9 @@ CannonBall::~CannonBall(void)
 {
 }
 
-CannonBall::CannonBall(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const float speed, const float strikingDistance, const float strikingPower):
-	GameObject(position,size,angle,texture),
+CannonBall::CannonBall(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, const float speed, const float strikingPower):
+GameObject(position,size,angle,textureName),
 	speed(speed), 
-	strikingDistance(strikingDistance), 
 	strikingPower(strikingPower), 
 	posZero(position),
 	startTime((float)Time::gameTime())
@@ -33,7 +32,8 @@ void CannonBall::update(void)
 		if(onCollision(*(*iter)))
 		{
 			_isDestroyed=true;
-			(*iter)->onCollision(strikingPower*strikingDistance);
+			(*iter)->onCollision(strikingPower);
+			Player::getInstance().addScor((static_cast<Barrel*>(*iter))->getScor());
 			break;
 		}
 	}

@@ -10,7 +10,7 @@ protected:
 	float difference;
 
 public:	
-	FloatingObject(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const Vector2 front,const Vector2 back);
+	FloatingObject(const Vector2, const Vector2, const float, const std::string , const Vector2,const Vector2);
 	virtual~FloatingObject(void);
 
 	void setPositionX(const float x);

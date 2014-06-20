@@ -4,11 +4,13 @@
 Time::Time(void):last(0), interval(10)
 {
 	myTimerID = SDL_AddTimer(interval, &increment ,this);
+	srand (time(NULL));
 }
 
 Time::Time(const Uint32 interval):last(0), interval(interval)
 {
 	myTimerID = SDL_AddTimer(interval, &increment ,NULL);
+	srand (time(NULL));
 }
 
 Time::~Time(void)
@@ -18,27 +20,6 @@ Time::~Time(void)
 
 //Functions
 
-void Time::update()
-{
-	Time::_delay = (float)(Time::_gameTime - last);
-	last =Time::_gameTime;
-}
 
-float Time::delay()
-{
-	return _delay;
-}
-
-Uint32 Time::gameTime()
-{
-	return _gameTime;
-}
-
-Uint32 Time::increment(Uint32 interval, void *param)
-{
-	Time::_gameTime += interval;
-	return interval;
-}
-
-float Time::_delay = 0;
+float Time::_deltaTime = 0;
 Uint32 Time::_gameTime = 0;

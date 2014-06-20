@@ -6,18 +6,21 @@
 #include <string>
 #include <fstream>
 #include "GraphicDevice.h"
+#include "ConstantAndDefinitions.h"
+#include "string"
 
-using namespace std;
 typedef unordered_map<string, SDL_Texture*> TextureMap;
 
 class Textures
 {
-	static TextureMap textures, getErrorImage();
-
-public:
-	Textures(string filename, string path);
-	~Textures(void);
-
-	static SDL_Texture* getTexture(string imageName);
+private:
+	#define errorImage "errorImage"
+	static TextureMap textures;
+	static TextureMap initializeHashmap(); 
+	static SDL_Texture * createErrorTexture();
+	static SDL_Texture * findImage(const std::string);	
+public:	
+	static void free(void);
+	static SDL_Texture* getTexture(std::string imageName);
 };
 

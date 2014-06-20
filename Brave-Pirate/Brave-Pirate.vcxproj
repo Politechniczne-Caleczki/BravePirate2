@@ -70,6 +70,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Barrel.cpp" />
+    <ClCompile Include="Bonus.cpp" />
+    <ClCompile Include="BonusObject.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="CannonBall.cpp" />
@@ -96,6 +98,8 @@
   <ItemGroup>
     <ClInclude Include="Barrel.h" />
     <ClInclude Include="BasicObject.h" />
+    <ClInclude Include="Bonus.h" />
+    <ClInclude Include="BonusObject.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cannon.h" />
     <ClInclude Include="CannonBall.h" />
@@ -103,7 +107,6 @@
     <ClInclude Include="Delay.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FishingRod.h" />
-    <ClInclude Include="Fishs_Gifts_Types.h" />
     <ClInclude Include="FloatingObject.h" />
     <ClInclude Include="GameLabel.h" />
     <ClInclude Include="GameObject.h" />

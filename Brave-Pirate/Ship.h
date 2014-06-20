@@ -11,6 +11,7 @@ private:
 	Cannon cannon;
 	FishingRod rod;
 	GameObject *catchObject;
+	void catchObjectUpdate(void);
 	void checkCollisions(void);
 public:
 	Ship(const FloatingObject & floatingObject);
@@ -18,4 +19,5 @@ public:
 		
 	void update(void);
 	void draw(void)const;
+	void lateDraw(void)const;
 };

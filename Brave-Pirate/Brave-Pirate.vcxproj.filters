@@ -90,6 +90,12 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BonusObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bonus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -158,9 +164,6 @@
     <ClInclude Include="ProgressIndicator.h">
       <Filter>Header Files\GameInterface</Filter>
     </ClInclude>
-    <ClInclude Include="Fishs_Gifts_Types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameLabel.h">
       <Filter>Header Files\GameInterface</Filter>
     </ClInclude>
@@ -168,6 +171,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ConstantAndDefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bonus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

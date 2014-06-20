@@ -12,11 +12,6 @@ Delay::~Delay(void)
 
 
 //Functions
-void Delay::update(void)
-{
-	if(!isredy)
-		if(startTime+delayTime < (float)Time::gameTime())
-			isredy = true;
-}
+
 
 

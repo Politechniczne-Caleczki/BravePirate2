@@ -15,7 +15,7 @@ Vector2::~Vector2(void)
 
 std::ostream & operator<< (std::ostream & w, const Vector2 &v)
 {
-	return w<<v.x<<" "<<v.y<<std::endl;
+	return w<<v.x<<" "<<v.y<<" ";
 }
 std::istream & operator>> (std::istream &w, Vector2 & v)
 {

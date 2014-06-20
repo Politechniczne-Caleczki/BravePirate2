@@ -2,11 +2,12 @@
 
 //Constructors and destructors
 
-GameObject::GameObject(const Vector2 position, const Vector2 size, const float angle,SDL_Texture* texture):
+GameObject::GameObject(const Vector2 position, const Vector2 size, const float angle,const std::string textureName):
 	position(position), 
 	size(size.module()), 
 	angle(angle), 
-	texture(texture),
+	textureName(textureName),	
+	texture(Textures::getTexture(textureName)),
 	_isDestroyed(false)
 
 {
@@ -52,7 +53,6 @@ const Vector2 GameObject::getCenterPosition()const
 {
 	return position + size/2;
 }
-
 
 
 Lista GameObject::barrelsArrayPointer = GameObject::getNewList();

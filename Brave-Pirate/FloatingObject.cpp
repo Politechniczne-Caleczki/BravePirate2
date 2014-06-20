@@ -7,8 +7,8 @@ FloatingObject::~FloatingObject(void)
 	GameObject::~GameObject();
 }
 
-FloatingObject::FloatingObject(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, const Vector2 front, const Vector2 back):
-	GameObject(position,size,angle,texture),front(front), back(back), difference((front.get_Y() + back.get_Y()) / 2){}
+FloatingObject::FloatingObject(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, const Vector2 front, const Vector2 back):
+GameObject(position,size,angle,textureName),front(front), back(back), difference((front.get_Y() + back.get_Y()) / 2){}
 
 //Getters and setters
 void FloatingObject::setPositionX(const float x)

@@ -11,7 +11,7 @@ private:
 	static float shift;
 
 public:
-	Sea(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, float speed);
+	Sea(const Vector2 position, const Vector2 size, const float angle, const std::string, float speed);
 	~Sea(void);
 
 	void draw(void)const;

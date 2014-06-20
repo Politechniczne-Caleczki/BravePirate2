@@ -1,33 +1,13 @@
 #pragma once
-#include "GameObject.h"
+#include "BonusObject.h"
 #include "Fish.h"
-class Fish: public GameObject
+#include "Time.h"
+class Fish: public BonusObject
 {
 private:
-	float hp, speed;
-	bool isCought;
-
+	
 public:
-	Fish(const Vector2 position, const Vector2 size, const float angle, SDL_Texture* texture, float hp, float speed);
-	virtual ~Fish(void);
-
+	Fish(const Vector2, const Vector2, const float, const std::string , float, float);
+	~Fish(void);
 	void update(void);
-	float getHp(void);
-	bool getCought(void);
-	void cought(void);
 };
-
-inline bool Fish::getCought(void)
-{
-	return isCought;
-}
-
-inline void Fish::cought(void)
-{
-	isCought = true;
-}
-
-inline float Fish::getHp(void)
-{
-	return hp;
-}

@@ -1,23 +1,30 @@
 #pragma once
 #include "FloatingObject.h"
-
+#include "Bonus.h"
 
 class Barrel : public FloatingObject
 {
+	typedef std::list<SampleBonus> SampleBonusList;
 private:
-	float health, speed, damage;	
-
+	float health, speed, damage;
+	unsigned int scor;
+	static SampleBonusList bonusList, initializeBonusList();
+	void createBonus();	
 public:
-	Barrel(const FloatingObject & floatingObject, const float health, const float speed, const float damage);
+
+	Barrel(const FloatingObject & , const float , const float , const float , const unsigned int );
 	~Barrel(void);
 
-	void decreaseHealth(const float decreaseValue);
 	void update(void);
 	void onCollision(void);
 	void onCollision(const float strength);
-	inline const float getDamage()const;
-	inline const bool isDestroed()const;
+	const float getDamage()const;
+	const bool isDestroed()const;
+	const unsigned int getScor()const;
 
+	friend std::ostream & operator<< (std::ostream &, const Barrel &);
+	friend std::istream & operator>> (std::istream &, Barrel &);
+	static void free();
 };
 
 inline void Barrel::onCollision(void)
@@ -26,6 +33,12 @@ inline void Barrel::onCollision(void)
 }
 
 inline const float Barrel::getDamage()const
-{
+{	
 	return this->damage;
+}
+
+
+inline const unsigned int Barrel::getScor()const
+{
+	return this->scor;
 }

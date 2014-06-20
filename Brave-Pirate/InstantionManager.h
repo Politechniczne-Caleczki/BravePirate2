@@ -38,9 +38,10 @@ InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition,
 			{
 				char textureName[32];
 				float speed, hp, dmg, scl;
-				fscanf(myFile,"%s %f %f %f %f",textureName, &speed, &hp, &dmg, &scl);	
-				listOfAllObjects.push_back(Barrel(FloatingObject(startPosition, Vector2(scl,scl), 0, Textures::getTexture(textureName), 
-					Vector2(startPosition.get_X(),scl), Vector2(startPosition.get_X()+scl,scl)), hp, speed, dmg));
+				int scor;
+				fscanf(myFile,"%s %f %f %f %f %i",textureName, &speed, &hp, &dmg, &scl, &scor);	
+				listOfAllObjects.push_back(Barrel(FloatingObject(startPosition, Vector2(scl,scl), 0, textureName, 
+					Vector2(startPosition.get_X(),scl), Vector2(startPosition.get_X()+scl,scl)), hp, speed, dmg, scor));
 			}	
 		}
 	fclose(myFile);
@@ -61,7 +62,7 @@ InstantionManager<Fish>::InstantionManager(string path, Vector2 startPosition, i
 				char textureName[32];
 				float speed, hp, dmg, scl;
 				fscanf(myFile,"%s %f %f %f",textureName, &speed, &hp, &scl);	
-				listOfAllObjects.push_back(Fish(startPosition, Vector2(scl,scl), 0, Textures::getTexture("fish.png"),hp,speed));
+				listOfAllObjects.push_back(Fish(startPosition, Vector2(scl,scl), 0, "fish.png",hp,speed));
 			}
 		}
 	fclose(myFile);
@@ -134,14 +135,14 @@ template<class typ>
 void InstantionManager<typ>::update()
 {
 	listUpdate();
-
 	instantionDelay.update();
 	upgradeDelay.update();
 
 	if(upgradeDelay.idRedy())
-	{
+	{		
 		if(range < listOfAllObjects.size())
 		{
+			instantionDelay.setDelay(instantionDelay.getDelay()/INCREASE_LEVEL_DIFFICULTY);
 			upgradeDelay.Start();
 			range++;
 		}

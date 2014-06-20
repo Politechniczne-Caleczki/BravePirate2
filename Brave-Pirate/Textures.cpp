@@ -1,40 +1,8 @@
 #include "Textures.h"
 
 //Constructors and destructors
-Textures::Textures(string filename, string path)
-{
-	SDL_Surface *surface =NULL;	
-	SDL_Texture *texture = NULL;
-	if((surface = IMG_Load("Resources/images/error.png"))!=NULL)//error
-	{
-		if((texture = SDL_CreateTextureFromSurface(GraphicDevice::getRenderer(),surface))!=NULL)//error
-		{
-			textures.insert(TextureMap::value_type("error.png",texture));
 
-			ifstream myfile (path+filename);
-			if (myfile.is_open())//error
-			{				
-				string imageName;
-				while ( getline (myfile,imageName) )
-				{					
-					if( (surface = IMG_Load((path+imageName).data()))!=NULL)//error
-					{
-						if((texture = SDL_CreateTextureFromSurface(GraphicDevice::getRenderer(),surface))!=NULL)
-						{
-							textures.insert(TextureMap::value_type(imageName,texture));					
-						}
-					}
-					surface =NULL;
-					texture = NULL;
-				}
-				myfile.close();
-			}
-		}
-	}
-	SDL_FreeSurface(surface);
-}
-
-Textures::~Textures(void)
+void Textures::free()
 {
 	for(TextureMap::iterator it = Textures::textures.begin(); it!=textures.end(); it++)
 	{
@@ -44,23 +12,56 @@ Textures::~Textures(void)
 }
 
 //Functions
-SDL_Texture* Textures::getTexture(string imageName)
+SDL_Texture* Textures::getTexture(string imageimageName)
 {
-	TextureMap::iterator it = Textures::textures.find(imageName);
+	TextureMap::iterator it = Textures::textures.find(imageimageName);
 
 	if(it!=textures.end())
 	{
 		return it->second;
 	}else
 	{
-		return textures["error.png"];
+		return findImage(imageimageName);
 	}
 }
 
-TextureMap Textures::getErrorImage()
+SDL_Texture * Textures::findImage(std::string imageName)
+{
+	SDL_Surface *surface =NULL;	
+	if((surface = IMG_Load(( resourcesPath+texturesPath+imageName).c_str()))!=NULL)
+	{
+		SDL_Texture *texture = NULL;
+		if((texture = SDL_CreateTextureFromSurface(GraphicDevice::getRenderer(),surface))!=NULL)//error
+		{
+			textures.insert(TextureMap::value_type(imageName,texture));
+			SDL_FreeSurface(surface);
+			return texture;
+		}
+	}
+	SDL_FreeSurface(surface);
+	return textures[errorImage];
+}
+
+SDL_Texture* Textures::createErrorTexture()
+{
+	SDL_Surface *surf = SDL_CreateRGBSurface(0,3,3,32,0,0,0,0);
+	uint32_t *pixels = (uint32_t*)surf->pixels;
+
+	for(unsigned i = 0; i <9;i+=2)
+	{
+		pixels[i] = SDL_MapRGB(surf->format,255, 0, 0);		
+		pixels[i+1] = SDL_MapRGB(surf->format,0, 255, 0);		
+	}
+	SDL_Texture *text = SDL_CreateTextureFromSurface(GraphicDevice::getInstance().getRenderer(),surf);
+	SDL_FreeSurface(surf);
+	return text;
+}
+
+TextureMap Textures::initializeHashmap()
 {
 	TextureMap _tm;
+	_tm.insert(TextureMap::value_type(errorImage,createErrorTexture()));
 	return _tm;
 }
 
-TextureMap Textures::textures = Textures::getErrorImage();
+TextureMap Textures::textures = Textures::initializeHashmap();

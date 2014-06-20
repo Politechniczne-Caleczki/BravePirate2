@@ -1,0 +1,5 @@
+healthBonus.png		0.05 	15 	500 25 25 3
+cannonBonus.png 	0.05 	0.95 	500 25 25 2
+rodBonus.png 		0.05 	1.05 	500 20 25 1
+healthBonus.png 	0.1  	20 	500 30 30 3
+healthBonus.png 	0.15 	25 	500 35 35 3

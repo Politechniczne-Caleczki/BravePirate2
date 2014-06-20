@@ -6,7 +6,7 @@ GraphicDevice::GraphicDevice():window(NULL), renderer(NULL), font(NULL)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	ifstream file(resources+windowSettings);
+	ifstream file(resourcesPath+windowSettings);
 	if(file.is_open())
 	{
 		getline(file,windowName);
@@ -20,7 +20,7 @@ GraphicDevice::GraphicDevice():window(NULL), renderer(NULL), font(NULL)
 	renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	TTF_Init();
-	font = TTF_OpenFont( (resources+fontName).c_str() ,128);//error
+	font = TTF_OpenFont( (resourcesPath+fontName).c_str() ,128);//error
 	if(font)
 	{
 		TTF_SetFontStyle(font,TTF_STYLE_BOLD);		
