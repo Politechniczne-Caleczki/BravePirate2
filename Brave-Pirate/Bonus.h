@@ -10,5 +10,8 @@ public:
 	Bonus(const Vector2, const Vector2, const float, const std::string , float, float, float);
 	~Bonus(void);
 	void update(void);
+
+	friend std::ostream & operator<< (std::ostream &, const Bonus &);
+	friend std::istream & operator>> (std::istream &, Bonus &);
 };
 

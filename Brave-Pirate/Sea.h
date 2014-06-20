@@ -17,6 +17,9 @@ public:
 	void draw(void)const;
 	void update(void);
 	static float getWaveHeight(const float x);
+
+	friend std::ostream & operator<< (std::ostream &, const Sea &);
+	friend std::istream & operator>> (std::istream &, Sea &);
 };
 
 inline float Sea::getWaveHeight(const float x)

@@ -41,4 +41,19 @@ void CannonBall::update(void)
 	GameObject::update();
 }   
 
+std::ostream & operator<< (std::ostream &w, const CannonBall &c)
+{
+	return w<<c.angle<<" "<<c.position<<" "<<c.posZero<<" "<<c.size<<" "<<c.speed
+		<<" "<<c.startTime<<" "<<c.strikingPower<<" "<<c.tcos
+		<<" "<<c.textureName<<" "<<c.tsin<<" "<<c._isDestroyed<<std::endl;
+}
+
+std::istream & operator>> (std::istream &w, CannonBall &c)
+{
+	w>>c.angle>>c.position>>c.posZero>>c.size>>c.speed
+		>>c.startTime>>c.strikingPower>>c.tcos>>c.textureName
+		>>c.tsin>>c._isDestroyed;
+	c.texture = Textures::getTexture(c.textureName);
+	return w;
+}
 

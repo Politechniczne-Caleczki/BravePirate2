@@ -17,6 +17,7 @@ std::ostream & operator<< (std::ostream & w, const Vector2 &v)
 {
 	return w<<v.x<<" "<<v.y<<" ";
 }
+
 std::istream & operator>> (std::istream &w, Vector2 & v)
 {
 	w>>v.x>>v.y;

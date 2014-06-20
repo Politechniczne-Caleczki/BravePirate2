@@ -21,3 +21,18 @@ void Bonus::update()
 		position.set_Y(position.get_Y()+ (speed* Time::deltaTime()));
 }
 
+std::ostream & operator<< (std::ostream &w, const Bonus &b)
+{
+	return w<<2<<" "<<b.angle<<" "<<b.depth<<" "<<b.position<<" "<<b.size
+		<<" "<<b.speed<<" "<<b.textureName<<" "<<(int)b.type<<" "<<b.value;
+}
+
+std::istream & operator>> (std::istream &w, Bonus &b)
+{
+	int typ =0;
+	w>>b.angle>>b.depth>>b.position>>b.size
+		>>b.speed>>b.textureName>>typ>>b.value;
+	b.setType((Fishs_Gifts_Types)typ);
+	b.texture = Textures::getTexture(b.textureName);
+	return w;
+}

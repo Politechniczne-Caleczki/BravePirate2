@@ -1,7 +1,5 @@
 #include "Sea.h"
 
-
-
 //Constructors and destructors
 
 Sea::Sea(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, float speed):GameObject(position,size,angle,textureName),speed(speed)
@@ -31,3 +29,17 @@ void Sea::update(void)
 Vector2 Sea::position = Vector2(0,0);
 Vector2 Sea::size = Vector2(0,0);
 float Sea::shift = 0;
+
+std::ostream & operator<< (std::ostream &w, const Sea &s)
+{
+	return w<<s.angle<<" "<<s.position<<" "<<s.shift<<" "<<s.size
+		<<" "<<s.speed<<" "<<s.speed<<" "<<s.textureName<<" ";
+}
+
+std::istream & operator>> (std::istream &w, Sea &s)
+{
+	w>>s.angle>>s.position>>s.shift>>s.size
+		>>s.speed>>s.speed>>s.textureName;
+	s.texture = Textures::getTexture(s.textureName);
+	return w;
+}

@@ -3,11 +3,10 @@
 
 class BonusObject: public GameObject
 {
-private: 
-	Fishs_Gifts_Types type;
-	float value;
 protected:
 	float speed;
+	Fishs_Gifts_Types type;
+	float value;
 public:
 	BonusObject(const Vector2, const Vector2, const float, const std::string, const Fishs_Gifts_Types, const float, const float);
 	virtual ~BonusObject(void);

@@ -22,9 +22,13 @@ public:
 
 	void update(void);
 	float getPower();
+
+	friend std::ostream & operator<< (std::ostream &, const CannonBall &);
+	friend std::istream & operator>> (std::istream &, CannonBall &);
 };
 
 inline float CannonBall::getPower()
 {
 	return strikingPower;
 }
+

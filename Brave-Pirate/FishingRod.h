@@ -24,6 +24,9 @@ public:
 	void update(void);
 	void draw(void)const;
 
+	friend std::ostream & operator<< (std::ostream &, const FishingRod &);
+	friend std::istream & operator>> (std::istream &, FishingRod &);
+
 };
 
 inline float FishingRod::getDescentRate(void)const

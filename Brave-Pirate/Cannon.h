@@ -12,10 +12,11 @@ using namespace std;
 class Cannon
 {
 private:
-	Delay interval;
+	
 	float angle, power;
 	unsigned int requiredEnergy;
-	Vector2 position; 
+	Vector2 position;
+	Delay interval; 
 	list<CannonBall> cannonBalls;
 
 public:
@@ -30,6 +31,9 @@ public:
 	void update(void);
 	void draw(void)const;
 	void fire(void);
+
+	friend std::ostream & operator<< (std::ostream &, const Cannon &);
+	friend std::istream & operator>> (std::istream &, Cannon &);
 };
 
 inline void Cannon::setAngle(const float angle)

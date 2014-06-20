@@ -1,6 +1,7 @@
 #pragma once
 #include <stdlib.h>
 #include <SDL.h>
+#include <iostream>
 
 class Player
 {
@@ -27,6 +28,9 @@ public:
 	const unsigned int	getScor()const;
 	static Player & getInstance();
 	static void free();
+
+	friend std::ostream & operator<< (std::ostream &, const Player &);
+	friend std::istream & operator>> (std::istream &, Player &);
 };
 
 inline const float Player::normalize(const float value)const

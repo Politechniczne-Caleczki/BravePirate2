@@ -1,6 +1,6 @@
 #pragma once
 #include "Time.h"
-
+#include <iostream>
 class Delay
 {
 private:
@@ -17,6 +17,9 @@ public:
 	void update(void);
 	bool idRedy(void)const;
 	void Start(void);
+
+	friend std::ostream & operator<< (std::ostream &, const Delay &);
+	friend std::istream & operator>> (std::istream &, Delay &);
 };
 
 

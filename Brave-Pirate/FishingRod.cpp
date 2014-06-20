@@ -76,3 +76,18 @@ GameObject * FishingRod::getCatchObject(void)
 	
 	return NULL;	
 }
+
+std::ostream & operator<< (std::ostream &w, const FishingRod &r)
+{
+	return w<<r.angle<<" "<<r.descent<<" "<<r.descentRate<<" "<<r.maxDepth
+		<<" "<<r.position<<" "<<r.positionOfShip<<" "<<r.size<<" "<<r.textureName<<std::endl;
+
+}
+
+std::istream & operator>> (std::istream &w, FishingRod &r)
+{
+	w>>r.angle>>r.descent>>r.descentRate>>r.maxDepth>>r.position
+		>>r.positionOfShip>>r.size>>r.textureName;
+	r.texture = Textures::getTexture(r.textureName);
+	return w;
+}

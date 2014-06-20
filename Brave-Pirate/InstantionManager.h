@@ -4,6 +4,7 @@
 #include <cstddef> 
 #include "Barrel.h" 
 #include "Fish.h"
+#include "Bonus.h"
 #include "Delay.h"
 #include "Textures.h"
 
@@ -22,6 +23,9 @@ public:
 	~InstantionManager();
 	void update();	
 	void draw();
+
+	friend std::ostream & operator<< <>(std::ostream &, const InstantionManager<typ> &);
+	friend std::istream & operator>> <>(std::istream &, InstantionManager<typ> &);
 };
 
 template <class typ>
@@ -192,3 +196,56 @@ void InstantionManager<Fish>::add(unsigned int index)
 }
 
 
+template <class Typ> std::ostream & operator<<(std::ostream &w, const InstantionManager<Fish> &i)
+{
+	w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition
+		<<" "<<i.upgradeDelay<<" "<<GameObject::fishesArrayPointer.size()<<std::endl;
+	for(list<Fish>::const_iterator iter = GameObject::fishesArrayPointer.begin(); iter != GameObject::fishesArrayPointer.end(); iter++)
+			w<<*iter<<" ";
+	return w;
+}
+
+template <class Typ> std::ostream & operator<<(std::ostream &w, const InstantionManager<Barrel> &i)
+{
+	w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition
+		<<" "<<i.upgradeDelay<<" "<<GameObject::barrelsArrayPointer.size()<<std::endl;
+	for(list<Barrel>::const_iterator iter = GameObject::barrelsArrayPointer.begin(); iter != GameObject::barrelsArrayPointer.end(); iter++)
+			w<<*iter<<" ";
+	return w;
+}
+
+template <class Typ> std::istream & operator>> (std::istream &w, const InstantionManager<Fish> &i)
+{
+	int typ =0;
+	int size=0;
+	w>>i.dispersion>>i.instantionDelay>>i.range>>i.startPosition>>i.upgradeDelay>>size;
+	for(int c=0;c<size;c++)
+	{
+		w>>typ;
+		if(typ == 1)
+		{
+			Fish f(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f);
+			w>>f;
+			GameObject::fishesArrayPointer.push_back(f);
+		}
+		if(typ == 2)
+		{
+			Bonus b(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f,10);
+			w>>b;
+			GameObject::fishesArrayPointer.push_back(b);
+		}
+	}
+}
+
+template <class Typ> std::istream & operator>> (std::istream &w, const InstantionManager<Barrel> &i)
+{
+	int size=0;
+	w>>i.dispersion>>i.instantionDelay>>i.range>>i.startPosition>>i.upgradeDelay>>size;
+	for(int c=0;c<size;c++)
+	{
+			Barrel b(FloatingObject(Vector2(0,0), Vector2(10,10), 0, "barrel.png", 
+					Vector2(10,10), Vector2(10,10)),10,10,10,10);
+			w>>b;
+			GameObject::barrelsArrayPointer.push_back(b);
+	}
+}

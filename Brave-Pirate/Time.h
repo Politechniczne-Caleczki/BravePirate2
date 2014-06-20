@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include <time.h>  
 #include <stdlib.h>
-
+#include <iostream>
 class Time
 {
 private:
@@ -19,6 +19,9 @@ public:
 	void update();
 	static float deltaTime();
 	static Uint32 gameTime();
+
+	friend std::ostream & operator<< (std::ostream &, const Time &);
+	friend std::istream & operator>> (std::istream &, Time &);
 };
 
 inline void Time::update()

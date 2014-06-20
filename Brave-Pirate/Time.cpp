@@ -23,3 +23,18 @@ Time::~Time(void)
 
 float Time::_deltaTime = 0;
 Uint32 Time::_gameTime = 0;
+
+std::ostream & operator<< (std::ostream &w, const Time &t)
+{
+	return w<<t.interval<<" "<<t.last<<" "<<t._deltaTime
+		<<" "<<t._gameTime<<" ";
+}
+
+std::istream & operator>> (std::istream &w, Time &t)
+{
+	SDL_RemoveTimer(t.myTimerID);
+	w>>t.interval>>t.last>>t._deltaTime
+		>>t._gameTime;
+	t.myTimerID = SDL_AddTimer(t.interval, &t.increment ,NULL);
+	return w;
+}

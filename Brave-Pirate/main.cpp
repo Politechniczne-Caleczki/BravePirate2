@@ -19,7 +19,7 @@
 #include "ProgressIndicator.h"
 #include "GameLabel.h"
 #include "Player.h"
-
+#include <fstream>
 
 string intToStr(int n);
 
@@ -30,6 +30,14 @@ Time time;
 
 Ship ship(FloatingObject(Vector2(100,0), Vector2(150,150), 0, "ship.png", Vector2(200,145), Vector2(150, 145)));
 Sea sea(Vector2(0,300),Vector2(1005,42),0,"sea.png", 0.15f);
+
+//std::ofstream ofs ("test.txt");
+//ofs<<ship;
+//ofs.close();
+//
+//std::ifstream ifs ("test.txt");
+//ifs>>ship;
+//ifs.close();
 
 GameStateManager gameStateManager(1);
 

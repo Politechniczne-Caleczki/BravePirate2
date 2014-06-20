@@ -16,3 +16,18 @@ void Fish::update(void)
 	position.set_X(position.get_X()- speed*Time::deltaTime());
 }
 
+std::ostream & operator<< (std::ostream &w, const Fish &f)
+{
+	return w<<1<<" "<<f.angle<<" "<<f.position<<" "<<f.size<<" "<<f.speed
+		<<" "<<f.textureName<<" "<<(int)f.type<<" "<<f.value<<" ";
+}
+
+std::istream & operator>> (std::istream &w, Fish &f)
+{
+	int typ=0;
+	w>>f.angle>>f.position>>f.size>>f.speed
+		>>f.textureName>>typ>>f.value;
+	f.setType((Fishs_Gifts_Types)typ);
+	f.texture = Textures::getTexture(f.textureName);
+	return w;
+}
