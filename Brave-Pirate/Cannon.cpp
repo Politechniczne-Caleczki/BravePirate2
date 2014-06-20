@@ -30,7 +30,7 @@ void Cannon::update(void)
 		fire();		
 	}
 	
-	for(list<CannonBall>::iterator iter = cannonBalls.begin(); iter != cannonBalls.end(); )
+	for(std::list<CannonBall>::iterator iter = cannonBalls.begin(); iter != cannonBalls.end(); )
 	{
 		iter->update();
 		if(iter->isDestroyed())
@@ -45,7 +45,7 @@ void Cannon::update(void)
 
 void Cannon::draw(void)const
 {	
-	for(list<CannonBall>::const_iterator iter = cannonBalls.begin(); iter != cannonBalls.end(); iter++)
+	for(std::list<CannonBall>::const_iterator iter = cannonBalls.begin(); iter != cannonBalls.end(); iter++)
 	{
 		iter->draw();
 	}

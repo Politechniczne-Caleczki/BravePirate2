@@ -18,7 +18,7 @@ const std::string resourcesPath  = "Resources/";
 const std::string texturesPath = "images/";
 const std::string fontName = "arial.ttf";
 const std::string fishesFile = "Fishes.txt";
-const std::string barrelFile = "burrels.txt";
+const std::string barrelFile = "barrels.txt";
 const std::string bonusFile = "bonus.txt";
 
 enum Fishs_Gifts_Types
@@ -50,4 +50,6 @@ struct SampleBonus
 		return w;
 	}
 };
+
+
 

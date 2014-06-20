@@ -11,7 +11,6 @@ private:
 	static SampleBonusList bonusList, initializeBonusList();
 	void createBonus();	
 public:
-
 	Barrel(const FloatingObject & , const float , const float , const float , const unsigned int );
 	~Barrel(void);
 

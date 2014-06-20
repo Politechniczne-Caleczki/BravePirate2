@@ -6,7 +6,7 @@
 #include "GraphicDevice.h"
 
 using namespace std;
-typedef list<InterfaceObject*> InterfaceList;
+typedef std::list<InterfaceObject*> InterfaceList;
 
 class Interface : public InterfaceObject
 {

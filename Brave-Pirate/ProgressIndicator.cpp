@@ -11,7 +11,7 @@ ProgressIndicator::ProgressIndicator(const Vector2 position,const Vector2 size, 
 	fill.w = value;
 }
 
-ProgressIndicator::ProgressIndicator(const Vector2 position,const Vector2 size, const string text, const SDL_Color color):InterfaceObject(position,size),text(text),color(color), value(0)
+ProgressIndicator::ProgressIndicator(const Vector2 position,const Vector2 size, const std::string text, const SDL_Color color):InterfaceObject(position,size),text(text),color(color), value(0)
 {
 	frame.x = (int)position.get_X();
 	frame.y = (int)position.get_Y();
@@ -35,7 +35,7 @@ ProgressIndicator::ProgressIndicator(const Vector2 position,const Vector2 size, 
 	fill.w = value;
 }
 
-ProgressIndicator::ProgressIndicator(const Vector2 position,const Vector2 size, const string text, const SDL_Color color, const float value):InterfaceObject(position,size), text(text), color(color),value(value)
+ProgressIndicator::ProgressIndicator(const Vector2 position,const Vector2 size, const std::string text, const SDL_Color color, const float value):InterfaceObject(position,size), text(text), color(color),value(value)
 {
 	frame.x = (int)position.get_X();
 	frame.y = (int)position.get_Y();

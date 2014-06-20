@@ -1,7 +1,7 @@
 #include "GameLabel.h"
 
 
-GameLabel::GameLabel(const string text,const SDL_Color color, const Vector2 position, const float textSize):InterfaceObject(position,Vector2(0,0)), textSize(textSize), color(color), text(text)
+GameLabel::GameLabel(const std::string text,const SDL_Color color, const Vector2 position, const float textSize):InterfaceObject(position,Vector2(0,0)), textSize(textSize), color(color), text(text)
 {
 }
 

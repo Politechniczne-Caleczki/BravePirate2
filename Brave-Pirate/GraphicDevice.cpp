@@ -6,7 +6,7 @@ GraphicDevice::GraphicDevice():window(NULL), renderer(NULL), font(NULL)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	ifstream file(resourcesPath+windowSettings);
+	std::ifstream file(resourcesPath+windowSettings);
 	if(file.is_open())
 	{
 		getline(file,windowName);
@@ -52,7 +52,7 @@ void GraphicDevice::setWindow(void)
 	windowSize = Vector2(DEFAULT_SIZE_W,DEFAULT_SIZE_H);
 }
 
-void GraphicDevice::setWindowName(const string name)
+void GraphicDevice::setWindowName(const std::string name)
 {
 	windowName = name;
 	setWindow();
@@ -92,7 +92,7 @@ void GraphicDevice::drawTexture(SDL_Texture *texture, const  Vector2 position,co
 }
 
 
-void GraphicDevice::drawText(const string text,const SDL_Color textColor,const  Vector2 position,const float size)
+void GraphicDevice::drawText(const std::string text,const SDL_Color textColor,const  Vector2 position,const float size)
 {
 	if(getInstance().font)
 	{

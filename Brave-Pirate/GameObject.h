@@ -1,17 +1,14 @@
 #pragma once
-#include <iostream>
 #include <list>
 #include <cstddef>
-#include <math.h>
 #include "Vector2.h"
-#include "SDL.h"
 #include "GraphicDevice.h"
 #include "BasicObject.h"
 #include "Textures.h"
 
 class GameObject;
 
-typedef list<GameObject*> Lista;
+typedef std::list<GameObject*> Lista;
 
 class GameObject : public BasicObject
 {

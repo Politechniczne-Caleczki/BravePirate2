@@ -54,7 +54,7 @@ void Barrel::createBonus()
 			for(; r>0 && iter != bonusList.end() ; --r, iter++);
 			if(iter != bonusList.end())
 				fishesArrayPointer.push_back(new Bonus(position, (*iter).size,0, (*iter).textureName, (*iter).value, (*iter).speed,
-				rand()%(int)(GraphicDevice::getInstance().getWindowSize().get_Y()-position.get_Y())+ position.get_Y()));
+				rand()%(int)(GraphicDevice::getInstance().getWindowSize().get_Y()-position.get_Y())+ position.get_Y(),(*iter).type));
 		}
 	}
 }
@@ -62,7 +62,7 @@ void Barrel::createBonus()
 std::ostream & operator<< (std::ostream & w, const Barrel &b)
 {
 	return w<<b.health<<" "<<b.speed<<" "<<b.damage<<" "<<b.scor<<" "<<b.front<<" "<<b.back<<" "
-	<<b.difference<<" "<<b.textureName<<" "<<b.position<<" "<<b.size<<" "<<b.angle<<" "<<b._isDestroyed<<endl; 
+	<<b.difference<<" "<<b.textureName<<" "<<b.position<<" "<<b.size<<" "<<b.angle<<" "<<b._isDestroyed<<std::endl; 
 }
 std::istream & operator>> (std::istream &w, Barrel & b)
 {	
@@ -73,7 +73,7 @@ Barrel::SampleBonusList Barrel::initializeBonusList()
 {
 	SampleBonusList list;
 	SampleBonus bonus;
-	ifstream file(resourcesPath+bonusFile);
+	std::ifstream file(resourcesPath+bonusFile);
 
 	if(file.is_open())//error
 	{
