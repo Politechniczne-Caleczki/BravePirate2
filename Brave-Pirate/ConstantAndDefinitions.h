@@ -12,8 +12,6 @@
 #define INCREASE_LEVEL_DIFFICULTY 1.05
 #define CHANCE_FOR_A_BONUS 7
 
-
-
 const std::string DEFAULT_WIN_NAME = "Brave-Pirate";
 const std::string windowSettings = "WindowSettings.txt";
 const std::string resourcesPath  = "Resources/";

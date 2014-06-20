@@ -8,6 +8,7 @@
 
 class Menu
 {
+
 private:
 	Button **buttonList;
 	SDL_Texture * background;
