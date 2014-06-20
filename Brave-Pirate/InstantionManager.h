@@ -1,16 +1,14 @@
 #pragma once 
-#include <list> 
-#include <SDL.h>
-#include <cstddef> 
 #include "Barrel.h" 
 #include "Fish.h"
 #include "Delay.h"
-#include "Textures.h"
 
+namespace
+{
 template <class typ> class InstantionManager 
 { 
 private: 
-	list<typ> listOfAllObjects; 
+	std::list<typ> listOfAllObjects; 
 	Delay instantionDelay, upgradeDelay;
 	Vector2 startPosition; 
 	int range;
@@ -18,17 +16,17 @@ private:
 	void add(unsigned int index);
 	void listUpdate();
 public: 
-	InstantionManager(const string path,Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay); 
+	InstantionManager(const std::string path,Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay); 
 	~InstantionManager();
 	void update();	
 	void draw();
 };
 
 template <class typ>
-InstantionManager<typ>::InstantionManager(const string path,Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay){}
+InstantionManager<typ>::InstantionManager(const std::string path,const Vector2 startPosition, int dispersion,const Delay instantionDelay, const Delay upgradeDelay){}
 
 template <>
-InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay)
+InstantionManager<Barrel>::InstantionManager(const std::string path,const Vector2 startPosition,int dispersion,const Delay instantionDelay,const Delay upgradeDelay)
 :startPosition(startPosition), dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
 	FILE * myFile = fopen(path.data(),"r");
@@ -45,12 +43,12 @@ InstantionManager<Barrel>::InstantionManager(string path, Vector2 startPosition,
 			}	
 		}
 	fclose(myFile);
-	instantionDelay.Start();
-	upgradeDelay.Start();
+	this->instantionDelay.Start();
+	this->upgradeDelay.Start();
 }
 
 template <>
-InstantionManager<Fish>::InstantionManager(string path, Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay)
+InstantionManager<Fish>::InstantionManager(std::string path, Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay)
 :startPosition(startPosition),dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
 	
@@ -76,21 +74,21 @@ InstantionManager<typ>::~InstantionManager(){}
 template <>
 InstantionManager<Barrel>::~InstantionManager()
 {
-	/*for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end();iter++)
+	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end();iter++)
 	{
 		delete *iter;
 	}
-	GameObject::barrelsArrayPointer.clear();*/
+	GameObject::barrelsArrayPointer.clear();
 }
 
 template <>
 InstantionManager<Fish>::~InstantionManager()
 {
-	/*for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end();iter++)
+	for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end();iter++)
 	{
 		delete *iter;
 	}
-	GameObject::fishesArrayPointer.clear();*/
+	GameObject::fishesArrayPointer.clear();
 }
 
 template<>
@@ -177,7 +175,7 @@ void InstantionManager<Fish>::draw()
 template<>
 void InstantionManager<Barrel>::add(unsigned int index)
 {
-	list<Barrel>::iterator iter = listOfAllObjects.begin();
+	std::list<Barrel>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
 	GameObject::barrelsArrayPointer.push_back(new Barrel(*iter));	
 }
@@ -185,10 +183,9 @@ void InstantionManager<Barrel>::add(unsigned int index)
 template<>
 void InstantionManager<Fish>::add(unsigned int index)
 {
-	list<Fish>::iterator iter = listOfAllObjects.begin();
+	std::list<Fish>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
 	iter->setPosition(Vector2(startPosition.get_X(), (rand()%dispersion) + startPosition.get_Y()));
 	GameObject::fishesArrayPointer.push_back(new Fish(*iter));
 }
-
-
+}

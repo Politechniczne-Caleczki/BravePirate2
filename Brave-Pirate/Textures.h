@@ -1,15 +1,10 @@
 #pragma once
 #include <unordered_map>
-#include <SDL.h>
 #include <SDL_image.h>
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "GraphicDevice.h"
 #include "ConstantAndDefinitions.h"
-#include "string"
 
-typedef unordered_map<string, SDL_Texture*> TextureMap;
+typedef std::unordered_map<std::string, SDL_Texture*> TextureMap;
 
 class Textures
 {

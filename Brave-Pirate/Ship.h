@@ -1,8 +1,6 @@
 #pragma once
-#include "FloatingObject.h"
 #include "Cannon.h"
 #include "FishingRod.h"
-#include "Barrel.h"
 #include "Player.h"
 
 class Ship: public FloatingObject

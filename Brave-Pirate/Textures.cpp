@@ -12,7 +12,7 @@ void Textures::free()
 }
 
 //Functions
-SDL_Texture* Textures::getTexture(string imageimageName)
+SDL_Texture* Textures::getTexture(std::string imageimageName)
 {
 	TextureMap::iterator it = Textures::textures.find(imageimageName);
 
@@ -59,6 +59,7 @@ SDL_Texture* Textures::createErrorTexture()
 
 TextureMap Textures::initializeHashmap()
 {
+	IMG_Init(IMG_INIT_PNG);
 	TextureMap _tm;
 	_tm.insert(TextureMap::value_type(errorImage,createErrorTexture()));
 	return _tm;

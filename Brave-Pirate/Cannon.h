@@ -1,13 +1,8 @@
 #pragma once
-#include <SDL_image.h>
 #include <list>
-#include "Vector2.h"
 #include "CannonBall.h"
 #include "Delay.h"
 #include "Sea.h"
-#include "Textures.h"
-
-using namespace std;
 
 class Cannon
 {
@@ -16,7 +11,7 @@ private:
 	float angle, power;
 	unsigned int requiredEnergy;
 	Vector2 position; 
-	list<CannonBall> cannonBalls;
+	std::list<CannonBall> cannonBalls;
 
 public:
 	Cannon(const float, const float, const Vector2, const unsigned int);

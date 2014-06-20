@@ -1,7 +1,8 @@
 #pragma once
 #include "BonusObject.h"
-#include "Fish.h"
 #include "Time.h"
+
+
 class Fish: public BonusObject
 {
 private:

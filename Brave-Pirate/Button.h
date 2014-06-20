@@ -1,8 +1,26 @@
 #pragma once
-#include <SDL.h>
-#include <SDL_image.h>
 #include "GraphicDevice.h"
-#include "Vector2.h"
+#include "Ship.h"
+#include "InstantionManager.h"
+#include "Interface.h"
+
+struct Container 
+{
+	Ship *ship;
+	Sea *sea;
+	Time *time;
+	InstantionManager<Barrel> *barrels;
+	InstantionManager<Fish> *fishes;
+	void free()
+	{
+			if(ship!=NULL)		 delete ship;
+			if(sea !=NULL)		 delete sea;
+			if(time != NULL)     delete time;
+			if(barrels!=NULL)	 delete barrels;
+			if(fishes !=NULL)	 delete fishes;		
+	}
+};
+
 
 class Button
 {
@@ -11,10 +29,10 @@ private:
 	SDL_Texture * textureInactive;
 	Vector2 position;
 	bool active, available;
-	int ( * _action ) (void);
-
+	int ( * _action ) (Container *);
+	Container * cointainer;
 public:
-	Button(const bool active, const bool available, const Vector2 position, SDL_Texture * textureInactive, SDL_Texture * textureActive, int ( * _action ) (void));
+	Button(const bool active, const bool available, const Vector2 position, SDL_Texture * textureInactive, SDL_Texture * textureActive, int ( * _action ) (Container *), Container *);
 	~Button();
 	inline const bool getActive(void)const;
 	inline const bool getAvailability(void)const;

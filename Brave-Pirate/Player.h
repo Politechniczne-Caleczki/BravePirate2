@@ -1,6 +1,5 @@
 #pragma once
 #include <stdlib.h>
-#include <SDL.h>
 
 class Player
 {

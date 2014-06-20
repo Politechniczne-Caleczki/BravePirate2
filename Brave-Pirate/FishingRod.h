@@ -1,8 +1,6 @@
 #pragma once
-#include <SDL_image.h>
-#include <iostream>
 #include "GameObject.h"
-#include "Fish.h"
+#include "Time.h"
 
 class FishingRod: public GameObject
 {

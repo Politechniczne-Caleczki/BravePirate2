@@ -1,19 +1,15 @@
 #pragma once
-#include <iostream>
 #include <fstream>
 #include <SDL.h>
 #include <SDL_ttf.h>
-#include "Vector2.h"
 #include "ConstantAndDefinitions.h"
-
-using namespace std;
 
 class GraphicDevice
 {
 private:	
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	string windowName; 
+	std::string windowName; 
 	Vector2 windowPosition, windowSize;
 	TTF_Font *font;
 	void setWindow(void);	
@@ -25,14 +21,14 @@ public:
 
 	void setWindowSize(const Vector2 size);
 	void setWindowPosition(const Vector2 position);
-	void setWindowName(const string name);
+	void setWindowName(const std::string name);
 	
 	static SDL_Renderer* getRenderer(void);
 	static Vector2 getWindowSize(void);
 
 	static void drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size);
 	static void drawTexture(SDL_Texture *texture,const Vector2 position,const Vector2 size, float angle);
-	static void drawText(const string text,const SDL_Color textColor,const  Vector2 position,const float size);
+	static void drawText(const std::string text,const SDL_Color textColor,const  Vector2 position,const float size);
 	static void begin(void);
 	static void end(void);
 	static const SDL_Color getColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a);

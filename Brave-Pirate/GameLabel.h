@@ -4,26 +4,26 @@
 class GameLabel : public InterfaceObject
 {
 private:
-	string text;
+	std::string text;
 	SDL_Color color;
 	float textSize;
 public:
-	GameLabel(const string, const SDL_Color, const Vector2 ,const float);
+	GameLabel(const std::string, const SDL_Color, const Vector2 ,const float);
 	~GameLabel(void);
 
 	void update();
 	void draw()const;
-	const string getText()const;
-	void setText(const string);
+	const std::string getText()const;
+	void setText(const std::string);
 	void setColor(const SDL_Color);
 	const SDL_Color getColor()const;
 };
 
-inline void GameLabel::setText(const string text)
+inline void GameLabel::setText(const std::string text)
 {
 	this->text = text;
 }
-inline const string GameLabel::getText()const
+inline const std::string GameLabel::getText()const
 {
 	return text;
 }

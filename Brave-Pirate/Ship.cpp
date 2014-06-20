@@ -41,8 +41,7 @@ void Ship::catchObjectUpdate(void)
 {
 	if((catchObject=rod.getCatchObject())!=NULL)
 	{
-		BonusObject *bonus = static_cast<BonusObject*>(catchObject);
-		SDL_Log("%i",bonus->getType());
+		BonusObject *bonus = static_cast<BonusObject*>(catchObject);		
 		switch(bonus->getType())
 		{
 			case energyFish:
