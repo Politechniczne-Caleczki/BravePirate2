@@ -8,6 +8,8 @@
 #include "Delay.h"
 #include "Textures.h"
 
+namespace
+{
 template <class typ> class InstantionManager 
 { 
 private: 
@@ -24,8 +26,8 @@ public:
 	void update();	
 	void draw();
 
-	friend std::ostream & operator<< <>(std::ostream &, const InstantionManager<typ> &);
-	friend std::istream & operator>> <>(std::istream &, InstantionManager<typ> &);
+	friend std::ostream & operator<< (std::ostream &, const InstantionManager<typ> &);
+	friend std::istream & operator>> (std::istream &, InstantionManager<typ> &);
 };
 
 template <class typ>
@@ -248,4 +250,5 @@ template <class Typ> std::istream & operator>> (std::istream &w, const Instantio
 			w>>b;
 			GameObject::barrelsArrayPointer.push_back(b);
 	}
+}
 }
