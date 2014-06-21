@@ -13,9 +13,14 @@ namespace
 template <class typ>  class  InstantionManager;
 template <class T>
 std::ostream & operator<< (std::ostream &w, const InstantionManager<T> &i);
+template <class T>
+std::istream & operator>> (std::istream &, InstantionManager<T> &i);
+
 
 template <>
 std::ostream & operator<< (std::ostream &w, const InstantionManager<Barrel> &i);
+template <>
+std::istream & operator>> (std::istream &, InstantionManager<Barrel> &i);
 
 template <class typ> class InstantionManager 
 { 
@@ -42,7 +47,7 @@ InstantionManager<typ>::InstantionManager(const std::string path,Vector2 startPo
 
 template <>
 InstantionManager<Barrel>::InstantionManager(const std::string path, Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay)
-	:startPosition(startPosition), dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
+:startPosition(startPosition), dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
 	std::ifstream file(resourcesPath+barrelFile);
 	if(file.is_open())//error
@@ -257,7 +262,8 @@ template <class Typ> std::istream & operator>> (std::istream &w, const Instantio
 	}
 }
 
-template <class Typ> std::istream & operator>> (std::istream &w, const InstantionManager<Barrel> &i)
+template <>
+std::istream & operator>> (std::istream &w, InstantionManager<Barrel> &i)
 {
 	int size=0;
 	w>>i.dispersion>>i.instantionDelay>>i.range>>i.startPosition>>i.upgradeDelay>>size;
@@ -266,8 +272,9 @@ template <class Typ> std::istream & operator>> (std::istream &w, const Instantio
 			Barrel b(FloatingObject(Vector2(0,0), Vector2(10,10), 0, "barrel.png", 
 					Vector2(10,10), Vector2(10,10)),10,10,10,10);
 			w>>b;
-			GameObject::barrelsArrayPointer.push_back(b);
+			GameObject::barrelsArrayPointer.push_back(new Barrel(b));
 	}
+	return w;
 }
 
 template <>

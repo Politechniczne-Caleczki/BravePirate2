@@ -28,23 +28,32 @@ int startGame(Container *c)
 int leaveGame(Container *c)
 {
 	
-	
         if(c!=NULL)
                 c->free();
 	
         return 0;
 }
 
-namespace
+
+int saveGame(Container *c)
 {
-	int saveGame(Container *c)
-	{
-		std::ofstream file(resourcesPath+"plik.txt");
-		file<<*c->barrels;
-		file.close();
-		return 1;
-	}
+	std::ofstream file(resourcesPath+"plik.txt");
+	file<<*c->barrels;
+	file.close();
+	return 1;
 }
+
+int loadGame(Container *c)
+{
+	std::ifstream file(resourcesPath+"plik.txt");
+	InstantionManager<Barrel> barrel();
+	//file>>barrel;
+
+	file.close();
+	return 1;
+}
+
+
  
 std::string intToStr(int n)
 {
