@@ -1,11 +1,8 @@
+#ifndef Cannon_h
+#define Cannon_h
 #pragma once
-#include <SDL_image.h>
-#include <list>
-#include "Vector2.h"
 #include "CannonBall.h"
 #include "Delay.h"
-#include "Sea.h"
-#include "Textures.h"
 
 using namespace std;
 
@@ -55,4 +52,6 @@ inline const Delay & Cannon::getInterval()const
 {
 	return interval;
 }
+
+#endif
 

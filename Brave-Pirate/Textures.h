@@ -1,3 +1,5 @@
+#ifndef Textures_h
+#define Textures_h
 #pragma once
 #include <unordered_map>
 #include <SDL_image.h>
@@ -19,3 +21,4 @@ public:
 	static SDL_Texture* getTexture(std::string imageName);
 };
 
+#endif

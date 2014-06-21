@@ -1,3 +1,5 @@
+#ifndef GameStateManager_h
+#define GameStateManager_h
 #pragma once
 #include <SDL.h>
 
@@ -26,3 +28,6 @@ inline void GameStateManager::setGameState(int state)
 {
 	gameState=state;
 }
+
+
+#endif

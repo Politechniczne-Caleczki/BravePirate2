@@ -1,8 +1,7 @@
+#ifndef Player_h
+#define Player_h
 #pragma once
-#include <stdlib.h>
-#include <SDL.h>
 #include <iostream>
-
 class Player
 {
 private:
@@ -108,3 +107,5 @@ inline Player & Player::getInstance()
 
 	return *instance;	
 }
+
+#endif

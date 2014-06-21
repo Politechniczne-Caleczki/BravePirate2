@@ -1,3 +1,5 @@
+#ifndef Ship_h
+#define Ship_h
 #pragma once
 #include <iostream>
 #include "FloatingObject.h"
@@ -25,3 +27,5 @@ public:
 	friend std::ostream & operator<< (std::ostream &, const Ship &);
 	friend std::istream & operator>> (std::istream &, Ship &);
 };
+
+#endif

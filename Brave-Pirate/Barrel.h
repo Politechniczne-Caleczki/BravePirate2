@@ -1,3 +1,5 @@
+#ifndef Barrel_h
+#define Barrel_h
 #pragma once
 #include "FloatingObject.h"
 #include "Bonus.h"
@@ -41,3 +43,5 @@ inline const unsigned int Barrel::getScor()const
 {
 	return this->scor;
 }
+
+#endif

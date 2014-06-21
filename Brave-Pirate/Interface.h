@@ -5,7 +5,6 @@
 #include <cstddef>
 #include "GraphicDevice.h"
 
-using namespace std;
 typedef std::list<InterfaceObject*> InterfaceList;
 
 class Interface : public InterfaceObject

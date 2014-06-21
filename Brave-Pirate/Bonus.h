@@ -1,3 +1,5 @@
+#ifndef Bonus_h
+#define Bonus_h
 #pragma once
 #include "BonusObject.h"
 #include "Time.h"
@@ -14,4 +16,6 @@ public:
 	friend std::ostream & operator<< (std::ostream &, const Bonus &);
 	friend std::istream & operator>> (std::istream &, Bonus &);
 };
+
+#endif
 

@@ -1,3 +1,5 @@
+#ifndef BonusObject_h
+#define BonusObject_h
 #pragma once
 #include "GameObject.h"
 
@@ -50,3 +52,4 @@ inline void BonusObject::setType(const Fishs_Gifts_Types type)
 	this->type = type;
 }
 
+#endif

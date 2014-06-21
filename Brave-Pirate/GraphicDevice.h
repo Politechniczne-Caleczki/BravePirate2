@@ -1,3 +1,5 @@
+#ifndef GraphicDevice_h
+#define GraphicDevice_h
 #pragma once
 #include <fstream>
 #include <SDL.h>
@@ -66,3 +68,4 @@ inline void GraphicDevice::end()
 	SDL_RenderPresent(getInstance().getRenderer());
 }
 
+#endif

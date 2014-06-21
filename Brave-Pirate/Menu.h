@@ -1,3 +1,5 @@
+#ifndef Menu_h
+#define Menu_h
 #pragma once
 #include <list>
 #include "GraphicDevice.h"
@@ -21,3 +23,5 @@ public:
 	void draw(void)const;
 	void addButton(const Button &);
 };
+
+#endif

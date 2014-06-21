@@ -1,7 +1,8 @@
+#ifndef Time_h
+#define Time_h
 #pragma once
 #include <SDL.h>
 #include <time.h>  
-#include <stdlib.h>
 #include <iostream>
 class Time
 {
@@ -46,3 +47,4 @@ inline Uint32 Time::increment(Uint32 interval, void *param)
 	return interval;
 }
 
+#endif

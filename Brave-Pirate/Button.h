@@ -1,3 +1,5 @@
+#ifndef Button_h
+#define Button_h
 #pragma once
 #include "GraphicDevice.h"
 #include "Ship.h"
@@ -64,3 +66,5 @@ inline void Button::setAvailability(bool available)
 {
 	available = available;
 }
+
+#endif

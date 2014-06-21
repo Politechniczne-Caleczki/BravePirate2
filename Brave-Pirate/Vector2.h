@@ -1,3 +1,5 @@
+#ifndef Vector2_h
+#define Vector2_h
 #pragma once
 #include <math.h>
 #include <iostream>
@@ -121,3 +123,4 @@ inline const Vector2 Vector2::operator*(const float & value)const
 	return Vector2(x*value, y*value);
 }
 
+#endif

@@ -1,3 +1,5 @@
+#ifndef GameObject_h
+#define GameObject_h
 #pragma once
 #include <list>
 #include <cstddef>
@@ -97,3 +99,5 @@ inline const bool GameObject::isDestroyed()const
 {
 	return _isDestroyed;
 }
+
+#endif

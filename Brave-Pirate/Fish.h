@@ -1,3 +1,5 @@
+#ifndef Fish_h
+#define Fish_h
 #pragma once
 #include "BonusObject.h"
 #include "Time.h"
@@ -15,3 +17,5 @@ public:
 	friend std::ostream & operator<< (std::ostream &, const Fish &);
 	friend std::istream & operator>> (std::istream &, Fish &);
 };
+
+#endif

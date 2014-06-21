@@ -1,3 +1,5 @@
+#ifndef FishingRod_h
+#define FishingRod_h
 #pragma once
 #include "GameObject.h"
 #include "Time.h"
@@ -45,3 +47,5 @@ inline void FishingRod::setMaxDepth(const float depth)
 {
 	this->maxDepth = depth;
 }
+
+#endif

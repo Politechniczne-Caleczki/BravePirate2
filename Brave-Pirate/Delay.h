@@ -1,3 +1,5 @@
+#ifndef Delay_h
+#define Delay_h
 #pragma once
 #include "Time.h"
 #include <iostream>
@@ -50,3 +52,5 @@ inline void Delay::update(void)
 		if(startTime+delayTime < (float)Time::gameTime())
 			isredy = true;
 }
+
+#endif

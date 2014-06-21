@@ -1,3 +1,5 @@
+#ifndef ConstantAndDefinitions_h
+#define ConstantAndDefinitions_h
 #pragma once 
 #include <iostream>
 #include <string>
@@ -10,7 +12,7 @@
 #define TIME_TO_NEXT_LEVEL 40000
 #define INSTANTIATE_TIME 6000
 #define INCREASE_LEVEL_DIFFICULTY 1.05
-#define CHANCE_FOR_A_BONUS 7
+#define CHANCE_FOR_A_BONUS 14
 
 const std::string DEFAULT_WIN_NAME = "Brave-Pirate";
 const std::string windowSettings = "WindowSettings.txt";
@@ -18,8 +20,8 @@ const std::string resourcesPath  = "Resources/";
 const std::string texturesPath = "images/";
 const std::string fontName = "arial.ttf";
 const std::string fishesFile = "Fishes.txt";
-const std::string barrelFile = "barrels.txt";
-const std::string bonusFile = "bonus.txt";
+const std::string barrelFile = "Barrels.txt";
+const std::string bonusFile = "Bonus.txt";
 
 enum Fishs_Gifts_Types
 {
@@ -52,4 +54,4 @@ struct SampleBonus
 };
 
 
-
+#endif

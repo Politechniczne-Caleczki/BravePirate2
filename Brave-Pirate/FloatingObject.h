@@ -1,3 +1,5 @@
+#ifndef FloatingObject_h
+#define FloatingObject_h
 #pragma once
 #include "Sea.h"
 
@@ -19,3 +21,4 @@ public:
 	virtual void draw(void)const;
 };
 
+#endif

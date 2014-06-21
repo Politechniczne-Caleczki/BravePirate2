@@ -17,17 +17,33 @@ int startGame(Container *c)
                         c->sea = new Sea(Vector2(0,300),Vector2(1005,42),0,"sea.png", 0.15f);
                         c->time = new Time;
                         c->barrels = new InstantionManager<Barrel>("barrels.txt", Vector2(1100,300),0, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));
-                        c->fishes = new InstantionManager<Fish>("Fishes.txt", Vector2(1100,350),250, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));                       
-                        return 2;
+                        c->fishes = new InstantionManager<Fish>("Fishes.txt", Vector2(1100,350),250, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));                      
+                        
                 }
+				return 2;
         }
         return 1;
 }
+
 int leaveGame(Container *c)
 {
+	
+	
         if(c!=NULL)
                 c->free();
+	
         return 0;
+}
+
+namespace
+{
+	int saveGame(Container *c)
+	{
+		std::ofstream file(resourcesPath+"plik.txt");
+		file<<*c->barrels;
+		file.close();
+		return 1;
+	}
 }
  
 std::string intToStr(int n)
@@ -50,9 +66,9 @@ int main( int argc, char* args[] )
         Menu menu(Textures::getTexture("background.bmp"));
         menu.addButton(Button(1,1,Vector2(340,30), Textures::getTexture("start.png")    ,       Textures::getTexture("start_pressed.png")    ,  startGame, &container));
         menu.addButton(Button(0,1,Vector2(340,140),Textures::getTexture("load_game.png"),       Textures::getTexture("load_game_pressed.png"),  startGame, NULL));      
-        menu.addButton(Button(0,1,Vector2(340,250),Textures::getTexture("save.png")     ,       Textures::getTexture("save_pressed.png")     ,  startGame, NULL));      
+		menu.addButton(Button(0,1,Vector2(340,250),Textures::getTexture("save.png")     ,       Textures::getTexture("save_pressed.png")     ,  saveGame,  &container));      
         menu.addButton(Button(0,1,Vector2(340,360),Textures::getTexture("credits.png")  ,       Textures::getTexture("credits_pressed.png")  ,  startGame, NULL));      
-        menu.addButton(Button(0,1,Vector2(340,470),Textures::getTexture("exit.png")     ,       Textures::getTexture("exit_pressed.png")     ,  leaveGame, NULL));      
+        menu.addButton(Button(0,1,Vector2(340,470),Textures::getTexture("exit.png")     ,       Textures::getTexture("exit_pressed.png")     ,  leaveGame, &container));      
  
         Interface _interface(Vector2(0,0),Vector2(1000,100),NULL);
  
@@ -101,6 +117,7 @@ int main( int argc, char* args[] )
                 }
         }
  
+		
         Barrel::free();
         Player::free();
         Textures::free();

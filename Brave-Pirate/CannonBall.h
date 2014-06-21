@@ -1,6 +1,6 @@
+#ifndef CannonBall_h
+#define CannonBall_h
 #pragma once
-#include "GameObject.h"
-#include "Time.h"
 #include "Sea.h"
 #include "Player.h"
 #include "Barrel.h"
@@ -32,3 +32,4 @@ inline float CannonBall::getPower()
 	return strikingPower;
 }
 
+#endif
