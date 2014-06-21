@@ -10,7 +10,7 @@ int startGame(Container *c)
 {
         if(c!=NULL)
         {
-                if((c->barrels == NULL) || (c->fishes==NULL) || (c->sea==NULL) || (c->ship==NULL) ||( c->time=NULL))
+                if((c->barrels == NULL) || (c->fishes==NULL) || (c->sea==NULL) || (c->ship==NULL) ||( c->time==NULL))
                 {
                         c->free();
                         c->ship = new Ship(FloatingObject(Vector2(100,0), Vector2(150,150), 0, "ship.png", Vector2(200,145), Vector2(150, 145)));

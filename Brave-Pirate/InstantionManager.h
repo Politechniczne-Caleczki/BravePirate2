@@ -15,7 +15,7 @@ template <class typ>  class  InstantionManager;
 template <class T>
 std::ostream & operator<< (std::ostream &w, const InstantionManager<T> &i);
 
-template <class T>
+template <>
 std::ostream & operator<< (std::ostream &w, const InstantionManager<Barrel> &i);
 
 template <class typ> class InstantionManager 
@@ -34,8 +34,8 @@ public:
 	void update();	
 	void draw();
 
-	friend std::ostream & operator<< <>(std::ostream &w, const InstantionManager<Barrel> &i);
-	friend std::istream & operator>> (std::istream &, InstantionManager<typ> &);
+	friend std::ostream & operator<< <>(std::ostream &w, const InstantionManager<typ> &i);
+	friend std::istream & operator>> <>(std::istream &, InstantionManager<typ> &);
 };
 
 template <class typ>
