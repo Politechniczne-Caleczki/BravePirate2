@@ -23,8 +23,8 @@ void Bonus::update()
 
 std::ostream & operator<< (std::ostream &w, const Bonus &b)
 {
-	return w<<2<<" "<<b.angle<<" "<<b.depth<<" "<<b.position<<" "<<b.size
-		<<" "<<b.speed<<" "<<b.textureName<<" "<<(int)b.type<<" "<<b.value;
+	return w<<" "<<b.angle<<" "<<b.depth<<" "<<b.position<<" "<<b.size
+		<<" "<<b.speed<<" "<<b.textureName<<" "<<(int)b.type<<" "<<b.value<<std::endl;
 }
 
 std::istream & operator>> (std::istream &w, Bonus &b)

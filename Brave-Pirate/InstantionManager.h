@@ -269,10 +269,11 @@ std::ostream & operator<<(std::ostream &w, const InstantionManager<Fish> &i)
 		<<" "<<i.upgradeDelay<<" "<<GameObject::fishesArrayPointer.size()<<std::endl;
 	for(Lista::const_iterator iter = GameObject::fishesArrayPointer.begin(); iter != GameObject::fishesArrayPointer.end(); ++iter){
 		if(typeid(**iter) == typeid(Fish))	 
-			w<< *static_cast<Fish*>((*iter))<<std::endl;
+			w<< *static_cast<Fish*>((*iter));
 		if(typeid(**iter) == typeid(Bonus))	 
-			w<< *static_cast<Bonus*>((*iter))<<std::endl;
+			w<< *static_cast<Bonus*>((*iter));
 	}
+	w<<std::endl;
 	return w;
 }
 
@@ -281,7 +282,8 @@ std::ostream& operator<<  (std::ostream &w, const InstantionManager<Barrel> &i)
 {
         w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition<<" "<<i.upgradeDelay<<" "<<GameObject::barrelsArrayPointer.size()<<std::endl;
         for(Lista::const_iterator iter = GameObject::barrelsArrayPointer.begin(); iter != GameObject::barrelsArrayPointer.end(); ++iter)
-               w<< *static_cast<Barrel*>((*iter))<<endl;
+               w<< *static_cast<Barrel*>((*iter));
+		w<<std::endl;
         return w;
 }
 
