@@ -39,6 +39,7 @@ int saveGame(Container *c)
 {
 	std::ofstream file(resourcesPath+"plik.txt");
 	file<<*c->barrels;
+	file<<*c->fishes;
 	file.close();
 	return 1;
 }
