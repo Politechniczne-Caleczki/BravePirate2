@@ -8,7 +8,6 @@
 #include "Textures.h"
 
 
-
 namespace
 {
 template <class typ>  class  InstantionManager;
