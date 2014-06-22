@@ -157,7 +157,6 @@ int main( int argc, char* args[] )
 					}else if(gameOverPos.get_Y()> ((GraphicDevice::getWindowSize().get_Y()-gameOverSize.get_Y())/2))
 						gameOverPos.set_Y(gameOverPos.get_Y() - (Time::deltaTime()));
 
-
 					GraphicDevice::begin();
 					GraphicDevice::drawTexture(Textures::getTexture("background.bmp"),Vector2(0,0),GraphicDevice::getWindowSize());
 					container.ship->draw();
@@ -172,6 +171,7 @@ int main( int argc, char* args[] )
 				}break;
 			case 1:
 				{
+					gameOverPos.set_Y(GraphicDevice::getWindowSize().get_Y());
 					gameStateManager.setGameState(menu.update());
 					GraphicDevice::begin();         
 						menu.draw();
