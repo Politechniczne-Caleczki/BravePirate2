@@ -132,7 +132,9 @@ int main( int argc, char* args[] )
 				{
 					GraphicDevice::begin();
 					GraphicDevice::drawTexture(Textures::getTexture("background.bmp"),Vector2(0,0),GraphicDevice::getWindowSize());
-					GraphicDevice::drawTexture(Textures::getTexture("creditstext.png"),Vector2(250,190),Vector2(484,220));
+					GraphicDevice::drawTexture(Textures::getTexture("creditstext.png"),Vector2(30,30),Vector2(484,220));
+					GraphicDevice::drawTexture(Textures::getTexture("grindgears.jpg"),Vector2(500,220),Vector2(400,300));
+					GraphicDevice::drawTexture(Textures::getTexture("hammer.png"),Vector2(30,500),Vector2(500,60));
 					GraphicDevice::end();
 				}
 				break;
