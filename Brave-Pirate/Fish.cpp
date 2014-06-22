@@ -18,7 +18,7 @@ void Fish::update(void)
 
 std::ostream & operator<< (std::ostream &w, const Fish &f)
 {
-	return w<<" "<<f.angle<<" "<<f.position<<" "<<f.size<<" "<<f.speed
+	return w<<1<<" "<<f.angle<<" "<<f.position<<" "<<f.size<<" "<<f.speed
 		<<" "<<f.textureName<<" "<<(int)f.type<<" "<<f.value<<std::endl;
 }
 

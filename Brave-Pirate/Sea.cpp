@@ -33,13 +33,13 @@ float Sea::shift = 0;
 std::ostream & operator<< (std::ostream &w, const Sea &s)
 {
 	return w<<s.angle<<" "<<s.position<<" "<<s.shift<<" "<<s.size
-		<<" "<<s.speed<<" "<<s.speed<<" "<<s.textureName<<" ";
+		<<" "<<s.speed<<" "<<s.textureName<<std::endl<<std::endl;
 }
 
 std::istream & operator>> (std::istream &w, Sea &s)
 {
 	w>>s.angle>>s.position>>s.shift>>s.size
-		>>s.speed>>s.speed>>s.textureName;
+		>>s.speed>>s.textureName;
 	s.texture = Textures::getTexture(s.textureName);
 	return w;
 }

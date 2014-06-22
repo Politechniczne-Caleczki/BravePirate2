@@ -54,7 +54,7 @@ void Cannon::draw(void)const
 std::ostream & operator<< (std::ostream &w, const Cannon &c)
 {
 	w<<c.angle<<" "<<c.power<<" "<<c.requiredEnergy<<" "
-		<<c.position<<" "<<c.interval<<" "<<c.cannonBalls.size()<<std::endl;
+		<<c.position<<" "<<c.interval<<std::endl<<c.cannonBalls.size()<<std::endl;
 
 	for(list<CannonBall>::const_iterator iter = c.cannonBalls.begin(); iter != c.cannonBalls.end(); iter++)
 		w<<*iter<<" ";
@@ -64,14 +64,14 @@ std::ostream & operator<< (std::ostream &w, const Cannon &c)
 
 std::istream & operator>> (std::istream &w, Cannon &c)
 {
+	CannonBall ball(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 0.4f, 10 );
 	int numberOfCannonballs =0;
 	w>>c.angle>>c.power>>c.requiredEnergy>>c.position>>c.interval>>numberOfCannonballs;
 	c.cannonBalls.clear();
 	for(int i=0;i<numberOfCannonballs;i++)
 	{
-		CannonBall ball(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 0.4f, 10 );
 		w>>ball;
-		c.cannonBalls.push_back(CannonBall(ball));
+		c.cannonBalls.push_back(ball);
 	}
 	return w;
 }

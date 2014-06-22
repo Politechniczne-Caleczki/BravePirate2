@@ -47,8 +47,12 @@ int Menu::update()
 	}
 	else if( SDL_GetKeyboardState(NULL)[SDL_SCANCODE_RETURN])
 	{
-		if(buttonIterator!=buttonList.end())
+		if(keyPressed == false)
+		{
+			keyPressed=true;
+			if(buttonIterator!=buttonList.end())
 			return (*buttonIterator).action();
+		}
 	}
 	else
 		keyPressed =false;

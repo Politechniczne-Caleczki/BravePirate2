@@ -83,12 +83,12 @@ void Ship::checkCollisions(void)
 std::ostream & operator<< (std::ostream &w, const Ship &s)
 {
 	return w<<s.angle<<" "<<s.back<<" "<<s.front<<" "<<s.position<<
-		" "<<s.size<<" "<<s.textureName<<" \n"<< s.cannon<<" \n"<<s.rod<<std::endl;
+		" "<<s.size<<" "<<s.textureName<<std::endl<<s.rod<<std::endl<< s.cannon<<std::endl;
 }
 
 std::istream & operator>> (std::istream &w, Ship &s)
 {
-	w>>s.angle>>s.back>>s.front>>s.position>>s.size>>s.textureName>>s.cannon>>s.rod;
+	w>>s.angle>>s.back>>s.front>>s.position>>s.size>>s.textureName>>s.rod>>s.cannon;
 	s.texture = Textures::getTexture(s.textureName);
 	return w;
 }

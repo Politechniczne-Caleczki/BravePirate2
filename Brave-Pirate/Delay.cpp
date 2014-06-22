@@ -16,7 +16,7 @@ Delay::~Delay(void)
 
 std::ostream & operator<< (std::ostream &w, const Delay &d)
 {
-	return w<<d.delayTime<<" "<<d.startTime<<" "<<d.isredy;
+	return w<<d.delayTime<<" "<<d.startTime<<" "<<d.isredy<<" ";
 }
 std::istream & operator>> (std::istream &w, Delay &d)
 {

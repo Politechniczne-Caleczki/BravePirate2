@@ -62,11 +62,11 @@ void Barrel::createBonus()
 std::ostream & operator<< (std::ostream & w, const Barrel &b)
 {
 	return w<<b.health<<" "<<b.speed<<" "<<b.damage<<" "<<b.scor<<" "<<b.front<<" "<<b.back<<" "
-	<<b.difference<<" "<<b.textureName<<" "<<b.position<<" "<<b.size<<" "<<b.angle<<" "<<b._isDestroyed<<std::endl; 
+	<<b.difference<<" "<<b.textureName<<" "<<b.position<<" "<<b.size<<" "<<b.angle<<std::endl; 
 }
 std::istream & operator>> (std::istream &w, Barrel & b)
 {	
-	w>>b.health>>b.speed>>b.damage>>b.scor>>b.front>>b.back>>b.difference>>b.textureName>>b.position>>b.size>>b.angle>>b._isDestroyed;
+	w>>b.health>>b.speed>>b.damage>>b.scor>>b.front>>b.back>>b.difference>>b.textureName>>b.position>>b.size>>b.angle;
 	return w;
 }
 Barrel::SampleBonusList Barrel::initializeBonusList()

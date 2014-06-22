@@ -1,8 +1,7 @@
 #ifndef GameStateManager_h
 #define GameStateManager_h
 #pragma once
-#include <SDL.h>
-
+#include "Time.h"
 class GameStateManager
 {
 private:

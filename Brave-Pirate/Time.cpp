@@ -20,14 +20,21 @@ Time::~Time(void)
 
 //Functions
 
+void Time::pauseTimer()
+{
+	paused = true;
+}
 
-float Time::_deltaTime = 0;
-Uint32 Time::_gameTime = 0;
+void Time::continueTime()
+{
+	paused = false;
+}
+
 
 std::ostream & operator<< (std::ostream &w, const Time &t)
 {
-	return w<<t.interval<<" "<<t.last<<" "<<t._deltaTime
-		<<" "<<t._gameTime<<" ";
+	return w<<(int)t.interval<<" "<<(int)t.last<<" "<<t._deltaTime
+		<<" "<<(int)t._gameTime<<std::endl<<std::endl;
 }
 
 std::istream & operator>> (std::istream &w, Time &t)
@@ -38,3 +45,7 @@ std::istream & operator>> (std::istream &w, Time &t)
 	t.myTimerID = SDL_AddTimer(t.interval, &t.increment ,NULL);
 	return w;
 }
+
+float Time::_deltaTime = 0;
+Uint32 Time::_gameTime = 0;
+bool Time::paused = true;

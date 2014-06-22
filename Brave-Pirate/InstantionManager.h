@@ -11,18 +11,21 @@
 namespace
 {
 template <class typ>  class  InstantionManager;
+
 template <class T>
 std::ostream & operator<< (std::ostream &w, const InstantionManager<T> &i);
 template <class T>
-std::istream & operator>> (std::istream &, InstantionManager<T> &i);
-
+std::istream & operator>> (std::istream &w, InstantionManager<T> &i);
 
 template <>
 std::ostream & operator<< (std::ostream &w, const InstantionManager<Barrel> &i);
 template <>
 std::ostream & operator<< (std::ostream &w, const InstantionManager<Fish> &i);
+
 template <>
-std::istream & operator>> (std::istream &, InstantionManager<Barrel> &i);
+std::istream & operator>> (std::istream &w, InstantionManager<Barrel> &i);
+template <>
+std::istream & operator>> (std::istream &w, InstantionManager<Fish> &i);
 
 template <class typ> class InstantionManager 
 { 
@@ -41,7 +44,7 @@ public:
 	void draw();
 
 	friend std::ostream & operator<< <>(std::ostream &w, const InstantionManager<typ> &i);
-	friend std::istream & operator>> <>(std::istream &, InstantionManager<typ> &);
+	friend std::istream & operator>> <>(std::istream &w, InstantionManager<typ> &i);
 };
 
 template <class typ>
@@ -223,11 +226,13 @@ void InstantionManager<Fish>::add(unsigned int index)
 	GameObject::fishesArrayPointer.push_back(new Fish(*iter));
 }
 
-
-template <class Typ> std::istream & operator>> (std::istream &w, const InstantionManager<Fish> &i)
+//FISH
+template <> 
+std::istream & operator>> (std::istream &w, InstantionManager<Fish> &i)
 {
 	int typ =0;
 	int size=0;
+	GameObject::fishesArrayPointer.clear();
 	w>>i.dispersion>>i.instantionDelay>>i.range>>i.startPosition>>i.upgradeDelay>>size;
 	for(int c=0;c<size;c++)
 	{
@@ -236,28 +241,14 @@ template <class Typ> std::istream & operator>> (std::istream &w, const Instantio
 		{
 			Fish f(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f);
 			w>>f;
-			GameObject::fishesArrayPointer.push_back(f);
+			GameObject::fishesArrayPointer.push_back(new Fish(f));
 		}
 		if(typ == 2)
 		{
-			Bonus b(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f,10);
+			Bonus b(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f, 10, energyFish);
 			w>>b;
-			GameObject::fishesArrayPointer.push_back(b);
+			GameObject::fishesArrayPointer.push_back(new Bonus(b));
 		}
-	}
-}
-
-template <>
-std::istream & operator>> (std::istream &w, InstantionManager<Barrel> &i)
-{
-	int size=0;
-	w>>i.dispersion>>i.instantionDelay>>i.range>>i.startPosition>>i.upgradeDelay>>size;
-	for(int c=0;c<size;c++)
-	{
-			Barrel b(FloatingObject(Vector2(0,0), Vector2(10,10), 0, "barrel.png", 
-					Vector2(10,10), Vector2(10,10)),10,10,10,10);
-			w>>b;
-			GameObject::barrelsArrayPointer.push_back(new Barrel(b));
 	}
 	return w;
 }
@@ -265,8 +256,8 @@ std::istream & operator>> (std::istream &w, InstantionManager<Barrel> &i)
 template <> 
 std::ostream & operator<<(std::ostream &w, const InstantionManager<Fish> &i)
 {
-	w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition
-		<<" "<<i.upgradeDelay<<" "<<GameObject::fishesArrayPointer.size()<<std::endl;
+	 w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition<<" "<<i.upgradeDelay
+		 <<" "<<GameObject::fishesArrayPointer.size()<<std::endl;
 	for(Lista::const_iterator iter = GameObject::fishesArrayPointer.begin(); iter != GameObject::fishesArrayPointer.end(); ++iter){
 		if(typeid(**iter) == typeid(Fish))	 
 			w<< *static_cast<Fish*>((*iter));
@@ -277,14 +268,33 @@ std::ostream & operator<<(std::ostream &w, const InstantionManager<Fish> &i)
 	return w;
 }
 
+//BARREL
+template <>
+std::istream& operator>> (std::istream &w, InstantionManager<Barrel> &i)
+{
+	GameObject::barrelsArrayPointer.clear();
+	int size=0;
+	w>>i.dispersion>>i.instantionDelay>>i.range>>i.startPosition>>i.upgradeDelay>>size;
+	for(int c=0;c<size;c++)
+	{
+			Barrel b(FloatingObject(Vector2(400,400), Vector2(10,10), 0, "barrel.png", 
+					Vector2(100,100), Vector2(100,100)),1,1,1,1);
+			w>>b;
+			GameObject::barrelsArrayPointer.push_back(new Barrel(b));
+	}
+	return w;
+}
+
 template <>
 std::ostream& operator<<  (std::ostream &w, const InstantionManager<Barrel> &i)
 {
-        w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition<<" "<<i.upgradeDelay<<" "<<GameObject::barrelsArrayPointer.size()<<std::endl;
+        w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition<<" "<<i.upgradeDelay
+			<<" "<<GameObject::barrelsArrayPointer.size()<<std::endl;
         for(Lista::const_iterator iter = GameObject::barrelsArrayPointer.begin(); iter != GameObject::barrelsArrayPointer.end(); ++iter)
                w<< *static_cast<Barrel*>((*iter));
 		w<<std::endl;
         return w;
+
 }
 
 

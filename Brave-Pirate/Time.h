@@ -11,6 +11,7 @@ private:
 	static Uint32 _gameTime, increment(const Uint32 interval, void *param);
 	static float _deltaTime;	
 	int myTimerID;
+	static bool paused;
 
 public:
 	Time(void);
@@ -23,6 +24,9 @@ public:
 
 	friend std::ostream & operator<< (std::ostream &, const Time &);
 	friend std::istream & operator>> (std::istream &, Time &);
+
+	static void pauseTimer();
+	static void continueTime();
 };
 
 inline void Time::update()
@@ -43,7 +47,8 @@ inline Uint32 Time::gameTime()
 
 inline Uint32 Time::increment(Uint32 interval, void *param)
 {
-	Time::_gameTime += interval;
+	if(!paused)
+		Time::_gameTime += interval;
 	return interval;
 }
 
