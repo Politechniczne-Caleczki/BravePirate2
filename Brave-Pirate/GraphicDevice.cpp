@@ -111,49 +111,6 @@ void GraphicDevice::setWindowPosition(const Vector2 position)
 	setWindow();
 }
 
-void GraphicDevice::drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size)
-{
-	SDL_Rect rect;
-	rect.x = (int)position.get_X();
-	rect.y = (int)position.get_Y();
-	rect.w = (int)size.get_X();
-	rect.h = (int)size.get_Y();
 
-	SDL_RenderCopy(getRenderer(),texture,NULL, &rect);
-}
-
-void GraphicDevice::drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size, float angle)
-{
-	SDL_Rect rect;
-	rect.x = (int)position.get_X();
-	rect.y = (int)position.get_Y();
-	rect.w = (int)size.get_X();
-	rect.h = (int)size.get_Y();
-	SDL_RenderCopyEx(getRenderer(),texture,NULL,&rect,angle,NULL,SDL_FLIP_NONE);
-}
-
-  
-void GraphicDevice::drawText(const std::string text,const SDL_Color textColor,const  Vector2 position,const float size)
-{
-	if(getInstance().font)
-	{
-		SDL_Surface *textSurface;
-		if(textSurface = TTF_RenderText_Solid(getInstance().font,text.c_str(),textColor))
-		{
-			SDL_Texture *textTexture = SDL_CreateTextureFromSurface(getRenderer() ,textSurface);
-			Vector2 surfaceSize(textSurface->w * size/textSurface->h , size);
-			SDL_FreeSurface(textSurface);
-			if(textTexture ==NULL)throw GameError("Draw Text CreateTextureFromSurface failed: ", SDL_GetError());				
-				drawTexture(textTexture,position,surfaceSize);			
-				SDL_DestroyTexture(textTexture);			
-		}else throw GameError("Text render error: ", TTF_GetError());		
-	}else throw GameError("Font not Found");
-}
-
-const SDL_Color GraphicDevice::getColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
-{
-	SDL_Color color= {r,g,b,a};
-	return color;
-}
 
 GraphicDevice * GraphicDevice::instance = NULL;

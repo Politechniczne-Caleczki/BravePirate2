@@ -35,7 +35,9 @@ enum Fishs_Gifts_Types
 	energyFish = 0,
 	rodSpeedBonus = 1,
 	cannonSpeedBonus = 2,
-	healthShipBonus = 3
+	healthShipBonus = 3,
+	cannonPowerBonus = 4,
+	scoreBonus = 5
 };
 
 

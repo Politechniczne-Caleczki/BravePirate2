@@ -15,8 +15,10 @@ int startGame(Container *c)
 			Player::free();
 			c->free();
             c->ship    = new Ship(FloatingObject(Vector2(100,0), Vector2(150,150), 0, "ship.png", Vector2(200,145), Vector2(150, 145)), 0.1f, 0.4f,
-						FishingRod(Vector2(100,0), Vector2(15,20), 0	, "hook.png" , 0.08f), Cannon(0,10, Vector2(100,0) , 1));
-            c->sea     = new Sea(Vector2(0,300),Vector2(1005,42),0,"sea.png", 0.15f);
+				FishingRod(Vector2(100,0), Vector2(15,20), 0	, "hook.png" , 0.08f), Cannon(0,10, Vector2(100,0), Delay(400) , 1));
+			Sea::seaLevel = 308;
+			Sea::waveHeight = 21;
+            c->sea     = new Sea(Vector2(0,0),Vector2(1005,342),0,"sea.png", 0.15f);
             c->time    = new Time();
 			c->barrels = new InstantionManager<Barrel>("barrels.txt", Vector2(GraphicDevice::getWindowSize().get_X(), c->sea->getPosition().get_Y()),0, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));
 			c->fishes  = new InstantionManager<Fish>("Fishes.txt",	  Vector2(GraphicDevice::getWindowSize().get_X() ,c->sea->getPosition().get_Y()+ c->sea->getSize().get_Y()),250, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));                      	

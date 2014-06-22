@@ -33,7 +33,9 @@ void CannonBall::update(void)
 		{
 			_isDestroyed=true;
 			(*iter)->onCollision(strikingPower);
-			Player::getInstance().addScor((static_cast<Barrel*>(*iter))->getScor());
+
+			if((*iter)->isDestroyed())
+				Player::getInstance().addScor((static_cast<Barrel*>(*iter))->getScor());
 			break;
 		}
 	}
