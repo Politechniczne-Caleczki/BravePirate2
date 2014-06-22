@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Class Name="Barrel">
+    <Position X="2.5" Y="9.5" Width="1.5" />
+    <NestedTypes>
+      <Typedef Name="Barrel::SampleBonusList" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Barrel.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAACgAACABAgCMAAAAAAAAABAAAUQAAAAAAACAEAEg=</HashCode>
+      <FileName>Barrel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicObject">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>BasicObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bonus">
+    <Position X="11.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAAIAAEAAA=</HashCode>
+      <FileName>Bonus.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BonusObject">
+    <Position X="11.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAGAAAAIAQAAAARARASABAAAAAAAAAAA=</HashCode>
+      <FileName>BonusObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Button">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEAABAAIAAAAAABACMIAIAAAAAAAAAAAAAEAsAEACAA=</HashCode>
+      <FileName>Button.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cannon">
+    <Position X="15" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgABAAAAAAAAgIAIACCAAEIABCABAEgAABEAAA=</HashCode>
+      <FileName>Cannon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannonBall">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAQAgAAAAAEAAAQAAAAEAAAAMCAE=</HashCode>
+      <FileName>CannonBall.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Delay">
+    <Position X="20.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAACAAAABAAAAgAAAAAAAIAAAAAAIAAAIkAAA=</HashCode>
+      <FileName>Delay.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fish">
+    <Position X="11.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAgAAAAAEAAA=</HashCode>
+      <FileName>Fish.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FishingRod">
+    <Position X="9" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAQBgAAQAAAAIAAAACAJgAAAAAAIAAAAAEAAA=</HashCode>
+      <FileName>FishingRod.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FloatingObject">
+    <Position X="7.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAEAABAAAAAAAAJAAAACAAAAAAAAAAAAAAAFAAA=</HashCode>
+      <FileName>FloatingObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameError">
+    <Position X="20.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAiAAAAACAAAAAAAAAAAAAAAACAAAAAAAMAAAAAAA=</HashCode>
+      <FileName>GameError.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObject">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAAIEACBJAAAgkAAIIAIAAGAAAAAgAkAAAAACJEAQA=</HashCode>
+      <FileName>GameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameStateManager">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAIAAAAAAAAACAAACAAAgAAAEAAA=</HashCode>
+      <FileName>GameStateManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GraphicDevice">
+    <Position X="16.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIIAggACBgGAAAAAAEQAAACQBABAAAQIBEAgkAAAgIA=</HashCode>
+      <FileName>GraphicDevice.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Menu">
+    <Position X="18.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Typedef Name="Menu::ButtonList" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Menu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAABAAAAAAAIAAAAAAAAIAAACgEAAAAAEIAA=</HashCode>
+      <FileName>Menu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player">
+    <Position X="13.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgBAAgAQAAAAAAAAABAJEBRA0AQAEAAAAQQAAFA=</HashCode>
+      <FileName>Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sea">
+    <Position X="9.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAACJBAAAIMAAAAAAAAAAQAAAAAAAAAEAAA=</HashCode>
+      <FileName>Sea.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ship">
+    <Position X="5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAgAAAAAAAAAAQIAAAACAYCAAQAAAAAAgAAEAIA=</HashCode>
+      <FileName>Ship.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Textures">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAEAUAAAgAAAAEAAAAAAAAAAAAAAAAAIAAEAAA=</HashCode>
+      <FileName>Textures.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Time">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAEAAEAAAgAAAAAACCAAACgAAAAACAgAEAEIwA=</HashCode>
+      <FileName>Time.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vector2">
+    <Position X="18.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAICAAAAIBBAAAAAAAAAQAAAEAACAAAAABgBAAAAAg=</HashCode>
+      <FileName>Vector2.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameLabel">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIQCACgAAAAAACMAAAAgAAMAAA=</HashCode>
+      <FileName>GameLabel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Interface">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAJEAAAQAAAAAAAAAAAAAAAEIAA=</HashCode>
+      <FileName>Interface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InterfaceObject">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAAAAIAAAAgAAIAAIAACgAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>InterfaceObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProgressIndicator">
+    <Position X="2.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEBSAAAAIQCACAAAAAACCIAAgAgQAMAAA=</HashCode>
+      <FileName>ProgressIndicator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="`anonymous-namespace'::InstantionManager&lt;typ&gt;">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAYAAAAABAAABIAEAAAAAAAAAAAAAAAAEEGIAA=</HashCode>
+      <FileName>InstantionManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Container">
+    <Position X="13.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAgAAAAAAAAAAAAQAAAABAAAAAAAAgAAAAAAAIAA=</HashCode>
+      <FileName>Button.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SampleBonus">
+    <Position X="13.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAIAAAAAAAAABASAAAAAAIAAAAAA=</HashCode>
+      <FileName>ConstantAndDefinitions.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="Lista" Collapsed="true">
+    <Position X="15" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="TextureMap" Collapsed="true">
+    <Position X="15" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Textures.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="InterfaceList" Collapsed="true">
+    <Position X="13.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="Fishs_Gifts_Types">
+    <Position X="11.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAgAAAAAAAACAAAAAAIgAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ConstantAndDefinitions.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

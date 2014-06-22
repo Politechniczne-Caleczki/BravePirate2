@@ -95,7 +95,7 @@ void Textures::loadIcon()
 
 	if((icon = IMG_Load((resourcesPath+ texturesPath+iconFile).c_str()))!=NULL)
 	{
-		SDL_SetWindowIcon(GraphicDevice::getWindow() , icon); 
+		SDL_SetWindowIcon(GraphicDevice::getWindow() , icon); 		
 		SDL_FreeSurface(icon);
 	}else throw GameError("File not found :",resourcesPath+ texturesPath+iconFile);
 }
