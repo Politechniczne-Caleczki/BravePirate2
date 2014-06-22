@@ -15,13 +15,16 @@ private:
 	Delay interval; 
 	list<CannonBall> cannonBalls;
 public:
-	Cannon(const float, const float, const Vector2, float);
+	Cannon(const float, const float, const Vector2,const Delay, float);
 	~Cannon(void);
 
 	void setAngle(const float);
 	void setPosition(const Vector2);
 	void setInterval(const Delay);
 	const Delay & getInterval()const;
+
+	void setPower(const float);
+	const float getPower()const;
 
 	void update(void);
 	void draw(void)const;
@@ -30,6 +33,16 @@ public:
 	friend std::ostream & operator<< (std::ostream &, const Cannon &);
 	friend std::istream & operator>> (std::istream &, Cannon &);
 };
+
+inline void Cannon::setPower(const float power)
+{
+	this->power = power;
+}
+
+inline const float Cannon::getPower()const
+{
+	return power;
+}
 
 inline void Cannon::setAngle(const float angle)
 {

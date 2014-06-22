@@ -2,9 +2,9 @@
 
 //Constructors and destructors
 
-Sea::Sea(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, float speed):GameObject(position,size,angle,textureName),speed(speed)
-{
-	Sea::position = GameObject::position;
+Sea::Sea(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, float speed)
+	:GameObject(position,size,angle,textureName),speed(speed)
+{	
 	Sea::size = GameObject::size;
 }
 
@@ -25,21 +25,23 @@ void Sea::update(void)
 	Sea::shift = (float)((int)Sea::shift%(int)size.get_X());
 }
 
-
-Vector2 Sea::position = Vector2(0,0);
-Vector2 Sea::size = Vector2(0,0);
-float Sea::shift = 0;
-
 std::ostream & operator<< (std::ostream &w, const Sea &s)
 {
-	return w<<s.angle<<" "<<s.position<<" "<<s.shift<<" "<<s.size
+	return w<<s.angle<<" "<<s.seaLevel<<" "<<s.shift<<" "<<s.size
 		<<" "<<s.speed<<" "<<s.textureName<<std::endl<<std::endl;
 }
 
 std::istream & operator>> (std::istream &w, Sea &s)
 {
-	w>>s.angle>>s.position>>s.shift>>s.size
+	w>>s.angle>>s.seaLevel>>s.shift>>s.size
 		>>s.speed>>s.textureName;
 	s.texture = Textures::getTexture(s.textureName);
 	return w;
 }
+
+
+Vector2 Sea::size = Vector2(0,0);
+float Sea::shift = 0;
+float Sea::seaLevel = 0;
+float Sea::waveHeight = 0;
+

@@ -8,16 +8,15 @@ class Sea: public GameObject
 {
 private: 
 	float speed;
-	static Vector2 position, size; 
-	static float shift;
-
+	static  Vector2 size; 
 public:
-	Sea(const Vector2 position, const Vector2 size, const float angle, const std::string, float speed);
+	static float shift,  seaLevel , waveHeight;
+	Sea(const Vector2 , const Vector2, const float, const std::string, float);
 	~Sea(void);
 
 	void draw(void)const;
 	void update(void);
-	static float getWaveHeight(const float x);
+	static float getWaveHeight(const float );
 
 	friend std::ostream & operator<< (std::ostream &, const Sea &);
 	friend std::istream & operator>> (std::istream &, Sea &);
@@ -25,6 +24,6 @@ public:
 
 inline float Sea::getWaveHeight(const float x)
 {
-	return Sea::position.get_Y()+ Sea::size.get_Y()/2+ 20*sin((x-Sea::shift)/40);
+	return seaLevel + waveHeight/2+ 20*sin((x-Sea::shift)/40);
 }
 #endif

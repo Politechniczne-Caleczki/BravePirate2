@@ -2,8 +2,8 @@
 
 //Constructors and destructors
 
-Cannon::Cannon(const float angle, const float power, const Vector2 position, const float requiredEnergy)
-	:angle(0), power(0), position(position), interval(200),requiredEnergy(fabs(requiredEnergy))
+Cannon::Cannon(const float angle, const float power, const Vector2 position, const Delay interval , const float requiredEnergy)
+	:angle(angle), power(power), position(position), interval(interval),requiredEnergy(fabs(requiredEnergy))
 {
 }
 

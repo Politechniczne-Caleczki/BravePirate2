@@ -25,6 +25,17 @@ void Ship::lateDraw(void)const
 
 void Ship::update(void)
 {	
+	if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_RIGHT] && position.get_X()+size.get_X()<GraphicDevice::getWindowSize().get_X())
+	{
+		setPositionX(position.get_X()+  speed*Time::deltaTime());
+		Player::getInstance().removePlayerEnery(requiredEnergy);
+	}
+	else if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_LEFT] && position.get_X()>0)
+	{
+		setPositionX(position.get_X()- speed*Time::deltaTime());
+		Player::getInstance().removePlayerEnery(requiredEnergy);
+	}
+
 	checkCollisions();
 	catchObjectUpdate();
 	Vector2 o= getCenterPosition();
@@ -39,20 +50,7 @@ void Ship::update(void)
 }
 
 void Ship::catchObjectUpdate(void)
-{
-	if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_RIGHT] && position.get_X()+size.get_X()<GraphicDevice::getWindowSize().get_X())
-	{
-		setPositionX(position.get_X()+  speed*Time::deltaTime());
-		Player::getInstance().removePlayerEnery(requiredEnergy);
-	}
-	else if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_LEFT] && position.get_X()>0)
-	{
-		setPositionX(position.get_X()- speed*Time::deltaTime());
-		Player::getInstance().removePlayerEnery(requiredEnergy);
-	}
-
-
-
+{	
 	if((catchObject=rod.getCatchObject())!=NULL)
 	{
 		BonusObject *bonus = static_cast<BonusObject*>(catchObject);	
@@ -64,16 +62,25 @@ void Ship::catchObjectUpdate(void)
 				}break;
 			case rodSpeedBonus:
 				{
-					rod.setDescentRate(rod.getDescentRate()* bonus->getValue());
+					rod.setDescentRate(rod.getDescentRate()* bonus->getValue());					
 				}break;
 			case cannonSpeedBonus:
 				{
-					cannon.setInterval(Delay(cannon.getInterval().getDelay()* bonus->getValue()));
+					cannon.setInterval(Delay(cannon.getInterval().getDelay()* bonus->getValue()));					
 				}break;
 			case healthShipBonus:
 				{
 					Player::getInstance().addShipHealth(bonus->getValue());
 				}break;
+			case cannonPowerBonus:
+				{
+					cannon.setPower(cannon.getPower() * bonus->getValue());					
+				}break;
+			case scoreBonus:
+				{
+					Player::getInstance().addScor((int)bonus->getValue());
+				}break;
+
 		}
 		Player::getInstance().addScor((int)bonus->getValue());
  		delete catchObject;
