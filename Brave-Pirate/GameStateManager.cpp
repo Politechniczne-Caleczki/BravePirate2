@@ -11,7 +11,7 @@ int GameStateManager::update(void)
 {
 	SDL_PollEvent(&e);
 	
-	if(gameState == 2 && SDL_GetKeyboardState(NULL)[SDL_SCANCODE_ESCAPE])
+	if((gameState == 2 || gameState == 3) && SDL_GetKeyboardState(NULL)[SDL_SCANCODE_ESCAPE])
 	{
 		Time::pauseTimer();
 		gameState=1;

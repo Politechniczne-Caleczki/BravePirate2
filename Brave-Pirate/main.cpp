@@ -50,6 +50,11 @@ int saveGame(Container *c)
 	return 1;
 }
 
+int credits(Container *c)
+{
+	return 3;
+}
+
 int loadGame(Container *c)
 {	
 	startGame(c);
@@ -80,6 +85,8 @@ std::string intToStr(int n)
      return tmp;
 }
  
+
+
 int main( int argc, char* args[] )
 {
         Container container= {NULL,NULL,NULL,NULL,NULL};   
@@ -89,11 +96,11 @@ int main( int argc, char* args[] )
 			Barrel::loadBonus(resourcesPath+bonusFile);
 			GameStateManager gameStateManager(1);
 			Menu menu(Textures::getTexture("background.bmp"));
-			menu.addButton(Button(1,1,Vector2(340,30), Textures::getTexture("start.png")    ,       Textures::getTexture("start_pressed.png")    ,  startGame, &container));
-			menu.addButton(Button(0,1,Vector2(340,140),Textures::getTexture("load_game.png"),       Textures::getTexture("load_game_pressed.png"),  loadGame,  &container));      
-			menu.addButton(Button(0,1,Vector2(340,250),Textures::getTexture("save.png")     ,       Textures::getTexture("save_pressed.png")     ,  saveGame,  &container));      
-			menu.addButton(Button(0,1,Vector2(340,360),Textures::getTexture("credits.png")  ,       Textures::getTexture("credits_pressed.png")  ,  startGame, NULL));      
-			menu.addButton(Button(0,1,Vector2(340,470),Textures::getTexture("exit.png")     ,       Textures::getTexture("exit_pressed.png")     ,  leaveGame, &container));      
+			menu.addButton(Button(1,1,Vector2(310,100),Vector2(350,57), Textures::getTexture("start.png")    ,       Textures::getTexture("start_pressed.png")    ,  startGame, &container));
+			menu.addButton(Button(0,1,Vector2(310,170),Vector2(350,57),Textures::getTexture("load.png")		 ,       Textures::getTexture("load_pressed.png")	  ,  loadGame,  &container));      
+			menu.addButton(Button(0,1,Vector2(310,240),Vector2(350,57),Textures::getTexture("save.png")     ,       Textures::getTexture("save_pressed.png")     ,  saveGame,  &container));      
+			menu.addButton(Button(0,1,Vector2(310,310),Vector2(350,57),Textures::getTexture("credits.png")  ,       Textures::getTexture("credits_pressed.png")  ,  credits, &container));      
+			menu.addButton(Button(0,1,Vector2(310,380),Vector2(350,57),Textures::getTexture("exit.png")     ,       Textures::getTexture("exit_pressed.png")     ,  leaveGame, &container));      
  
 			Interface _interface(Vector2(0,0),Vector2(1000,100),NULL);
  
@@ -112,6 +119,15 @@ int main( int argc, char* args[] )
 			{               
 					switch(gameStateManager.getGameState())
 					{
+					case 3:
+						{
+							GraphicDevice::begin();
+								GraphicDevice::drawTexture(Textures::getTexture("background.bmp"),Vector2(0,0),GraphicDevice::getWindowSize());
+								GraphicDevice::drawTexture(Textures::getTexture("creditstext.png"),Vector2(250,190),Vector2(484,220));
+							GraphicDevice::end();
+						}
+						break;
+
 					case 2:
 							{        
 								if(Player::getInstance().getShipHealth()>0)
@@ -131,7 +147,7 @@ int main( int argc, char* args[] )
 
 
 									GraphicDevice::begin();
-											SDL_RenderCopy(GraphicDevice::getRenderer() , Textures::getTexture("background.bmp"),NULL, NULL);
+											GraphicDevice::drawTexture(Textures::getTexture("background.bmp"),Vector2(0,0),GraphicDevice::getWindowSize());
 											container.ship->draw();
 											container.barrels->draw();											
 											container.sea->draw();  

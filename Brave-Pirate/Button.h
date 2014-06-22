@@ -5,6 +5,7 @@
 #include "Ship.h"
 #include "InstantionManager.h"
 #include "Interface.h"
+#include "Vector2.h"
 
 struct Container 
 {
@@ -29,12 +30,12 @@ class Button
 private:
 	SDL_Texture * textureActive;
 	SDL_Texture * textureInactive;
-	Vector2 position;
+	Vector2 position, size;
 	bool active, available;
 	int ( * _action ) (Container *);
 	Container * cointainer;
 public:
-	Button(const bool active, const bool available, const Vector2 position, SDL_Texture * textureInactive, SDL_Texture * textureActive, int ( * _action ) (Container *), Container *);
+	Button(const bool active, const bool available, const Vector2 position, const Vector2 size, SDL_Texture * textureInactive, SDL_Texture * textureActive, int ( * _action ) (Container *), Container *);
 	~Button();
 	inline const bool getActive(void)const;
 	inline const bool getAvailability(void)const;
