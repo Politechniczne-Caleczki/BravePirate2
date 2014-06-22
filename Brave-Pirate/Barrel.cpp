@@ -69,20 +69,25 @@ std::istream & operator>> (std::istream &w, Barrel & b)
 	w>>b.health>>b.speed>>b.damage>>b.scor>>b.front>>b.back>>b.difference>>b.textureName>>b.position>>b.size>>b.angle;
 	return w;
 }
-Barrel::SampleBonusList Barrel::initializeBonusList()
+
+void Barrel::loadBonus(const std::string filename)
 {
-	SampleBonusList list;
 	SampleBonus bonus;
-	std::ifstream file(resourcesPath+bonusFile);
+	std::ifstream file(filename);
 
 	if(file.is_open())//error
 	{
 		while(!file.eof())
 		{
 			file>>bonus;
-			list.push_back(bonus);
+			bonusList.push_back(bonus);
 		}
-	}	
+	}else throw GameError("File not found: ", filename);
+}
+
+Barrel::SampleBonusList Barrel::initializeBonusList()
+{
+	SampleBonusList list;	
 	return list;
 }
 

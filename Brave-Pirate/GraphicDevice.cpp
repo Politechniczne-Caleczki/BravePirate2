@@ -6,6 +6,19 @@ GraphicDevice::GraphicDevice():window(NULL), renderer(NULL), font(NULL)
 {
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_EVENTS)<0)throw GameError("SDL_Init failed: ", SDL_GetError());
 
+	try
+	{
+		loadWindowsSetting();
+	}catch(GameError & error)
+	{
+		error.generateErrorLog(errorFile);
+		setWindow();
+	}		
+	initPointerObject();	
+}
+
+void GraphicDevice::loadWindowsSetting()
+{
 	std::ifstream file(resourcesPath+windowSettings);
 	if(file.is_open())
 	{
@@ -13,23 +26,41 @@ GraphicDevice::GraphicDevice():window(NULL), renderer(NULL), font(NULL)
 		file>>windowPosition>>windowSize;
 		file.close();
 	}
-	else
-		setWindow();
+	else throw GameError("File not found :",resourcesPath+windowSettings );
+}
 
-	window = SDL_CreateWindow(windowName.data(), (int)windowPosition.get_X(),
+void GraphicDevice::initPointerObject()
+{
+		window = SDL_CreateWindow(windowName.data(), (int)windowPosition.get_X(),
 	(int)windowPosition.get_Y(), (int)windowSize.module().get_X(), (int)windowSize.module().get_Y(), SDL_WINDOW_SHOWN);
 
-	if(window == NULL)throw GameError("Could not create window: ", SDL_GetError());
+	if(window == NULL)
+	{
+		deletePointerObject();
+		throw GameError("Could not create window: ", SDL_GetError());
+	}
 
 	renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if(renderer==NULL)throw GameError("Could not create renderer: ", SDL_GetError());
+	if(renderer==NULL)
+	{	
+		deletePointerObject();
+		throw GameError("Could not create renderer: ", SDL_GetError());
+	}
 
-	if(TTF_Init()==-1)throw GameError("Unable to initialize TTF: ", TTF_GetError());
+	if(TTF_Init()==-1)
+	{
+		deletePointerObject();	
+		throw GameError("Unable to initialize TTF: ", TTF_GetError());
+	}
 	font = TTF_OpenFont( (resourcesPath+fontName).c_str() ,128);//error
 	if(font)
 	{
 		TTF_SetFontStyle(font,TTF_STYLE_BOLD);		
-	}else throw GameError("Could not open font :"+resourcesPath+fontName);
+	}else
+	{
+		deletePointerObject();
+		throw GameError("Could not open font :"+resourcesPath+fontName);
+	}
 }
 
 void GraphicDevice::free()
@@ -48,7 +79,13 @@ GraphicDevice::~GraphicDevice(void)
 	TTF_CloseFont(font);
 }
 
-//Getters and Setters
+void GraphicDevice::deletePointerObject()
+{
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	TTF_CloseFont(font);
+}
+
 void GraphicDevice::setWindow(void)
 {
 	windowName = DEFAULT_WIN_NAME;
@@ -105,9 +142,12 @@ void GraphicDevice::drawText(const std::string text,const SDL_Color textColor,co
 		{
 			SDL_Texture *textTexture = SDL_CreateTextureFromSurface(getRenderer() ,textSurface);
 			if(textTexture ==NULL)throw GameError("CreateTextureFromSurface failed: ", SDL_GetError());
-			Vector2 surfaceSize(textSurface->w * size/textSurface->h , size);
-			drawTexture(textTexture,position,surfaceSize);			
-			SDL_DestroyTexture(textTexture);
+			else
+			{
+				Vector2 surfaceSize(textSurface->w * size/textSurface->h , size);
+				drawTexture(textTexture,position,surfaceSize);			
+				SDL_DestroyTexture(textTexture);
+			}
 		}else throw GameError("Text render error: ", TTF_GetError());		
 	}else throw GameError("Font not Found");
 }
@@ -118,4 +158,4 @@ const SDL_Color GraphicDevice::getColor(const unsigned int r, const unsigned int
 	return color;
 }
 
-GraphicDevice * GraphicDevice::instance = new GraphicDevice();
+GraphicDevice * GraphicDevice::instance = NULL;

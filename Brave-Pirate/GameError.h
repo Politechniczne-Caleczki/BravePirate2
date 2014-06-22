@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 
-class GameError: public std::exception
+class GameError
 {
 private:
 	std::string communique, sdl_error;

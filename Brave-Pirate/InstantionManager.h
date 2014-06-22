@@ -7,6 +7,7 @@
 #include "Delay.h"
 #include "Textures.h"
 #include <typeinfo>
+#include "GameError.h"
 
 namespace
 {
@@ -69,7 +70,7 @@ InstantionManager<Barrel>::InstantionManager(const std::string path, Vector2 sta
 
 		}
 		file.close();
-	}
+	}else throw GameError("File not found", resourcesPath+barrelFile);
 	instantionDelay.Start();
 	upgradeDelay.Start();
 }
@@ -91,7 +92,7 @@ InstantionManager<Fish>::InstantionManager(const std::string path, Vector2 start
 				listOfAllObjects.push_back(Fish(startPosition, Vector2(scl,scl), 0, textureName,hp,speed));
 		}
 		file.close();
-	}	
+	}else throw	GameError("File not found", resourcesPath+fishesFile);
 	instantionDelay.Start();
 	upgradeDelay.Start();
 }

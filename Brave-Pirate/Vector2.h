@@ -145,8 +145,9 @@ inline const Vector2 Vector2::operator/=(const float &value)
 
 inline const Vector2 Vector2::operator/(const float & value)const
 {
-	if(value==0)
-	return Vector2(x /value, y /value);
+	if(value!=0)
+		return Vector2(x /value, y /value);
+	return Vector2(0,0);
 }
 
 inline const Vector2 Vector2::operator*(const float & value)const

@@ -21,7 +21,15 @@ SDL_Texture* Textures::getTexture(std::string imageimageName)
 		return it->second;
 	}else
 	{
+		try
+		{
 		return findImage(imageimageName);
+		}
+		catch(GameError & error)
+		{
+			error.generateErrorLog(errorFile);
+			return textures[errorImage];
+		}
 	}
 }
 
@@ -36,10 +44,10 @@ SDL_Texture * Textures::findImage(std::string imageName)
 			textures.insert(TextureMap::value_type(imageName,texture));
 			SDL_FreeSurface(surface);
 			return texture;
-		}throw GameError("CreateTextureFromSurface failed: ", SDL_GetError());
-	}
-	SDL_FreeSurface(surface);
-	return textures[errorImage];
+		}throw GameError("CreateTextureFromSurface failed: "+ imageName+ " ", SDL_GetError());
+	}throw GameError("Texture not found: ", imageName);
+
+	SDL_FreeSurface(surface);	
 }
 
 SDL_Texture* Textures::createErrorTexture()
@@ -54,9 +62,22 @@ SDL_Texture* Textures::createErrorTexture()
 		pixels[i+1] = SDL_MapRGB(surf->format,0, 255, 0);		
 	}
 	SDL_Texture *text = SDL_CreateTextureFromSurface(GraphicDevice::getInstance().getRenderer(),surf);
-	if(text ==NULL)throw GameError("CreateTextureFromSurface failed: ", SDL_GetError());
 	SDL_FreeSurface(surf);
+	if(text ==NULL)throw GameError("CreateTextureFromSurface failed: ", SDL_GetError());
+	
 	return text;
+}
+
+void Textures::initialize()
+{
+	try
+	{
+		textures.insert(TextureMap::value_type(errorImage,createErrorTexture()));
+	}catch(GameError & error)
+	{
+		error.generateErrorLog(errorFile);
+		throw;
+	}	
 }
 
 TextureMap Textures::initializeHashmap()
@@ -66,7 +87,6 @@ TextureMap Textures::initializeHashmap()
 	if(initted&flags != flags)throw GameError("Failed to init required jpg or png support: ", SDL_GetError());
 
 	TextureMap _tm;
-	_tm.insert(TextureMap::value_type(errorImage,createErrorTexture()));
 	return _tm;
 }
 

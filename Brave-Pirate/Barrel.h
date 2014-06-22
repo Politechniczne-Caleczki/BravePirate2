@@ -11,7 +11,7 @@ private:
 	float health, speed, damage;
 	unsigned int scor;
 	static SampleBonusList bonusList, initializeBonusList();
-	void createBonus();	
+	void createBonus();		
 public:
 	Barrel(const FloatingObject & , const float , const float , const float , const unsigned int );
 	~Barrel(void);
@@ -26,6 +26,7 @@ public:
 	friend std::ostream & operator<< (std::ostream &, const Barrel &);
 	friend std::istream & operator>> (std::istream &, Barrel &);
 	static void free();
+	static void loadBonus(const std::string );
 };
 
 inline void Barrel::onCollision(void)

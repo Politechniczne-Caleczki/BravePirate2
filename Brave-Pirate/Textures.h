@@ -19,6 +19,7 @@ private:
 public:	
 	static void free(void);
 	static SDL_Texture* getTexture(std::string imageName);
+	static void initialize();
 };
 
 #endif

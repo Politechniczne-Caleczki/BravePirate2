@@ -20,11 +20,11 @@ GameError::~GameError(void)
 
 void GameError::generateErrorLog(const std::string filename)
 {
-	std::ofstream file(filename);
+	std::ofstream file(filename, std::ios::app);
 	if(file.is_open())
 	{
-		while(!file.eof());
-		file<<communique;
+		file<<communique<<sdl_error<<std::endl;
+		file.close();
 	}
 	else throw GameError("Could not open file :"+filename);
 }

@@ -18,6 +18,9 @@ private:
 	void setWindow(void);	
 	~GraphicDevice(void);
 	GraphicDevice(void);
+	void deletePointerObject();
+	void initPointerObject();
+	void loadWindowsSetting();
 	static GraphicDevice * instance;
 public:
 	static GraphicDevice & getInstance();
@@ -43,8 +46,21 @@ public:
 inline GraphicDevice & GraphicDevice::getInstance()
 {
 	if(instance==NULL)	
-		instance = new GraphicDevice();	
-
+	{
+		try
+		{
+			instance = new GraphicDevice();	
+		}
+		catch(GameError & error)
+		{
+			error.generateErrorLog(errorFile);
+			throw;
+		}
+		catch( ... )
+		{
+			throw;
+		}
+	}
 	return *instance;
 }
 

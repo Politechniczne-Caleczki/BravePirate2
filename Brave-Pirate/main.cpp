@@ -13,6 +13,7 @@ int startGame(Container *c)
 	{
 		if((c->barrels == NULL) || (c->fishes==NULL) || (c->sea==NULL) || (c->ship==NULL) ||( c->time==NULL))
         {
+			{
 			Player::free();
 			c->free();
             c->ship = new Ship(FloatingObject(Vector2(100,0), Vector2(150,150), 0, "ship.png", Vector2(200,145), Vector2(150, 145)));
@@ -20,7 +21,7 @@ int startGame(Container *c)
             c->time = new Time();
             c->barrels = new InstantionManager<Barrel>("barrels.txt", Vector2(1100,300),0, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));
             c->fishes = new InstantionManager<Fish>("Fishes.txt", Vector2(1100,350),250, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));                      
-                        
+			}
         }
 		Time::continueTime();
 		return 2;
@@ -83,63 +84,74 @@ std::string intToStr(int n)
  
 int main( int argc, char* args[] )
 {
-        Container container= {NULL,NULL,NULL,NULL,NULL};        
-        GameStateManager gameStateManager(1);
-        Menu menu(Textures::getTexture("background.bmp"));
-        menu.addButton(Button(1,1,Vector2(340,30), Textures::getTexture("start.png")    ,       Textures::getTexture("start_pressed.png")    ,  startGame, &container));
-        menu.addButton(Button(0,1,Vector2(340,140),Textures::getTexture("load_game.png"),       Textures::getTexture("load_game_pressed.png"),  loadGame, &container));      
-		menu.addButton(Button(0,1,Vector2(340,250),Textures::getTexture("save.png")     ,       Textures::getTexture("save_pressed.png")     ,  saveGame,  &container));      
-        menu.addButton(Button(0,1,Vector2(340,360),Textures::getTexture("credits.png")  ,       Textures::getTexture("credits_pressed.png")  ,  startGame, NULL));      
-        menu.addButton(Button(0,1,Vector2(340,470),Textures::getTexture("exit.png")     ,       Textures::getTexture("exit_pressed.png")     ,  leaveGame, &container));      
+        Container container= {NULL,NULL,NULL,NULL,NULL};   
+		try
+		{
+			Textures::initialize();
+			Barrel::loadBonus(resourcesPath+bonusFile);
+			GameStateManager gameStateManager(1);
+			Menu menu(Textures::getTexture("background.bmp"));
+			menu.addButton(Button(1,1,Vector2(340,30), Textures::getTexture("start.png")    ,       Textures::getTexture("start_pressed.png")    ,  startGame, &container));
+			menu.addButton(Button(0,1,Vector2(340,140),Textures::getTexture("load_game.png"),       Textures::getTexture("load_game_pressed.png"),  loadGame, &container));      
+			menu.addButton(Button(0,1,Vector2(340,250),Textures::getTexture("save.png")     ,       Textures::getTexture("save_pressed.png")     ,  saveGame,  &container));      
+			menu.addButton(Button(0,1,Vector2(340,360),Textures::getTexture("credits.png")  ,       Textures::getTexture("credits_pressed.png")  ,  startGame, NULL));      
+			menu.addButton(Button(0,1,Vector2(340,470),Textures::getTexture("exit.png")     ,       Textures::getTexture("exit_pressed.png")     ,  leaveGame, &container));      
  
-        Interface _interface(Vector2(0,0),Vector2(1000,100),NULL);
+			Interface _interface(Vector2(0,0),Vector2(1000,100),NULL);
  
-        ProgressIndicator *shipHealth = new ProgressIndicator(Vector2(10,10),Vector2(200,20),"HP" ,GraphicDevice::getColor(240,0,0,255));
-        ProgressIndicator *pirateHealth = new ProgressIndicator(Vector2(10,35),Vector2(200,20), "Energy",GraphicDevice::getColor(0,240,0,255));
-        GameLabel *scor = new GameLabel("Score", GraphicDevice::getColor(0,0,0,255),Vector2(700,10),30);
-		GameLabel *time = new GameLabel("time", GraphicDevice::getColor(0,0,0,255),Vector2(700,40),30);
+			ProgressIndicator *shipHealth = new ProgressIndicator(Vector2(10,10),Vector2(200,20),"HP" ,GraphicDevice::getColor(240,0,0,255));
+			ProgressIndicator *pirateHealth = new ProgressIndicator(Vector2(10,35),Vector2(200,20), "Energy",GraphicDevice::getColor(0,240,0,255));
+			GameLabel *scor = new GameLabel("Score", GraphicDevice::getColor(0,0,0,255),Vector2(700,10),30);
+			GameLabel *time = new GameLabel("time", GraphicDevice::getColor(0,0,0,255),Vector2(700,40),30);
 	
-        _interface.addObject(shipHealth);
-        _interface.addObject(pirateHealth);
-        _interface.addObject(scor);
-        _interface.addObject(time);
-        while(gameStateManager.update())
-        {               
-                switch(gameStateManager.getGameState())
-                {
-                case 2:
-                        {                               
-                                container.time->update();
-                                container.barrels->update();
-                                container.fishes->update();                             
-                                container.ship->update();
-                                container.sea->update();
+			_interface.addObject(shipHealth);
+			_interface.addObject(pirateHealth);
+			_interface.addObject(scor);
+			_interface.addObject(time);
+
+
+			while(gameStateManager.update())
+			{               
+					switch(gameStateManager.getGameState())
+					{
+					case 2:
+							{                               
+									container.time->update();
+									container.barrels->update();
+									container.fishes->update();                             
+									container.ship->update();
+									container.sea->update();
  
-                                shipHealth->setPercentageValue(Player::getInstance().getShipHealth());
-                                pirateHealth->setPercentageValue(Player::getInstance().getPlayerEnergy());
-                                scor->setText("SCORE: "+intToStr(Player::getInstance().getScor()));     
-								time->setText("TIME: "+intToStr(Time::gameTime()/1000));  
-                                GraphicDevice::begin();
-                                        SDL_RenderCopy(GraphicDevice::getRenderer() , Textures::getTexture("background.bmp"),NULL, NULL);
-                                        container.ship->draw();
-                                        container.barrels->draw();
-                                        container.fishes->draw();
-                                        container.sea->draw();  
-                                        container.ship->lateDraw();
-                                        _interface.draw();                      
-                                GraphicDevice::end();
-                        }break;
-                case 1:
-                        {
-                        gameStateManager.setGameState(menu.update());
-                        GraphicDevice::begin();         
-                                menu.draw();
-                        GraphicDevice::end();
-                        }break;
-                }
-        }
+									shipHealth->setPercentageValue(Player::getInstance().getShipHealth());
+									pirateHealth->setPercentageValue(Player::getInstance().getPlayerEnergy());
+									scor->setText("SCORE: "+intToStr(Player::getInstance().getScor()));     
+									time->setText("TIME: "+intToStr(Time::gameTime()/1000));  
+											SDL_RenderCopy(GraphicDevice::getRenderer() , Textures::getTexture("background.bmp"),NULL, NULL);
+											container.ship->draw();
+											container.barrels->draw();
+											container.fishes->draw();
+											container.sea->draw();  
+											container.ship->lateDraw();
+											_interface.draw();                    										
+									GraphicDevice::end();
+							}break;
+					case 1:
+							{
+							gameStateManager.setGameState(menu.update());
+							GraphicDevice::begin();         
+									menu.draw();
+							GraphicDevice::end();
+							}break;
+					}
+			}
+
+		}catch(GameError & error)
+		{
+			error.generateErrorLog("ErrorLog.txt");
+			container.free();
+		}
  
-		
+	
         Barrel::free();
         Player::free();
         Textures::free();
