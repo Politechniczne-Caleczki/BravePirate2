@@ -78,7 +78,26 @@ void Textures::initialize()
 	{
 		error.generateErrorLog(errorFile);
 		throw;
-	}	
+	}
+
+	try
+	{
+		loadIcon();
+	}catch(GameError & error)
+	{
+		error.generateErrorLog(errorFile);	
+	}
+}
+
+void Textures::loadIcon()
+{
+	SDL_Surface * icon = NULL;
+
+	if((icon = IMG_Load((resourcesPath+ texturesPath+iconFile).c_str()))!=NULL)
+	{
+		SDL_SetWindowIcon(GraphicDevice::getWindow() , icon); 
+		SDL_FreeSurface(icon);
+	}else throw GameError("File not found :",resourcesPath+ texturesPath+iconFile);
 }
 
 TextureMap Textures::initializeHashmap()

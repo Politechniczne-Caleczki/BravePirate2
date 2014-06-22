@@ -11,11 +11,13 @@ typedef std::unordered_map<std::string, SDL_Texture*> TextureMap;
 class Textures
 {
 private:
+
 	#define errorImage "errorImage"
 	static TextureMap textures;
 	static TextureMap initializeHashmap(); 
 	static SDL_Texture * createErrorTexture();
 	static SDL_Texture * findImage(const std::string);	
+	static void loadIcon();
 public:	
 	static void free(void);
 	static SDL_Texture* getTexture(std::string imageName);

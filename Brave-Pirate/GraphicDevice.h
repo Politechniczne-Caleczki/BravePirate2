@@ -21,7 +21,6 @@ private:
 	void deletePointerObject();
 	void initPointerObject();
 	void loadWindowsSetting();
-	void loadIcon();
 	static GraphicDevice * instance;
 public:
 	static GraphicDevice & getInstance();
@@ -31,6 +30,7 @@ public:
 	void setWindowName(const std::string name);
 	
 	static SDL_Renderer* getRenderer(void);
+	static SDL_Window * getWindow(void);
 	static Vector2 getWindowSize(void);
 
 	static void drawTexture(SDL_Texture *texture, const  Vector2 position,const Vector2 size);
@@ -43,6 +43,11 @@ public:
 	static void free();
 };
 
+
+inline SDL_Window * GraphicDevice::getWindow()
+{
+	return getInstance().window;
+}
 
 inline GraphicDevice & GraphicDevice::getInstance()
 {

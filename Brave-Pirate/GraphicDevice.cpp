@@ -13,28 +13,8 @@ GraphicDevice::GraphicDevice():window(NULL), renderer(NULL), font(NULL)
 	{
 		error.generateErrorLog(errorFile);
 		setWindow();
-	}
-
-	try
-	{
-		loadIcon();
-	}catch(GameError & error)
-	{
-		error.generateErrorLog(errorFile);	
-	}
-
+	}	
 	initPointerObject();	
-}
-
-void GraphicDevice::loadIcon()
-{
-	SDL_Surface * icon = NULL;
-
-	if((icon = SDL_LoadBMP((resourcesPath+ texturesPath+iconFile).c_str()))!=NULL)
-	{
-		SDL_SetWindowIcon(window, icon); 
-		SDL_FreeSurface(icon);
-	}else throw GameError("File not found :",resourcesPath+ texturesPath+iconFile);
 }
 
 void GraphicDevice::loadWindowsSetting()
