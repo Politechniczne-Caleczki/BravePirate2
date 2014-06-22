@@ -12,7 +12,7 @@
 #define TIME_TO_NEXT_LEVEL 40000
 #define INSTANTIATE_TIME 6000
 #define INCREASE_LEVEL_DIFFICULTY 1.05f
-#define CHANCE_FOR_A_BONUS 100
+#define CHANCE_FOR_A_BONUS 40
 
 const std::string DEFAULT_WIN_NAME = "Brave-Pirate";
 const std::string windowSettings = "WindowSettings.txt";

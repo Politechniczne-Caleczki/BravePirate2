@@ -25,15 +25,18 @@ void Ship::lateDraw(void)const
 
 void Ship::update(void)
 {	
-	if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_RIGHT] && position.get_X()+size.get_X()<GraphicDevice::getWindowSize().get_X())
+	if(Player::getInstance().getPlayerEnergy()>0)
 	{
-		setPositionX(position.get_X()+  speed*Time::deltaTime());
-		Player::getInstance().removePlayerEnery(requiredEnergy);
-	}
-	else if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_LEFT] && position.get_X()>0)
-	{
-		setPositionX(position.get_X()- speed*Time::deltaTime());
-		Player::getInstance().removePlayerEnery(requiredEnergy);
+		if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_RIGHT] && position.get_X()+size.get_X()<GraphicDevice::getWindowSize().get_X())
+		{
+			setPositionX(position.get_X()+  speed*Time::deltaTime());
+			Player::getInstance().removePlayerEnery(requiredEnergy);
+		}
+		else if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_LEFT] && position.get_X()>0)
+		{
+			setPositionX(position.get_X()- speed*Time::deltaTime());
+			Player::getInstance().removePlayerEnery(requiredEnergy);
+		}
 	}
 
 	checkCollisions();
