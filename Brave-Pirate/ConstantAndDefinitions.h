@@ -23,7 +23,7 @@ const std::string fishesFile = "Fishes.txt";
 const std::string barrelFile = "Barrels.txt";
 const std::string bonusFile = "Bonus.txt";
 const std::string errorFile = "ErrorLog.txt";
-const std::string saveFile = "SaveFile.txt";
+const std::string saveFile = "SaveFile.admi";
 const std::string cannonBallTextures = "cannonball.png";
 
 const Vector2 gameOverSize(400,400);

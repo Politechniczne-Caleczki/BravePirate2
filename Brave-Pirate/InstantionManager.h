@@ -85,7 +85,7 @@ InstantionManager<Fish>::InstantionManager(const std::string path, Vector2 start
 		while(!file.eof())
 		{
 			std::string textureName = "";
-			float speed = 0, hp = 0, dmg = 0, sclX = 0, sclY = 0;;
+			float speed = 0, hp = 0, sclX = 0, sclY = 0;;
 			file>>textureName>>speed>>hp>>sclX>>sclY;
 
 			if(textureName!= "" && speed!=0 && hp!=0 && sclX !=0 && sclY != 0)
