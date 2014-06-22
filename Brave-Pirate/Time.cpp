@@ -5,14 +5,14 @@ Time::Time(void):last(0), interval(10)
 {
 	myTimerID = SDL_AddTimer(interval, &increment ,this);
 	if(myTimerID ==0)throw GameError("Error creating thread clock: ", SDL_GetError());
-	srand (time(NULL));
+	srand ((int)time(NULL));
 }
 
 Time::Time(const Uint32 interval):last(0), interval(interval)
 {
 	myTimerID = SDL_AddTimer(interval, &increment ,NULL);
 	if(myTimerID ==0)throw GameError("Error creating thread clock: ", SDL_GetError());
-	srand (time(NULL));
+	srand ((int)time(NULL));
 }
 
 Time::~Time(void)

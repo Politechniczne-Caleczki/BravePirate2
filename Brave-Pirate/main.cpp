@@ -21,7 +21,8 @@ int startGame(Container *c)
 			c->sea     = new Sea(Vector2(0,0),Vector2(1005,342),0,"sea.png", 0.15f);
 			c->time    = new Time();
 			c->barrels = new InstantionManager<Barrel>("barrels.txt", Vector2(GraphicDevice::getWindowSize().get_X(), c->sea->getPosition().get_Y()),0, Delay(4500), Delay(25000));
-			c->fishes  = new InstantionManager<Fish>("Fishes.txt",	  Vector2(GraphicDevice::getWindowSize().get_X() ,c->sea->getPosition().get_Y()+ c->sea->getSize().get_Y()),250, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));                      	
+			c->fishes  = new InstantionManager<Fish>("Fishes.txt",	  Vector2(GraphicDevice::getWindowSize().get_X() ,c->sea->getPosition().get_Y()+ c->sea->getSize().get_Y()),250, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));       
+			Time::reset();
 		}		
 		Time::continueTime();
 		return 2;
