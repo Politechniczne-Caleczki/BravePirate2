@@ -25,12 +25,16 @@ public:
 	const Vector2 module(void)const;
 
 	const Vector2 operator= (const Vector2 & );
-	const bool    operator==(const Vector2 &v)const;
+	const bool    operator==(const Vector2 & )const;
+	const bool    operator!=(const Vector2 & )const;
 	const Vector2 operator- (const Vector2 & )const;
-	const Vector2 operator* (const float &   )const;
-	const Vector2 operator-=(const Vector2 & );
+	const Vector2 operator* (const float   & )const;	
 	const Vector2 operator+ (const Vector2 & )const;
-	const Vector2 operator/ (const float&)const;
+	const Vector2 operator/ (const float   & )const;
+	const Vector2 operator-=(const Vector2 & );
+	const Vector2 operator+=(const Vector2 & );
+	const Vector2 operator*=(const float   & );
+	const Vector2 operator/=(const float   & );
 
 	friend std::ostream & operator<< (std::ostream &, const Vector2 &);
 	friend std::istream & operator>> (std::istream &, Vector2 &);
@@ -93,6 +97,11 @@ inline const bool Vector2::operator==(const Vector2 &vector2)const
 	return ((x == vector2.x) && (y == vector2.y));
 }
 
+inline const bool Vector2::operator!=(const Vector2 &vector2)const
+{
+	return ((x != vector2.x) || (y != vector2.y));
+}
+
 inline const Vector2 Vector2::operator-(const Vector2 &vector2)const
 {
 	return Vector2(x - vector2.x, y - vector2.y);
@@ -110,12 +119,34 @@ inline const Vector2 Vector2::operator-=(const Vector2 &vector2)
 	return * this;
 }
 
-inline const Vector2 Vector2::operator/(const float & value)const
+inline const Vector2 Vector2::operator+=(const Vector2 &vector2)
+{
+	this->x += vector2.x;
+	this->y += vector2.y;
+	return * this;
+}
+
+inline const Vector2 Vector2::operator*=(const float &value)
+{
+	this->x *=value;
+	this->y *=value;
+	return * this;
+}
+
+inline const Vector2 Vector2::operator/=(const float &value)
 {
 	if(value!=0)
-		return Vector2(x /value, y /value);
-	else
-		return Vector2(x, y);
+	{
+		this->x /=value;
+		this->y /=value;
+	}
+	return * this;
+}
+
+inline const Vector2 Vector2::operator/(const float & value)const
+{
+	if(value==0)
+	return Vector2(x /value, y /value);
 }
 
 inline const Vector2 Vector2::operator*(const float & value)const

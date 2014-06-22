@@ -4,6 +4,8 @@
 #include <SDL.h>
 #include <time.h>  
 #include <iostream>
+#include "GameError.h"
+
 class Time
 {
 private:

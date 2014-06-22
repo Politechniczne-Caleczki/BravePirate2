@@ -4,29 +4,33 @@
 
 GraphicDevice::GraphicDevice():window(NULL), renderer(NULL), font(NULL)
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
+	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_EVENTS)<0)throw GameError("SDL_Init failed: ", SDL_GetError());
 
 	std::ifstream file(resourcesPath+windowSettings);
 	if(file.is_open())
 	{
 		getline(file,windowName);
 		file>>windowPosition>>windowSize;
+		file.close();
 	}
 	else
-	setWindow();
+		setWindow();
 
 	window = SDL_CreateWindow(windowName.data(), (int)windowPosition.get_X(),
 	(int)windowPosition.get_Y(), (int)windowSize.module().get_X(), (int)windowSize.module().get_Y(), SDL_WINDOW_SHOWN);
-	renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	TTF_Init();
+	if(window == NULL)throw GameError("Could not create window: ", SDL_GetError());
+
+	renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if(renderer==NULL)throw GameError("Could not create renderer: ", SDL_GetError());
+
+	if(TTF_Init()==-1)throw GameError("Unable to initialize TTF: ", TTF_GetError());
 	font = TTF_OpenFont( (resourcesPath+fontName).c_str() ,128);//error
 	if(font)
 	{
 		TTF_SetFontStyle(font,TTF_STYLE_BOLD);		
-	}
+	}else throw GameError("Could not open font :"+resourcesPath+fontName);
 }
-
 
 void GraphicDevice::free()
 {
@@ -100,12 +104,12 @@ void GraphicDevice::drawText(const std::string text,const SDL_Color textColor,co
 		if(textSurface = TTF_RenderText_Solid(getInstance().font,text.c_str(),textColor))
 		{
 			SDL_Texture *textTexture = SDL_CreateTextureFromSurface(getRenderer() ,textSurface);
+			if(textTexture ==NULL)throw GameError("CreateTextureFromSurface failed: ", SDL_GetError());
 			Vector2 surfaceSize(textSurface->w * size/textSurface->h , size);
 			drawTexture(textTexture,position,surfaceSize);			
 			SDL_DestroyTexture(textTexture);
-		}
-		SDL_FreeSurface(textSurface);
-	}
+		}else throw GameError("Text render error: ", TTF_GetError());		
+	}else throw GameError("Font not Found");
 }
 
 const SDL_Color GraphicDevice::getColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
