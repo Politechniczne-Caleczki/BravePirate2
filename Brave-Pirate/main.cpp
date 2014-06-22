@@ -103,7 +103,7 @@ int main( int argc, char* args[] )
 		Textures::initialize();
 		
 		GameStateManager gameStateManager(1);
-		Menu menu(Textures::getTexture("background.bmp"));
+		Menu menu(Textures::getTexture("menuBackground.png"));
 		menu.addButton(Button(1,1,Vector2(310,100),Vector2(350,57), Textures::getTexture("start.png")    ,       Textures::getTexture("start_pressed.png")    ,  startGame, &container));
 		menu.addButton(Button(0,1,Vector2(310,170),Vector2(350,57),Textures::getTexture("load.png")		 ,       Textures::getTexture("load_pressed.png")	  ,  loadGame,  &container));      
 		menu.addButton(Button(0,1,Vector2(310,240),Vector2(350,57),Textures::getTexture("save.png")     ,       Textures::getTexture("save_pressed.png")     ,  saveGame,  &container));      
