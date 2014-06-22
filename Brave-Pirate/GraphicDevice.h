@@ -21,6 +21,7 @@ private:
 	void deletePointerObject();
 	void initPointerObject();
 	void loadWindowsSetting();
+	void loadIcon();
 	static GraphicDevice * instance;
 public:
 	static GraphicDevice & getInstance();

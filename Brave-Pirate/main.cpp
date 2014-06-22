@@ -22,7 +22,7 @@ int startGame(Container *c)
 			c->time    = new Time();
 			c->barrels = new InstantionManager<Barrel>("barrels.txt", Vector2(GraphicDevice::getWindowSize().get_X(), c->sea->getPosition().get_Y()),0, Delay(4500), Delay(25000));
 			c->fishes  = new InstantionManager<Fish>("Fishes.txt",	  Vector2(GraphicDevice::getWindowSize().get_X() ,c->sea->getPosition().get_Y()+ c->sea->getSize().get_Y()),250, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));                      	
-		}
+		}		
 		Time::continueTime();
 		return 2;
 	}
