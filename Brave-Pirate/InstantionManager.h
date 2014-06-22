@@ -85,11 +85,11 @@ InstantionManager<Fish>::InstantionManager(const std::string path, Vector2 start
 		while(!file.eof())
 		{
 			std::string textureName = "";
-			float speed = 0, hp = 0, dmg = 0, scl = 0;
-			file>>textureName>>speed>>hp>>scl;
+			float speed = 0, hp = 0, dmg = 0, sclX = 0, sclY = 0;;
+			file>>textureName>>speed>>hp>>sclX>>sclY;
 
-			if(textureName!= "" && speed!=0 && hp!=0 && scl !=0)
-				listOfAllObjects.push_back(Fish(startPosition, Vector2(scl,scl), 0, textureName,hp,speed));
+			if(textureName!= "" && speed!=0 && hp!=0 && sclX !=0 && sclY != 0)
+				listOfAllObjects.push_back(Fish(startPosition, Vector2(sclX,sclY), 0, textureName,hp,speed));
 		}
 		file.close();
 	}else throw	GameError("File not found", resourcesPath+fishesFile);
@@ -176,7 +176,7 @@ void InstantionManager<typ>::update()
 
 	if(upgradeDelay.idRedy())
 	{		
-		if(range < listOfAllObjects.size())
+		if(range < (int)listOfAllObjects.size())
 		{
 			instantionDelay.setDelay(instantionDelay.getDelay()/INCREASE_LEVEL_DIFFICULTY);
 			upgradeDelay.Start();

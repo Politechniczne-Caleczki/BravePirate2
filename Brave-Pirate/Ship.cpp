@@ -1,8 +1,10 @@
 #include "Ship.h"
 
-Ship::Ship(const FloatingObject & floatingObject):FloatingObject(floatingObject),
-	cannon(angle,1,position + Vector2(145,-75),1),
-	rod(Vector2(100,300), Vector2(15,20), 0, "hook.png",0.08,200),
+Ship::Ship(const FloatingObject & floatingObject, const float speed, const float requiredEnergy,  const FishingRod fishingRod, const Cannon cannon):FloatingObject(floatingObject),
+	speed(speed),
+	requiredEnergy(fabs(requiredEnergy)),
+	cannon(cannon),
+	rod(fishingRod),
 	catchObject(NULL){}
 
 Ship::~Ship(void){}
@@ -25,10 +27,9 @@ void Ship::update(void)
 {	
 	checkCollisions();
 	catchObjectUpdate();
-
-	Vector2 o(size.get_X()/2, size.get_Y()/2);
-	rod.setPosition(Vector2(cos(angle*PI/180)*(-75)+position.get_X()+o.get_X(),sin(angle*PI/180)*(-75)+position.get_Y()+o.get_Y()));
-	cannon.setPosition(Vector2(cos(angle*PI/180)*(75)+position.get_X()+o.get_X(),sin((angle+3)*PI/180)*(75)+position.get_Y()+o.get_Y()));
+	Vector2 o= getCenterPosition();
+	rod.setPosition	  (Vector2 (cos (angle * PI / 180 )*( -size.get_Y()/2 ) + o.get_X() ,  sin( angle   *PI/180)* (-size.get_Y()/2 )+ o.get_Y() ));
+	cannon.setPosition(Vector2 (cos (angle * PI / 180 )*(  size.get_Y()/2 ) + o.get_X() ,  sin((angle+3)*PI/180)* ( size.get_Y()/2 )+ o.get_Y() ));
 	cannon.setAngle(-angle);
 
 	cannon.update();
@@ -39,9 +40,22 @@ void Ship::update(void)
 
 void Ship::catchObjectUpdate(void)
 {
+	if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_RIGHT] && position.get_X()+size.get_X()<GraphicDevice::getWindowSize().get_X())
+	{
+		setPositionX(position.get_X()+  speed*Time::deltaTime());
+		Player::getInstance().removePlayerEnery(requiredEnergy);
+	}
+	else if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_LEFT] && position.get_X()>0)
+	{
+		setPositionX(position.get_X()- speed*Time::deltaTime());
+		Player::getInstance().removePlayerEnery(requiredEnergy);
+	}
+
+
+
 	if((catchObject=rod.getCatchObject())!=NULL)
 	{
-		BonusObject *bonus = static_cast<BonusObject*>(catchObject);		
+		BonusObject *bonus = static_cast<BonusObject*>(catchObject);	
 		switch(bonus->getType())
 		{
 			case energyFish:
@@ -61,9 +75,8 @@ void Ship::catchObjectUpdate(void)
 					Player::getInstance().addShipHealth(bonus->getValue());
 				}break;
 		}
-
-
-		delete catchObject;
+		Player::getInstance().addScor((int)bonus->getValue());
+ 		delete catchObject;
 		catchObject = NULL;
 	}
 }

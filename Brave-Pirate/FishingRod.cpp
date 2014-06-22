@@ -1,9 +1,8 @@
 #include "FishingRod.h"
 
 //Constructors and destructors
-FishingRod::FishingRod(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, const float descentRate, const float maxDepth):
-	descentRate(fabs(descentRate)),
-	maxDepth(fabs(maxDepth)),
+FishingRod::FishingRod(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, const float descentRate):
+	descentRate(fabs(descentRate)),	
 	GameObject(position,size,angle,textureName),
 	descent(1),
 	catchObject(NULL){}
@@ -33,7 +32,7 @@ void FishingRod::update(void)
 	}
 
 	
-	if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_DOWN] && position.get_Y()<550)
+	if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_DOWN] && position.get_Y()+size.get_Y() < GraphicDevice::getWindowSize().get_Y())
 	{
 		descent+= Time::deltaTime() *descentRate;
 	}
@@ -59,7 +58,7 @@ void FishingRod::checkCollisions(void)
 
 void FishingRod::draw(void)const
 {
-	SDL_RenderDrawLine(GraphicDevice::getRenderer(),positionOfShip.get_X(),positionOfShip.get_Y(),position.get_X(),position.get_Y());
+	SDL_RenderDrawLine(GraphicDevice::getRenderer(),(int)positionOfShip.get_X(), (int)positionOfShip.get_Y(),(int)position.get_X(), (int)position.get_Y());
 	GraphicDevice::drawTexture(texture,Vector2(position.get_X()- size.get_X()/2,position.get_Y()), size);
 	if(catchObject!=NULL)
 		catchObject->draw();
@@ -79,14 +78,14 @@ GameObject * FishingRod::getCatchObject(void)
 
 std::ostream & operator<< (std::ostream &w, const FishingRod &r)
 {
-	return w<<r.angle<<" "<<r.descent<<" "<<r.descentRate<<" "<<r.maxDepth
+	return w<<r.angle<<" "<<r.descent<<" "<<r.descentRate
 		<<" "<<r.position<<" "<<r.positionOfShip<<" "<<r.size<<" "<<r.textureName<<std::endl;
 
 }
 
 std::istream & operator>> (std::istream &w, FishingRod &r)
 {
-	w>>r.angle>>r.descent>>r.descentRate>>r.maxDepth>>r.position
+	w>>r.angle>>r.descent>>r.descentRate>>r.position
 		>>r.positionOfShip>>r.size>>r.textureName;
 	r.texture = Textures::getTexture(r.textureName);
 	return w;

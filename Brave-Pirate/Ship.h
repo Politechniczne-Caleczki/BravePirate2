@@ -14,10 +14,11 @@ private:
 	Cannon cannon;
 	FishingRod rod;
 	GameObject *catchObject;
+	float speed, requiredEnergy;
 	void catchObjectUpdate(void);
 	void checkCollisions(void);
 public:
-	Ship(const FloatingObject & floatingObject);
+	Ship(const FloatingObject & floatingObject, const float, const float, const FishingRod, const Cannon);
 	~Ship(void);
 		
 	void update(void);

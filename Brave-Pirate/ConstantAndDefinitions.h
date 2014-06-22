@@ -11,8 +11,8 @@
 #define DEFAULT_SIZE_H 600
 #define TIME_TO_NEXT_LEVEL 40000
 #define INSTANTIATE_TIME 6000
-#define INCREASE_LEVEL_DIFFICULTY 1.05
-#define CHANCE_FOR_A_BONUS 25
+#define INCREASE_LEVEL_DIFFICULTY 1.05f
+#define CHANCE_FOR_A_BONUS 100
 
 const std::string DEFAULT_WIN_NAME = "Brave-Pirate";
 const std::string windowSettings = "WindowSettings.txt";
@@ -24,7 +24,11 @@ const std::string barrelFile = "Barrels.txt";
 const std::string bonusFile = "Bonus.txt";
 const std::string errorFile = "ErrorLog.txt";
 const std::string saveFile = "SaveFile.txt";
+const std::string cannonBallTextures = "cannonball.png";
+
 const Vector2 gameOverSize(400,400);
+const Vector2 cannonBallSize(10,10);
+const float cannonBallSpeed = 0.4f;
 
 enum Fishs_Gifts_Types
 {
@@ -50,7 +54,7 @@ struct SampleBonus
 	friend std::istream & operator>> (std::istream &w, SampleBonus &b)
 	{
 		int type;
-		return w>>b.textureName>>b.speed>>b.value>>b.depth>>b.size>>type;
+		w>>b.textureName>>b.speed>>b.value>>b.depth>>b.size>>type;
 		b.type = (Fishs_Gifts_Types)type;
 		return w;
 	}

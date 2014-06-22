@@ -22,7 +22,7 @@ void Sea::draw(void)const
 void Sea::update(void)
 {	
 	Sea::shift -= Time::deltaTime()*speed;
-	Sea::shift = (int)Sea::shift%(int)size.get_X();
+	Sea::shift = (float)((int)Sea::shift%(int)size.get_X());
 }
 
 

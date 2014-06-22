@@ -10,7 +10,7 @@ private:
 	float depth;
 public:
 	Bonus(const Vector2, const Vector2, const float, const std::string , float, float, float, const Fishs_Gifts_Types);
-	~Bonus(void);
+	virtual ~Bonus(void);
 	void update(void);
 
 	friend std::ostream & operator<< (std::ostream &, const Bonus &);

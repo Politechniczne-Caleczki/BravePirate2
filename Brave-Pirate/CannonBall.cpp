@@ -21,8 +21,8 @@ void CannonBall::update(void)
 {		
 	float move = (Time::gameTime() -startTime)* speed;
 
-	position.set_X(posZero.get_X() + (move * tcos));
-	position.set_Y(posZero.get_Y() - (move * tsin) + (Time::gameTime() -startTime)*(Time::gameTime() -startTime)/6000);
+	position.set_X((posZero.get_X() + (move * tcos)));
+	position.set_Y((posZero.get_Y() - (move * tsin) + (Time::gameTime() -startTime)*(Time::gameTime() -startTime)/6000));
 
 	if(position.get_Y() > Sea::getWaveHeight(position.get_X()))
 		_isDestroyed=true;

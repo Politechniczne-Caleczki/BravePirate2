@@ -66,9 +66,9 @@ inline void ProgressIndicator::setValue(const float value)
 	{
 		this->value = value;
 		if(this->value>frame.w)
-			this->value=frame.w;
+			this->value= (float)frame.w;
 
-		fill.w = value;
+		fill.w =(int)value;
 	}
 }
 

@@ -132,7 +132,7 @@ void GraphicDevice::drawTexture(SDL_Texture *texture, const  Vector2 position,co
 	SDL_RenderCopyEx(getRenderer(),texture,NULL,&rect,angle,NULL,SDL_FLIP_NONE);
 }
 
-
+  
 void GraphicDevice::drawText(const std::string text,const SDL_Color textColor,const  Vector2 position,const float size)
 {
 	if(getInstance().font)
@@ -141,8 +141,9 @@ void GraphicDevice::drawText(const std::string text,const SDL_Color textColor,co
 		if(textSurface = TTF_RenderText_Solid(getInstance().font,text.c_str(),textColor))
 		{
 			SDL_Texture *textTexture = SDL_CreateTextureFromSurface(getRenderer() ,textSurface);
-			if(textTexture ==NULL)throw GameError("CreateTextureFromSurface failed: ", SDL_GetError());
-				Vector2 surfaceSize(textSurface->w * size/textSurface->h , size);
+			Vector2 surfaceSize(textSurface->w * size/textSurface->h , size);
+			SDL_FreeSurface(textSurface);
+			if(textTexture ==NULL)throw GameError("Draw Text CreateTextureFromSurface failed: ", SDL_GetError());				
 				drawTexture(textTexture,position,surfaceSize);			
 				SDL_DestroyTexture(textTexture);			
 		}else throw GameError("Text render error: ", TTF_GetError());		

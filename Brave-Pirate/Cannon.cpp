@@ -2,7 +2,8 @@
 
 //Constructors and destructors
 
-Cannon::Cannon(const float angle, const float power, const Vector2 position, const unsigned int requiredEnergy):angle(0), power(0), position(position), interval(200),requiredEnergy(requiredEnergy)
+Cannon::Cannon(const float angle, const float power, const Vector2 position, const float requiredEnergy)
+	:angle(0), power(0), position(position), interval(200),requiredEnergy(fabs(requiredEnergy))
 {
 }
 
@@ -18,7 +19,7 @@ void Cannon::fire(void)
 	if(interval.idRedy()&& Player::getInstance().getPlayerEnergy()>requiredEnergy)
 	{
 		interval.Start();	
-		cannonBalls.push_back(CannonBall(position, Vector2(10,10), angle, "cannonball.png", 0.4f, 10 ));
+		cannonBalls.push_back(CannonBall(position, cannonBallSize , angle, cannonBallTextures, cannonBallSpeed, power ));
 		Player::getInstance().removePlayerEnery(requiredEnergy);
 	}
 }

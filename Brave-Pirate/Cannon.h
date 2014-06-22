@@ -10,14 +10,12 @@ class Cannon
 {
 private:
 	
-	float angle, power;
-	unsigned int requiredEnergy;
+	float angle, power, requiredEnergy;
 	Vector2 position;
 	Delay interval; 
 	list<CannonBall> cannonBalls;
-
 public:
-	Cannon(const float, const float, const Vector2, const unsigned int);
+	Cannon(const float, const float, const Vector2, float);
 	~Cannon(void);
 
 	void setAngle(const float);

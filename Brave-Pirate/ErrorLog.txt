@@ -1,3 +1,9 @@
+CreateTextureFromSurface failed: Out of memory
+CreateTextureFromSurface failed: Out of memory
 Texture not found: gameOver.png
-Texture not found: healthBonus.png
-Texture not found: healthBonus.png
+Texture not found: fish.png
+Text render error: Out of memory
+Texture not found: gameOver.png
+Texture not found: gameOver.png
+Texture not found: fish.png
+Texture not found: gameOver.png
