@@ -23,6 +23,7 @@ public:
 	void update();
 	static float deltaTime();
 	static Uint32 gameTime();
+	static void reset();
 
 	friend std::ostream & operator<< (std::ostream &, const Time &);
 	friend std::istream & operator>> (std::istream &, Time &);
@@ -30,6 +31,11 @@ public:
 	static void pauseTimer();
 	static void continueTime();
 };
+
+inline void Time::reset()
+{
+	_gameTime = 0;
+}
 
 inline void Time::update()
 {
