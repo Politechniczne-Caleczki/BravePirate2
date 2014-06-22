@@ -12,9 +12,9 @@ void Textures::free()
 }
 
 //Functions
-SDL_Texture* Textures::getTexture(std::string imageimageName)
+SDL_Texture* Textures::getTexture(std::string imageName)
 {
-	TextureMap::iterator it = Textures::textures.find(imageimageName);
+	TextureMap::iterator it = Textures::textures.find(imageName);
 
 	if(it!=textures.end())
 	{
@@ -23,11 +23,12 @@ SDL_Texture* Textures::getTexture(std::string imageimageName)
 	{
 		try
 		{
-		return findImage(imageimageName);
+			return findImage(imageName);
 		}
 		catch(GameError & error)
 		{
 			error.generateErrorLog(errorFile);
+			textures.insert(TextureMap::value_type(imageName,textures[errorImage]));
 			return textures[errorImage];
 		}
 	}

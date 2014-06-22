@@ -1,33 +1,3 @@
-Could not open font :Resources/arial.ttfCould not open font :Resources/arial.ttfCould not open font :Resources/arial.ttfCould not open font :Resources/arial.ttfCould not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
-Could not open font :Resources/arial.ttf
+Texture not found: gameOver.png
+Texture not found: healthBonus.png
+Texture not found: healthBonus.png

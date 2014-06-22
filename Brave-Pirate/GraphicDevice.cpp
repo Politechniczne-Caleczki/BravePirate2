@@ -142,12 +142,9 @@ void GraphicDevice::drawText(const std::string text,const SDL_Color textColor,co
 		{
 			SDL_Texture *textTexture = SDL_CreateTextureFromSurface(getRenderer() ,textSurface);
 			if(textTexture ==NULL)throw GameError("CreateTextureFromSurface failed: ", SDL_GetError());
-			else
-			{
 				Vector2 surfaceSize(textSurface->w * size/textSurface->h , size);
 				drawTexture(textTexture,position,surfaceSize);			
-				SDL_DestroyTexture(textTexture);
-			}
+				SDL_DestroyTexture(textTexture);			
 		}else throw GameError("Text render error: ", TTF_GetError());		
 	}else throw GameError("Font not Found");
 }

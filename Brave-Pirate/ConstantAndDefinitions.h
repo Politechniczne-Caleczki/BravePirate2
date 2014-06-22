@@ -12,7 +12,7 @@
 #define TIME_TO_NEXT_LEVEL 40000
 #define INSTANTIATE_TIME 6000
 #define INCREASE_LEVEL_DIFFICULTY 1.05
-#define CHANCE_FOR_A_BONUS 14
+#define CHANCE_FOR_A_BONUS 25
 
 const std::string DEFAULT_WIN_NAME = "Brave-Pirate";
 const std::string windowSettings = "WindowSettings.txt";
@@ -23,6 +23,8 @@ const std::string fishesFile = "Fishes.txt";
 const std::string barrelFile = "Barrels.txt";
 const std::string bonusFile = "Bonus.txt";
 const std::string errorFile = "ErrorLog.txt";
+const std::string saveFile = "SaveFile.txt";
+const Vector2 gameOverSize(400,400);
 
 enum Fishs_Gifts_Types
 {
