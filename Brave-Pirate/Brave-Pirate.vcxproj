@@ -80,6 +80,7 @@
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="FishingRod.cpp" />
     <ClCompile Include="FloatingObject.cpp" />
+    <ClCompile Include="GameError.cpp" />
     <ClCompile Include="GameLabel.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FishingRod.h" />
     <ClInclude Include="FloatingObject.h" />
+    <ClInclude Include="GameError.h" />
     <ClInclude Include="GameLabel.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameStateManager.h" />

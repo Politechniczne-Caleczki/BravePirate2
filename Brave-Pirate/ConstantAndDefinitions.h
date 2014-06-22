@@ -22,6 +22,7 @@ const std::string fontName = "arial.ttf";
 const std::string fishesFile = "Fishes.txt";
 const std::string barrelFile = "Barrels.txt";
 const std::string bonusFile = "Bonus.txt";
+const std::string errorFile = "ErrorLog.txt";
 
 enum Fishs_Gifts_Types
 {

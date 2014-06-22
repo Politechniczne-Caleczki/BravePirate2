@@ -48,7 +48,7 @@ int saveGame(Container *c)
 int loadGame(Container *c)
 {
 	std::ifstream file(resourcesPath+"plik.txt");
-	InstantionManager<Barrel> barrel();
+	//InstantionManager<Barrel> barrel;
 	//file>>barrel;
 
 	file.close();

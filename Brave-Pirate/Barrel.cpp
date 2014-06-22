@@ -83,7 +83,6 @@ Barrel::SampleBonusList Barrel::initializeBonusList()
 			list.push_back(bonus);
 		}
 	}	
-	SDL_Log("%i", list.size());
 	return list;
 }
 

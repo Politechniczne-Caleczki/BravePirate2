@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include "ConstantAndDefinitions.h"
+#include "GameError.h"
 
 class GraphicDevice
 {
@@ -49,7 +50,7 @@ inline GraphicDevice & GraphicDevice::getInstance()
 
 inline SDL_Renderer* GraphicDevice::getRenderer()
 {
-	return getInstance().renderer;//error
+	return getInstance().renderer;
 }
 
 inline Vector2 GraphicDevice::getWindowSize()
