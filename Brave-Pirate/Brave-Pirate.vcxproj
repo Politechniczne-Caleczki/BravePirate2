@@ -121,7 +121,6 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ProgressIndicator.h" />
-    <ClInclude Include="resource1.h" />
     <ClInclude Include="Sea.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Textures.h" />
@@ -130,10 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
-    <None Include="icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Brave-Pirate.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
