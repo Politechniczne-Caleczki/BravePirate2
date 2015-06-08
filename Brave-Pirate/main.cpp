@@ -53,7 +53,7 @@ int saveGame(Container *c)
 				file<<*c->sea;
 				file<<Player::getInstance();
 				file.close();
-			}else throw GameError("Can not open file", resourcesPath+saveFile);		
+			}else GameError("Can not open file", resourcesPath+saveFile);		
 		}
 	}
 	return 1;
