@@ -22,8 +22,8 @@ void FloatingObject::setPositionX(const float x)
 
 void FloatingObject::setPositionY(void)
 {
-	front.set_Y(Sea::getWaveHeight(front.get_X()));
-	back.set_Y(Sea::getWaveHeight(back.get_X()));
+	front.set_Y(Desert::getWaveHeight(front.get_X()));
+	back.set_Y(Desert::getWaveHeight(back.get_X()));
 	position.set_Y(((front.get_Y() + back.get_Y()) / 2) - difference);
 }
 

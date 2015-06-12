@@ -3,7 +3,7 @@
 
 Player::Player(void): shipHealth(100),playerEnergy(100), scor(0)
 {
-
+	atexit(free);
 }
 
 Player::~Player(void)

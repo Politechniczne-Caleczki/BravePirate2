@@ -1,35 +1,36 @@
-#include "Barrel.h"
+#include "Obstacle.h"
 
 //Constructors and destructors
 
-Barrel::Barrel(const FloatingObject & floatingObject, const float health, const float speed, const float damage, const unsigned int scor):
+Obstacle::Obstacle(const FloatingObject & floatingObject, const float health, const float speed, const float damage, const unsigned int scor):
 	FloatingObject(floatingObject), 
 	health(fabs(health)),
 	speed(fabs(speed)),
 	damage(fabs(damage)),
 	scor(scor)
 {
+	atexit(free);
 }
 
 
-Barrel::~Barrel(void)
+Obstacle::~Obstacle(void)
 {
 	FloatingObject::~FloatingObject();
 }
 
 //Functions
-void Barrel::free()
+void Obstacle::free()
 {
 	bonusList.clear();
 }
 
-void Barrel::update()
+void Obstacle::update()
 {		
 	FloatingObject::setPositionX(position.get_X()-speed);
 	FloatingObject::update();	
 }
 
-void Barrel::onCollision(const float power)
+void Obstacle::onCollision(const float power)
 {
 	health-=power;
 
@@ -40,7 +41,7 @@ void Barrel::onCollision(const float power)
 	}
 }
 
-void Barrel::createBonus()
+void Obstacle::createBonus()
 {
 
 	if(bonusList.size()>0)
@@ -59,18 +60,18 @@ void Barrel::createBonus()
 	}
 }
 
-std::ostream & operator<< (std::ostream & w, const Barrel &b)
+std::ostream & operator<< (std::ostream & w, const Obstacle &b)
 {
 	return w<<b.health<<" "<<b.speed<<" "<<b.damage<<" "<<b.scor<<" "<<b.front<<" "<<b.back<<" "
 	<<b.difference<<" "<<b.textureName<<" "<<b.position<<" "<<b.size<<" "<<b.angle<<std::endl; 
 }
-std::istream & operator>> (std::istream &w, Barrel & b)
+std::istream & operator>> (std::istream &w, Obstacle & b)
 {	
 	w>>b.health>>b.speed>>b.damage>>b.scor>>b.front>>b.back>>b.difference>>b.textureName>>b.position>>b.size>>b.angle;
 	return w;
 }
 
-void Barrel::loadBonus(const std::string filename)
+void Obstacle::loadBonus(const std::string filename)
 {
 	SampleBonus bonus;
 	std::ifstream file(filename);
@@ -85,10 +86,10 @@ void Barrel::loadBonus(const std::string filename)
 	}else throw GameError("File not found: ", filename);
 }
 
-Barrel::SampleBonusList Barrel::initializeBonusList()
+Obstacle::SampleBonusList Obstacle::initializeBonusList()
 {
 	SampleBonusList list;	
 	return list;
 }
 
-Barrel::SampleBonusList Barrel::bonusList = Barrel::initializeBonusList();
+Obstacle::SampleBonusList Obstacle::bonusList = Obstacle::initializeBonusList();

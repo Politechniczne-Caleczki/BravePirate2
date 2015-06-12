@@ -1,8 +1,8 @@
 #pragma once
 #include "GameStateManager.h"
-#include "Sea.h"
+#include "Desert.h"
 #include "Menu.h"
-#include "Ship.h"
+#include "Car.h"
 #include "ProgressIndicator.h"
 #include "GameLabel.h"
 
@@ -11,17 +11,16 @@ int startGame(Container *c)
 	if(c!=NULL)
 	{
 		if((c->barrels == NULL) || (c->fishes==NULL) || (c->sea==NULL) || (c->ship==NULL) ||( c->time==NULL) || (Player::getInstance().getShipHealth() <=0))
-		{			
-			Player::free();
+		{		
 			c->free();
-			c->ship    = new Ship(FloatingObject(Vector2(100, 0), Vector2(150, 150), 0, "ship.png", Vector2(200,145), Vector2(150, 145)), 0.1f, 0.4f,
-				FishingRod(Vector2(100, 0), Vector2(15,20), 0, "hook.png", 0.08f), Cannon(0,10, Vector2(100,0), Delay(400) , 3));
-			Sea::seaLevel = 310;
-			Sea::waveHeight = 21;
-			c->sea     = new Sea(Vector2(0,0),Vector2(1005,342),0,"sea.png", 0.15f);
+			c->ship    = new Car(FloatingObject(Vector2(100, 0), Vector2(150, 150), 0, "ship.png", Vector2(200,145), Vector2(150, 145)), 0.1f, 0.4f,
+				Magnet(Vector2(100, 0), Vector2(15,20), 0, "hook.png", 0.08f), Gun(0,10, Vector2(100,0), Delay(400) , 3));
+			Desert::seaLevel = 310;
+			Desert::waveHeight = 21;
+			c->sea     = new Desert(Vector2(0,0),Vector2(1005,342),0,"sea.png", 0.15f);
 			c->time    = new Time();
-			c->barrels = new InstantionManager<Barrel>("barrels.txt", Vector2(GraphicDevice::getWindowSize().get_X(), c->sea->getPosition().get_Y()),0, Delay(4500), Delay(25000));
-			c->fishes  = new InstantionManager<Fish>("Fishes.txt",	  Vector2(GraphicDevice::getWindowSize().get_X() ,c->sea->getPosition().get_Y()+ c->sea->getSize().get_Y()),250, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));       
+			c->barrels = new InstanceManager<Obstacle>("barrels.txt", Vector2(GraphicDevice::getWindowSize().get_X(), c->sea->getPosition().get_Y()),0, Delay(4500), Delay(25000));
+			c->fishes  = new InstanceManager<Metal>("Fishes.txt",	  Vector2(GraphicDevice::getWindowSize().get_X() ,c->sea->getPosition().get_Y()+ c->sea->getSize().get_Y()),250, Delay(INSTANTIATE_TIME), Delay(TIME_TO_NEXT_LEVEL));       
 			Time::reset();
 		}		
 		Time::continueTime();
@@ -53,7 +52,7 @@ int saveGame(Container *c)
 				file<<*c->sea;
 				file<<Player::getInstance();
 				file.close();
-			}else GameError("Can not open file", resourcesPath+saveFile);		
+			}else throw GameError("Can not open file", resourcesPath+saveFile);		
 		}
 	}
 	return 1;
@@ -123,7 +122,7 @@ int main( int argc, char* args[] )
 		_interface.addObject(time);
 
 
-		Barrel::loadBonus(resourcesPath+bonusFile);
+		Obstacle::loadBonus(resourcesPath+bonusFile);
 		Vector2 gameOverPos((GraphicDevice::getWindowSize().get_X()-gameOverSize.get_X())/2, GraphicDevice::getWindowSize().get_Y());
 		while(gameStateManager.update())
 		{               
@@ -185,12 +184,7 @@ int main( int argc, char* args[] )
 		error.generateErrorLog("ErrorLog.txt");
 		container.free();
 	} 
-
-	Barrel::free();
-	Player::free();
-	Textures::free();
-	GraphicDevice::free();
-
+	
 	SDL_Quit();
 	return 0;
 }

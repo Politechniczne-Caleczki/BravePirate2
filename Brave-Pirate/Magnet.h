@@ -1,10 +1,10 @@
-#ifndef FishingRod_h
-#define FishingRod_h
+#ifndef Magnet_h
+#define Magnet_h
 #pragma once
 #include "GameObject.h"
 #include "Time.h"
 
-class FishingRod: public GameObject
+class Magnet: public GameObject
 {
 private:
 	GameObject *catchObject;
@@ -12,7 +12,7 @@ private:
 	Vector2 positionOfShip;
 	void checkCollisions(void);
 public:
-	FishingRod(const Vector2 position, const Vector2 size, const float angle, const std::string, const float descentRate);
+	Magnet(const Vector2 position, const Vector2 size, const float angle, const std::string, const float descentRate);
 	
 	GameObject *getCatchObject(void);
 	float getDescentRate(void)const;
@@ -22,17 +22,17 @@ public:
 	void update(void);
 	void draw(void)const;
 
-	friend std::ostream & operator<< (std::ostream &, const FishingRod &);
-	friend std::istream & operator>> (std::istream &, FishingRod &);
+	friend std::ostream & operator<< (std::ostream &, const Magnet &);
+	friend std::istream & operator>> (std::istream &, Magnet &);
 
 };
 
-inline float FishingRod::getDescentRate(void)const
+inline float Magnet::getDescentRate(void)const
 {
 	return this->descentRate;
 }
 
-inline void FishingRod::setDescentRate(const float rate)
+inline void Magnet::setDescentRate(const float rate)
 {
 	this->descentRate = rate;
 }

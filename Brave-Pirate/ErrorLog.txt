@@ -1,1 +1,2 @@
 Texture not found: menuBackground.bmp
+File not foundResources/Obstacles.txt

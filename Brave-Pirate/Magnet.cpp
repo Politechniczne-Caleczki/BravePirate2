@@ -1,7 +1,7 @@
-#include "FishingRod.h"
+#include "Magnet.h"
 
 //Constructors and destructors
-FishingRod::FishingRod(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, const float descentRate):
+Magnet::Magnet(const Vector2 position, const Vector2 size, const float angle, const std::string textureName, const float descentRate):
 	descentRate(fabs(descentRate)),	
 	GameObject(position,size,angle,textureName),
 	descent(1),
@@ -11,7 +11,7 @@ FishingRod::FishingRod(const Vector2 position, const Vector2 size, const float a
 //Getters and setters
 
 
-void FishingRod::setPosition(const Vector2 newPosition)
+void Magnet::setPosition(const Vector2 newPosition)
 {
 	this->positionOfShip = newPosition;
 	this->position.set_X(newPosition.get_X());
@@ -19,7 +19,7 @@ void FishingRod::setPosition(const Vector2 newPosition)
 }
 
 //Functions
-void FishingRod::update(void)
+void Magnet::update(void)
 {
 	GameObject::update();
 
@@ -43,7 +43,7 @@ void FishingRod::update(void)
 	}
 }
 
-void FishingRod::checkCollisions(void)
+void Magnet::checkCollisions(void)
 {
 	for(Lista::iterator iter = fishesArrayPointer.begin(); iter != fishesArrayPointer.end(); iter++)
 	{
@@ -56,7 +56,7 @@ void FishingRod::checkCollisions(void)
 	}
 }
 
-void FishingRod::draw(void)const
+void Magnet::draw(void)const
 {
 	SDL_RenderDrawLine(GraphicDevice::getRenderer(),(int)positionOfShip.get_X(), (int)positionOfShip.get_Y(),(int)position.get_X(), (int)position.get_Y());
 	GraphicDevice::drawTexture(texture,Vector2(position.get_X()- size.get_X()/2,position.get_Y()), size);
@@ -64,7 +64,7 @@ void FishingRod::draw(void)const
 		catchObject->draw();
 }
 
-GameObject * FishingRod::getCatchObject(void)
+GameObject * Magnet::getCatchObject(void)
 {
 	if(descent<=0)
 	{
@@ -76,14 +76,14 @@ GameObject * FishingRod::getCatchObject(void)
 	return NULL;	
 }
 
-std::ostream & operator<< (std::ostream &w, const FishingRod &r)
+std::ostream & operator<< (std::ostream &w, const Magnet &r)
 {
 	return w<<r.angle<<" "<<r.descent<<" "<<r.descentRate
 		<<" "<<r.position<<" "<<r.positionOfShip<<" "<<r.size<<" "<<r.textureName<<std::endl;
 
 }
 
-std::istream & operator>> (std::istream &w, FishingRod &r)
+std::istream & operator>> (std::istream &w, Magnet &r)
 {
 	w>>r.angle>>r.descent>>r.descentRate>>r.position
 		>>r.positionOfShip>>r.size>>r.textureName;

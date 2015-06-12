@@ -1,10 +1,10 @@
-#ifndef Barrel_h
-#define Barrel_h
+#ifndef Obstacle_h
+#define Obstacle_h
 #pragma once
 #include "FloatingObject.h"
 #include "Bonus.h"
 
-class Barrel : public FloatingObject
+class Obstacle : public FloatingObject
 {
 	typedef std::list<SampleBonus> SampleBonusList;
 private:
@@ -12,9 +12,10 @@ private:
 	unsigned int scor;
 	static SampleBonusList bonusList, initializeBonusList();
 	void createBonus();		
+	static void free();
 public:
-	Barrel(const FloatingObject & , const float , const float , const float , const unsigned int );
-	~Barrel(void);
+	Obstacle(const FloatingObject & , const float , const float , const float , const unsigned int );
+	~Obstacle(void);
 
 	void update(void);
 	void onCollision(void);
@@ -23,24 +24,23 @@ public:
 	const bool isDestroed()const;
 	const unsigned int getScor()const;
 
-	friend std::ostream & operator<< (std::ostream &, const Barrel &);
-	friend std::istream & operator>> (std::istream &, Barrel &);
-	static void free();
+	friend std::ostream & operator<< (std::ostream &, const Obstacle &);
+	friend std::istream & operator>> (std::istream &, Obstacle &);	
 	static void loadBonus(const std::string );
 };
 
-inline void Barrel::onCollision(void)
+inline void Obstacle::onCollision(void)
 {
 	_isDestroyed= true;
 }
 
-inline const float Barrel::getDamage()const
+inline const float Obstacle::getDamage()const
 {	
 	return this->damage;
 }
 
 
-inline const unsigned int Barrel::getScor()const
+inline const unsigned int Obstacle::getScor()const
 {
 	return this->scor;
 }

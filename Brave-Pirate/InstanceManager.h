@@ -1,8 +1,8 @@
-#ifndef InstantionManager_h
-#define InstantionManager_h
+#ifndef InstanceManager_h
+#define InstanceManager_h
 #pragma once 
-#include "Barrel.h" 
-#include "Fish.h"
+#include "Obstacle.h" 
+#include "Metal.h"
 #include "Bonus.h"
 #include "Delay.h"
 #include "Textures.h"
@@ -11,24 +11,24 @@
 
 namespace
 {
-template <class typ>  class  InstantionManager;
+template <class typ>  class  InstanceManager;
 
 template <class T>
-std::ostream & operator<< (std::ostream &w, const InstantionManager<T> &i);
+std::ostream & operator<< (std::ostream &w, const InstanceManager<T> &i);
 template <class T>
-std::istream & operator>> (std::istream &w, InstantionManager<T> &i);
+std::istream & operator>> (std::istream &w, InstanceManager<T> &i);
 
 template <>
-std::ostream & operator<< (std::ostream &w, const InstantionManager<Barrel> &i);
+std::ostream & operator<< (std::ostream &w, const InstanceManager<Obstacle> &i);
 template <>
-std::ostream & operator<< (std::ostream &w, const InstantionManager<Fish> &i);
+std::ostream & operator<< (std::ostream &w, const InstanceManager<Metal> &i);
 
 template <>
-std::istream & operator>> (std::istream &w, InstantionManager<Barrel> &i);
+std::istream & operator>> (std::istream &w, InstanceManager<Obstacle> &i);
 template <>
-std::istream & operator>> (std::istream &w, InstantionManager<Fish> &i);
+std::istream & operator>> (std::istream &w, InstanceManager<Metal> &i);
 
-template <class typ> class InstantionManager 
+template <class typ> class InstanceManager 
 { 
 private: 
 	std::list<typ> listOfAllObjects; 
@@ -39,20 +39,20 @@ private:
 	void add(unsigned int index);
 	void listUpdate();
 public: 
-	explicit InstantionManager(const std::string path,Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay); 
-	~InstantionManager();
+	explicit InstanceManager(const std::string path,Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay); 
+	~InstanceManager();
 	void update();	
 	void draw();
 
-	friend std::ostream & operator<< <>(std::ostream &w, const InstantionManager<typ> &i);
-	friend std::istream & operator>> <>(std::istream &w, InstantionManager<typ> &i);
+	friend std::ostream & operator<< <>(std::ostream &w, const InstanceManager<typ> &i);
+	friend std::istream & operator>> <>(std::istream &w, InstanceManager<typ> &i);
 };
 
 template <class typ>
-InstantionManager<typ>::InstantionManager(const std::string path,Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay){}
+InstanceManager<typ>::InstanceManager(const std::string path,Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay){}
 
 template <>
-InstantionManager<Barrel>::InstantionManager(const std::string path, Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay)
+InstanceManager<Obstacle>::InstanceManager(const std::string path, Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay)
 :startPosition(startPosition), dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
 	std::ifstream file(resourcesPath+barrelFile);
@@ -65,7 +65,7 @@ InstantionManager<Barrel>::InstantionManager(const std::string path, Vector2 sta
 			int scor =0;
 			file>>textureName>>speed>>hp>>dmg>>scl>>scor;
 			if(textureName!= "" && speed!=0 && hp!=0 && scl !=0 && scor!=0)
-					listOfAllObjects.push_back(Barrel(FloatingObject(startPosition, Vector2(scl,scl), 0, textureName,
+					listOfAllObjects.push_back(Obstacle(FloatingObject(startPosition, Vector2(scl,scl), 0, textureName,
 						Vector2(startPosition.get_X(),scl), Vector2(startPosition.get_X()+scl,scl)), hp, speed, dmg, scor));
 
 		}
@@ -76,7 +76,7 @@ InstantionManager<Barrel>::InstantionManager(const std::string path, Vector2 sta
 }
 
 template <>
-InstantionManager<Fish>::InstantionManager(const std::string path, Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay)
+InstanceManager<Metal>::InstanceManager(const std::string path, Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay)
 :startPosition(startPosition),dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
 	std::ifstream file(resourcesPath+fishesFile);
@@ -89,7 +89,7 @@ InstantionManager<Fish>::InstantionManager(const std::string path, Vector2 start
 			file>>textureName>>speed>>hp>>sclX>>sclY;
 
 			if(textureName!= "" && speed!=0 && hp!=0 && sclX !=0 && sclY != 0)
-				listOfAllObjects.push_back(Fish(startPosition, Vector2(sclX,sclY), 0, textureName,hp,speed));
+				listOfAllObjects.push_back(Metal(startPosition, Vector2(sclX,sclY), 0, textureName,hp,speed));
 		}
 		file.close();
 	}else throw	GameError("File not found", resourcesPath+fishesFile);
@@ -98,10 +98,10 @@ InstantionManager<Fish>::InstantionManager(const std::string path, Vector2 start
 }
 
 template <class typ>
-InstantionManager<typ>::~InstantionManager(){}
+InstanceManager<typ>::~InstanceManager(){}
 
 template <>
-InstantionManager<Barrel>::~InstantionManager()
+InstanceManager<Obstacle>::~InstanceManager()
 {
 	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end();iter++)
 	{
@@ -111,7 +111,7 @@ InstantionManager<Barrel>::~InstantionManager()
 }
 
 template <>
-InstantionManager<Fish>::~InstantionManager()
+InstanceManager<Metal>::~InstanceManager()
 {
 	for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end();iter++)
 	{
@@ -121,7 +121,7 @@ InstantionManager<Fish>::~InstantionManager()
 }
 
 template<>
-void InstantionManager<Barrel>::listUpdate()
+void InstanceManager<Obstacle>::listUpdate()
 {
 	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end();)
 	{		
@@ -137,7 +137,7 @@ void InstantionManager<Barrel>::listUpdate()
 }
 
 template<>
-void InstantionManager<Fish>::listUpdate()
+void InstanceManager<Metal>::listUpdate()
 {
 	for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end();)
 	{
@@ -159,16 +159,16 @@ void InstantionManager<Fish>::listUpdate()
 }
 
 template<class typ>
-void InstantionManager<typ>::listUpdate(){}
+void InstanceManager<typ>::listUpdate(){}
 
 template<class typ>
-void InstantionManager<typ>::draw(){}
+void InstanceManager<typ>::draw(){}
 
 template<class typ>
-void InstantionManager<typ>::add(unsigned int index){}
+void InstanceManager<typ>::add(unsigned int index){}
 
 template<class typ>
-void InstantionManager<typ>::update()
+void InstanceManager<typ>::update()
 {
 	listUpdate();
 	instantionDelay.update();
@@ -193,7 +193,7 @@ void InstantionManager<typ>::update()
 }
 
 template<>
-void InstantionManager<Barrel>::draw()
+void InstanceManager<Obstacle>::draw()
 {
 	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end(); iter++)
 	{
@@ -202,7 +202,7 @@ void InstantionManager<Barrel>::draw()
 }
 
 template<>
-void InstantionManager<Fish>::draw()
+void InstanceManager<Metal>::draw()
 {
 	for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end(); iter++)
 	{
@@ -211,25 +211,25 @@ void InstantionManager<Fish>::draw()
 }
 
 template<>
-void InstantionManager<Barrel>::add(unsigned int index)
+void InstanceManager<Obstacle>::add(unsigned int index)
 {
-	std::list<Barrel>::iterator iter = listOfAllObjects.begin();
+	std::list<Obstacle>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
-	GameObject::barrelsArrayPointer.push_back(new Barrel(*iter));	
+	GameObject::barrelsArrayPointer.push_back(new Obstacle(*iter));	
 }
 
 template<>
-void InstantionManager<Fish>::add(unsigned int index)
+void InstanceManager<Metal>::add(unsigned int index)
 {
-	std::list<Fish>::iterator iter = listOfAllObjects.begin();
+	std::list<Metal>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
 	iter->setPosition(Vector2(startPosition.get_X(), (rand()%dispersion) + startPosition.get_Y()));
-	GameObject::fishesArrayPointer.push_back(new Fish(*iter));
+	GameObject::fishesArrayPointer.push_back(new Metal(*iter));
 }
 
 //FISH
 template <> 
-std::istream & operator>> (std::istream &w, InstantionManager<Fish> &i)
+std::istream & operator>> (std::istream &w, InstanceManager<Metal> &i)
 {
 	int typ =0;
 	int size=0;
@@ -240,9 +240,9 @@ std::istream & operator>> (std::istream &w, InstantionManager<Fish> &i)
 		w>>typ;
 		if(typ == 1)
 		{
-			Fish f(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f);
+			Metal f(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f);
 			w>>f;
-			GameObject::fishesArrayPointer.push_back(new Fish(f));
+			GameObject::fishesArrayPointer.push_back(new Metal(f));
 		}
 		if(typ == 2)
 		{
@@ -255,13 +255,13 @@ std::istream & operator>> (std::istream &w, InstantionManager<Fish> &i)
 }
 
 template <> 
-std::ostream & operator<<(std::ostream &w, const InstantionManager<Fish> &i)
+std::ostream & operator<<(std::ostream &w, const InstanceManager<Metal> &i)
 {
 	 w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition<<" "<<i.upgradeDelay
 		 <<" "<<GameObject::fishesArrayPointer.size()<<std::endl;
 	for(Lista::const_iterator iter = GameObject::fishesArrayPointer.begin(); iter != GameObject::fishesArrayPointer.end(); ++iter){
-		if(typeid(**iter) == typeid(Fish))	 
-			w<< *static_cast<Fish*>((*iter));
+		if(typeid(**iter) == typeid(Metal))	 
+			w<< *static_cast<Metal*>((*iter));
 		if(typeid(**iter) == typeid(Bonus))	 
 			w<< *static_cast<Bonus*>((*iter));
 	}
@@ -271,28 +271,28 @@ std::ostream & operator<<(std::ostream &w, const InstantionManager<Fish> &i)
 
 //BARREL
 template <>
-std::istream& operator>> (std::istream &w, InstantionManager<Barrel> &i)
+std::istream& operator>> (std::istream &w, InstanceManager<Obstacle> &i)
 {
 	GameObject::barrelsArrayPointer.clear();
 	int size=0;
 	w>>i.dispersion>>i.instantionDelay>>i.range>>i.startPosition>>i.upgradeDelay>>size;
 	for(int c=0;c<size;c++)
 	{
-			Barrel b(FloatingObject(Vector2(400,400), Vector2(10,10), 0, "barrel.png", 
+			Obstacle b(FloatingObject(Vector2(400,400), Vector2(10,10), 0, "barrel.png", 
 					Vector2(100,100), Vector2(100,100)),1,1,1,1);
 			w>>b;
-			GameObject::barrelsArrayPointer.push_back(new Barrel(b));
+			GameObject::barrelsArrayPointer.push_back(new Obstacle(b));
 	}
 	return w;
 }
 
 template <>
-std::ostream& operator<<  (std::ostream &w, const InstantionManager<Barrel> &i)
+std::ostream& operator<<  (std::ostream &w, const InstanceManager<Obstacle> &i)
 {
         w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition<<" "<<i.upgradeDelay
 			<<" "<<GameObject::barrelsArrayPointer.size()<<std::endl;
         for(Lista::const_iterator iter = GameObject::barrelsArrayPointer.begin(); iter != GameObject::barrelsArrayPointer.end(); ++iter)
-               w<< *static_cast<Barrel*>((*iter));
+               w<< *static_cast<Obstacle*>((*iter));
 		w<<std::endl;
         return w;
 

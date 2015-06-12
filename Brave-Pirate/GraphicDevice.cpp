@@ -15,6 +15,7 @@ GraphicDevice::GraphicDevice():window(NULL), renderer(NULL), font(NULL)
 		setWindow();
 	}	
 	initPointerObject();	
+	atexit(free);
 }
 
 void GraphicDevice::loadWindowsSetting()

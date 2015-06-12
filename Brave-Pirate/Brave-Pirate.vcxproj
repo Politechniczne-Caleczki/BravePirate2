@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,12 +19,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -70,15 +72,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Barrel.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="BonusObject.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Cannon.cpp" />
-    <ClCompile Include="CannonBall.cpp" />
+    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="Ammo.cpp" />
     <ClCompile Include="Delay.cpp" />
-    <ClCompile Include="Fish.cpp" />
-    <ClCompile Include="FishingRod.cpp" />
+    <ClCompile Include="Metal.cpp" />
+    <ClCompile Include="Magnet.cpp" />
     <ClCompile Include="FloatingObject.cpp" />
     <ClCompile Include="GameError.cpp" />
     <ClCompile Include="GameLabel.cpp" />
@@ -91,44 +93,41 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProgressIndicator.cpp" />
-    <ClCompile Include="Sea.cpp" />
-    <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="Desert.cpp" />
+    <ClCompile Include="Car.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Barrel.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="BasicObject.h" />
     <ClInclude Include="Bonus.h" />
     <ClInclude Include="BonusObject.h" />
     <ClInclude Include="Button.h" />
-    <ClInclude Include="Cannon.h" />
-    <ClInclude Include="CannonBall.h" />
+    <ClInclude Include="Gun.h" />
+    <ClInclude Include="Ammo.h" />
     <ClInclude Include="ConstantAndDefinitions.h" />
     <ClInclude Include="Delay.h" />
-    <ClInclude Include="Fish.h" />
-    <ClInclude Include="FishingRod.h" />
+    <ClInclude Include="Metal.h" />
+    <ClInclude Include="Magnet.h" />
     <ClInclude Include="FloatingObject.h" />
     <ClInclude Include="GameError.h" />
     <ClInclude Include="GameLabel.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GraphicDevice.h" />
-    <ClInclude Include="InstantionManager.h" />
+    <ClInclude Include="InstanceManager.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="InterfaceObject.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ProgressIndicator.h" />
-    <ClInclude Include="Sea.h" />
-    <ClInclude Include="Ship.h" />
+    <ClInclude Include="Desert.h" />
+    <ClInclude Include="Car.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Vector2.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,29 +1,29 @@
-#include "Ship.h"
+#include "Car.h"
 
-Ship::Ship(const FloatingObject & floatingObject, const float speed, const float requiredEnergy,  const FishingRod fishingRod, const Cannon cannon):FloatingObject(floatingObject),
+Car::Car(const FloatingObject & floatingObject, const float speed, const float requiredEnergy,  const Magnet fishingRod, const Gun cannon):FloatingObject(floatingObject),
 	speed(speed),
 	requiredEnergy(fabs(requiredEnergy)),
 	cannon(cannon),
 	rod(fishingRod),
 	catchObject(NULL){}
 
-Ship::~Ship(void){}
+Car::~Car(void){}
 
 //Functions
 
 
-void Ship::draw(void)const
+void Car::draw(void)const
 {
 	cannon.draw();
 	FloatingObject::draw();	
 }
 
-void Ship::lateDraw(void)const
+void Car::lateDraw(void)const
 {
 	rod.draw();
 }
 
-void Ship::update(void)
+void Car::update(void)
 {	
 	if(Player::getInstance().getPlayerEnergy()>0)
 	{
@@ -52,7 +52,7 @@ void Ship::update(void)
 	FloatingObject::update();	
 }
 
-void Ship::catchObjectUpdate(void)
+void Car::catchObjectUpdate(void)
 {	
 	if((catchObject=rod.getCatchObject())!=NULL)
 	{
@@ -91,25 +91,25 @@ void Ship::catchObjectUpdate(void)
 	}
 }
 
-void Ship::checkCollisions(void)
+void Car::checkCollisions(void)
 {
 	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end(); iter++)
 	{		
 		if(onCollision(*(*iter)))
 		{
 			(*iter)->onCollision();		
-			Player::getInstance().removeShipHealth(static_cast<Barrel*>(*iter)->getDamage());
+			Player::getInstance().removeShipHealth(static_cast<Obstacle*>(*iter)->getDamage());
 		}
 	}
 }
 
-std::ostream & operator<< (std::ostream &w, const Ship &s)
+std::ostream & operator<< (std::ostream &w, const Car &s)
 {
 	return w<<s.angle<<" "<<s.back<<" "<<s.front<<" "<<s.position<<
 		" "<<s.size<<" "<<s.textureName<<std::endl<<s.rod<<std::endl<< s.cannon<<std::endl;
 }
 
-std::istream & operator>> (std::istream &w, Ship &s)
+std::istream & operator>> (std::istream &w, Car &s)
 {
 	w>>s.angle>>s.back>>s.front>>s.position>>s.size>>s.textureName>>s.rod>>s.cannon;
 	s.texture = Textures::getTexture(s.textureName);

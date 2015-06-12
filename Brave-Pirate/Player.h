@@ -11,6 +11,7 @@ private:
 	Player(void);
 	~Player(void);
 	const float normalize(const float)const;
+	static void free();
 public:
 	void setShipHealth(const float);	
 	void setPlayerEnergy(const float);
@@ -26,7 +27,7 @@ public:
 	const float getPlayerEnergy()const;
 	const unsigned int	getScor()const;
 	static Player & getInstance();
-	static void free();
+	
 
 	friend std::ostream & operator<< (std::ostream &, const Player &);
 	friend std::istream & operator>> (std::istream &, Player &);

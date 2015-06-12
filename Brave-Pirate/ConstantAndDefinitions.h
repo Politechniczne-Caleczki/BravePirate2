@@ -14,18 +14,18 @@
 #define INCREASE_LEVEL_DIFFICULTY 1.05f
 #define CHANCE_FOR_A_BONUS 40
 
-const std::string DEFAULT_WIN_NAME = "Brave-Pirate";
-const std::string windowSettings = "WindowSettings.txt";
-const std::string resourcesPath  = "Resources/";
-const std::string texturesPath = "images/";
-const std::string fontName = "arial.ttf";
-const std::string fishesFile = "Fishes.txt";
-const std::string barrelFile = "Barrels.txt";
-const std::string bonusFile = "Bonus.txt";
-const std::string iconFile = "icon.bmp";
-const std::string errorFile = "ErrorLog.txt";
-const std::string saveFile = "SaveFile.admi";
-const std::string cannonBallTextures = "cannonball.png";
+static const std::string DEFAULT_WIN_NAME = "Brave-Pirate";
+static const std::string windowSettings = "WindowSettings.txt";
+static const std::string resourcesPath = "Resources/";
+static const std::string texturesPath = "images/";
+static const std::string fontName = "arial.ttf";
+static const std::string fishesFile = "Fishes.txt";
+static const std::string barrelFile = "Obstacles.txt";
+static const std::string bonusFile = "Bonus.txt";
+static const std::string iconFile = "icon.bmp";
+static const std::string errorFile = "ErrorLog.txt";
+static const std::string saveFile = "SaveFile.admi";
+static const std::string cannonBallTextures = "cannonball.png";
 
 const Vector2 gameOverSize(400,400);
 const Vector2 cannonBallSize(10,10);

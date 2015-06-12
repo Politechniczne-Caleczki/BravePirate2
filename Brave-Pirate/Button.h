@@ -2,18 +2,18 @@
 #define Button_h
 #pragma once
 #include "GraphicDevice.h"
-#include "Ship.h"
-#include "InstantionManager.h"
+#include "Car.h"
+#include "InstanceManager.h"
 #include "Interface.h"
 #include "Vector2.h"
 
 struct Container 
 {
-	Ship *ship;
-	Sea *sea;
+	Car *ship;
+	Desert *sea;
 	Time *time;
-	InstantionManager<Barrel> *barrels;
-	InstantionManager<Fish> *fishes;
+	InstanceManager<Obstacle> *barrels;
+	InstanceManager<Metal> *fishes;
 	void free()
 	{
 			if(ship!=NULL)		 delete ship;

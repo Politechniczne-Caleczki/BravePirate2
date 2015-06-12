@@ -21,6 +21,7 @@ private:
 	void deletePointerObject();
 	void initPointerObject();
 	void loadWindowsSetting();
+	static void free();
 	static GraphicDevice * instance;
 public:
 	static GraphicDevice & getInstance();
@@ -40,7 +41,7 @@ public:
 	static void end(void);
 	static const SDL_Color getColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a);
 
-	static void free();
+	
 };
 
 

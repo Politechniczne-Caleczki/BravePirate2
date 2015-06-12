@@ -18,8 +18,8 @@ private:
 	static SDL_Texture * createErrorTexture();
 	static SDL_Texture * findImage(const std::string);	
 	static void loadIcon();
-public:	
 	static void free(void);
+public:	
 	static SDL_Texture* getTexture(std::string imageName);
 	static void initialize();
 };

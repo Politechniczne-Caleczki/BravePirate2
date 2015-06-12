@@ -1,7 +1,7 @@
 #ifndef FloatingObject_h
 #define FloatingObject_h
 #pragma once
-#include "Sea.h"
+#include "Desert.h"
 
 
 class FloatingObject : public GameObject
