@@ -1,0 +1,5 @@
+fish1.png 0.05 15 40 40
+fish2.png 0.06 18 44 29
+fish3.png 0.07 24 48 48
+fish4.png 0.08 26 52 36
+fish5.png 0.09 29 56 42

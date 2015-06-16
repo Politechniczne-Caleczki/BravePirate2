@@ -8,13 +8,13 @@ class Obstacle : public FloatingObject
 {
 	typedef std::list<SampleBonus> SampleBonusList;
 private:
-	float health, damage;
+	float health, speed, damage;
 	unsigned int scor;
 	static SampleBonusList bonusList, initializeBonusList();
 	void createBonus();		
 	static void free();
 public:
-	Obstacle(const FloatingObject & , const float , const float , const unsigned int );
+	Obstacle(const FloatingObject & , const float , const float , const float , const unsigned int );
 	~Obstacle(void);
 
 	void update(void);

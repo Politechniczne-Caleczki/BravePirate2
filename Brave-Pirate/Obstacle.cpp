@@ -2,9 +2,10 @@
 
 //Constructors and destructors
 
-Obstacle::Obstacle(const FloatingObject & floatingObject, const float health, const float damage, const unsigned int scor):
+Obstacle::Obstacle(const FloatingObject & floatingObject, const float health, const float speed, const float damage, const unsigned int scor):
 	FloatingObject(floatingObject), 
 	health(fabs(health)),
+	speed(fabs(speed)),
 	damage(fabs(damage)),
 	scor(scor)
 {
@@ -25,7 +26,7 @@ void Obstacle::free()
 
 void Obstacle::update()
 {		
-	FloatingObject::setPositionX(position.get_X()+Desert::getDelta());
+	FloatingObject::setPositionX(position.get_X()-speed);
 	FloatingObject::update();	
 }
 
@@ -53,7 +54,7 @@ void Obstacle::createBonus()
 			SampleBonusList::iterator iter = bonusList.begin();
 			for(; r>0 && iter != bonusList.end() ; --r, iter++);
 			if(iter != bonusList.end())
-				metalArrayPointer.push_back(new Bonus(position, (*iter).size,0, (*iter).textureName, (*iter).value, (*iter).speed,
+				fishesArrayPointer.push_back(new Bonus(position, (*iter).size,0, (*iter).textureName, (*iter).value, (*iter).speed,
 				rand()%(int)(GraphicDevice::getInstance().getWindowSize().get_Y()-position.get_Y())+ position.get_Y(),(*iter).type));
 		}
 	}
@@ -61,12 +62,12 @@ void Obstacle::createBonus()
 
 std::ostream & operator<< (std::ostream & w, const Obstacle &b)
 {
-	return w<<b.health<<" "<<" "<<b.damage<<" "<<b.scor<<" "<<b.front<<" "<<b.back<<" "
+	return w<<b.health<<" "<<b.speed<<" "<<b.damage<<" "<<b.scor<<" "<<b.front<<" "<<b.back<<" "
 	<<b.difference<<" "<<b.textureName<<" "<<b.position<<" "<<b.size<<" "<<b.angle<<std::endl; 
 }
 std::istream & operator>> (std::istream &w, Obstacle & b)
 {	
-	w>>b.health>>b.damage>>b.scor>>b.front>>b.back>>b.difference>>b.textureName>>b.position>>b.size>>b.angle;
+	w>>b.health>>b.speed>>b.damage>>b.scor>>b.front>>b.back>>b.difference>>b.textureName>>b.position>>b.size>>b.angle;
 	return w;
 }
 

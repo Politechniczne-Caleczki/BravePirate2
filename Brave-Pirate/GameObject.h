@@ -25,8 +25,8 @@ protected:
 	void onDestroy(void);	
 	bool onCollision(GameObject &gameObject)const;
 public:
-	static Lista metalArrayPointer;
-	static Lista cactosArrayPointer;
+	static Lista fishesArrayPointer;
+	static Lista barrelsArrayPointer;
 
 	GameObject(const Vector2 position, const Vector2 size, const float angle, const std::string);
 	virtual~GameObject(void);

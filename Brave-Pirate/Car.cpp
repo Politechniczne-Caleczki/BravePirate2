@@ -1,11 +1,11 @@
 #include "Car.h"
 
-Car::Car(const FloatingObject & floatingObject, const float speed, const float requiredEnergy, const Magnet magnet, const Gun gun, const std::string wheelTexture, const float wheelSize) :FloatingObject(floatingObject),
-speed(speed),requiredEnergy(fabs(requiredEnergy)),gun(gun),magnet(magnet),
-frontWheel(Wheel(GameObject(this->front , Vector2(wheelSize, wheelSize), rand(), wheelTexture))),
-backWheel(Wheel(GameObject(this->back, Vector2(wheelSize, wheelSize), rand(), wheelTexture))),
-catchObject(NULL)
-{}
+Car::Car(const FloatingObject & floatingObject, const float speed, const float requiredEnergy,  const Magnet fishingRod, const Gun cannon):FloatingObject(floatingObject),
+	speed(speed),
+	requiredEnergy(fabs(requiredEnergy)),
+	cannon(cannon),
+	rod(fishingRod),
+	catchObject(NULL){}
 
 Car::~Car(void){}
 
@@ -14,80 +14,70 @@ Car::~Car(void){}
 
 void Car::draw(void)const
 {
-	gun.draw();
+	cannon.draw();
 	FloatingObject::draw();	
-	magnet.draw();
-	frontWheel.draw();
-	backWheel.draw();
+}
+
+void Car::lateDraw(void)const
+{
+	rod.draw();
 }
 
 void Car::update(void)
-{
-	if (Player::getInstance().getPlayerEnergy() > 0)
+{	
+	if(Player::getInstance().getPlayerEnergy()>0)
 	{
-		if (SDL_GetKeyboardState(NULL)[SDL_SCANCODE_RIGHT] && position.get_X() + size.get_X() < GraphicDevice::getWindowSize().get_X())
+		if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_RIGHT] && position.get_X()+size.get_X()<GraphicDevice::getWindowSize().get_X())
 		{
-			float delta = speed * Time::deltaTime();
-			setPositionX(position.get_X() + delta);
-			frontWheel.setAngle(frontWheel.getAngle() + delta / frontWheel.getCircuit() * 360);
-			backWheel.setAngle(backWheel.getAngle() + delta / backWheel.getCircuit() * 360);
-
+			setPositionX(position.get_X()+  speed*Time::deltaTime());
 			Player::getInstance().removePlayerEnery(requiredEnergy);
 		}
-		else if (SDL_GetKeyboardState(NULL)[SDL_SCANCODE_LEFT] && position.get_X() > 0)
+		else if(SDL_GetKeyboardState(NULL)[SDL_SCANCODE_LEFT] && position.get_X()>0)
 		{
-			float delta = -speed * Time::deltaTime();
-			setPositionX(position.get_X() +delta);
-			frontWheel.setAngle(frontWheel.getAngle() + delta / frontWheel.getCircuit() * 360);
-			backWheel.setAngle(backWheel.getAngle() + delta / backWheel.getCircuit() * 360);
+			setPositionX(position.get_X()- speed*Time::deltaTime());
 			Player::getInstance().removePlayerEnery(requiredEnergy);
 		}
 	}
 
 	checkCollisions();
 	catchObjectUpdate();
-	Vector2 o = getCenterPosition();
-	magnet.setPosition(Vector2(cos(angle * PI / 180)*(-size.get_Y() / 2) + o.get_X(), sin(angle   *PI / 180)* (-size.get_Y() / 2) + o.get_Y()));
-	gun.setPosition(Vector2(40 + cos(angle * PI / 180)*(size.get_Y() / 2) + o.get_X(), -30 + sin((angle + 3)*PI / 180)* (size.get_Y() / 2) + o.get_Y()));
-	gun.setAngle(-angle);
+	Vector2 o= getCenterPosition();
+	rod.setPosition	  (Vector2 (cos (angle * PI / 180 )*( -size.get_Y()/2 ) + o.get_X() ,  sin( angle   *PI/180)* (-size.get_Y()/2 )+ o.get_Y() ));
+	cannon.setPosition(Vector2 (cos (angle * PI / 180 )*(  size.get_Y()/2 ) + o.get_X() ,  sin((angle+3)*PI/180)* ( size.get_Y()/2 )+ o.get_Y() ));
+	cannon.setAngle(-angle);
 
-	gun.update();
-	magnet.update();
-
-	frontWheel.setPosition(Vector2(front.get_X() + 50 * sin(-this->angle*PI / 180), front.get_Y() - frontWheel.getSize().get_X()));
-	backWheel.setPosition(Vector2(back.get_X() + 50 * sin(-this->angle*PI / 180), back.get_Y() - backWheel.getSize().get_X()));
-	frontWheel.update();
-	backWheel.update();
-
-	FloatingObject::update();
+	cannon.update();
+	rod.update();
+	
+	FloatingObject::update();	
 }
 
 void Car::catchObjectUpdate(void)
 {	
-	if((catchObject=magnet.getCatchObject())!=NULL)
+	if((catchObject=rod.getCatchObject())!=NULL)
 	{
 		BonusObject *bonus = static_cast<BonusObject*>(catchObject);	
 		switch(bonus->getType())
 		{
-			case energyBonus:
+			case energyFish:
 				{
 					Player::getInstance().addPlayerEnery(bonus->getValue());
 				}break;
-			case magnetSpeedBonus:
+			case rodSpeedBonus:
 				{
-					magnet.setDescentRate(magnet.getDescentRate()* bonus->getValue());					
+					rod.setDescentRate(rod.getDescentRate()* bonus->getValue());					
 				}break;
-			case gunSpeedBonus:
+			case cannonSpeedBonus:
 				{
-					gun.setInterval(Delay(gun.getInterval().getDelay()* bonus->getValue()));					
+					cannon.setInterval(Delay(cannon.getInterval().getDelay()* bonus->getValue()));					
 				}break;
-			case healthCarBonus:
+			case healthShipBonus:
 				{
-					Player::getInstance().addCarHealth(bonus->getValue());
+					Player::getInstance().addShipHealth(bonus->getValue());
 				}break;
-			case gunPowerBonus:
+			case cannonPowerBonus:
 				{
-					gun.setPower(gun.getPower() * bonus->getValue());					
+					cannon.setPower(cannon.getPower() * bonus->getValue());					
 				}break;
 			case scoreBonus:
 				{
@@ -103,12 +93,12 @@ void Car::catchObjectUpdate(void)
 
 void Car::checkCollisions(void)
 {
-	for(Lista::iterator iter = GameObject::cactosArrayPointer.begin(); iter!= GameObject::cactosArrayPointer.end(); iter++)
+	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end(); iter++)
 	{		
 		if(onCollision(*(*iter)))
 		{
 			(*iter)->onCollision();		
-			Player::getInstance().removeCarHealth(static_cast<Obstacle*>(*iter)->getDamage());
+			Player::getInstance().removeShipHealth(static_cast<Obstacle*>(*iter)->getDamage());
 		}
 	}
 }
@@ -116,12 +106,12 @@ void Car::checkCollisions(void)
 std::ostream & operator<< (std::ostream &w, const Car &s)
 {
 	return w<<s.angle<<" "<<s.back<<" "<<s.front<<" "<<s.position<<
-		" "<<s.size<<" "<<s.textureName<<std::endl<<s.magnet<<std::endl<< s.gun<<std::endl;
+		" "<<s.size<<" "<<s.textureName<<std::endl<<s.rod<<std::endl<< s.cannon<<std::endl;
 }
 
 std::istream & operator>> (std::istream &w, Car &s)
 {
-	w>>s.angle>>s.back>>s.front>>s.position>>s.size>>s.textureName>>s.magnet>>s.gun;
+	w>>s.angle>>s.back>>s.front>>s.position>>s.size>>s.textureName>>s.rod>>s.cannon;
 	s.texture = Textures::getTexture(s.textureName);
 	return w;
 }

@@ -55,5 +55,5 @@ const Vector2 GameObject::getCenterPosition()const
 }
 
 
-Lista GameObject::cactosArrayPointer = GameObject::getNewList();
-Lista GameObject::metalArrayPointer = GameObject::getNewList();
+Lista GameObject::barrelsArrayPointer = GameObject::getNewList();
+Lista GameObject::fishesArrayPointer = GameObject::getNewList();

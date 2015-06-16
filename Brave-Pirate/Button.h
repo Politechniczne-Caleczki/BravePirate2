@@ -9,35 +9,18 @@
 
 struct Container 
 {
-	Car *car;
-	Desert *desert;
+	Car *ship;
+	Desert *sea;
 	Time *time;
-	InstanceManager<Obstacle> *obstacle;
-	InstanceManager<Metal> *metal;
+	InstanceManager<Obstacle> *barrels;
+	InstanceManager<Metal> *fishes;
 	void free()
 	{
-		if (car != NULL)	 delete car;
-		if (desert != NULL)  delete desert;
-		if (time != NULL)    delete time;
-		if (obstacle != NULL)delete obstacle;
-		if (metal != NULL)	 delete metal;
-	}
-
-	void update()
-	{
-		time->update();
-		obstacle->update();
-		metal->update();
-		car->update();
-		desert->update();
-	}
-
-	void draw()
-	{
-		obstacle->draw();
-		desert->draw();
-		metal->draw();
-		car->draw();
+			if(ship!=NULL)		 delete ship;
+			if(sea !=NULL)		 delete sea;
+			if(time != NULL)     delete time;
+			if(barrels!=NULL)	 delete barrels;
+			if(fishes !=NULL)	 delete fishes;		
 	}
 };
 

@@ -14,30 +14,30 @@
 #define INCREASE_LEVEL_DIFFICULTY 1.05f
 #define CHANCE_FOR_A_BONUS 40
 
-static const std::string DEFAULT_WIN_NAME = "Operacja pustynna burza";
+static const std::string DEFAULT_WIN_NAME = "Brave-Pirate";
 static const std::string windowSettings = "WindowSettings.txt";
 static const std::string resourcesPath = "Resources/";
 static const std::string texturesPath = "images/";
 static const std::string fontName = "arial.ttf";
-static const std::string metalFile = "Metal.txt";
-static const std::string cactosFile = "Obstacles.txt";
+static const std::string fishesFile = "Fishes.txt";
+static const std::string barrelFile = "Obstacles.txt";
 static const std::string bonusFile = "Bonus.txt";
 static const std::string iconFile = "icon.bmp";
 static const std::string errorFile = "ErrorLog.txt";
 static const std::string saveFile = "SaveFile.admi";
-static const std::string ammoTextures = "ammo.png";
+static const std::string cannonBallTextures = "cannonball.png";
 
 const Vector2 gameOverSize(400,400);
-const Vector2 ammoSize(10,10);
-const float ammoSpeed = 0.4f;
+const Vector2 cannonBallSize(10,10);
+const float cannonBallSpeed = 0.4f;
 
-enum Metal_Bonus_Types
+enum Fishs_Gifts_Types
 {
-	energyBonus = 0,
-	magnetSpeedBonus = 1,
-	gunSpeedBonus = 2,
-	healthCarBonus = 3,
-	gunPowerBonus = 4,
+	energyFish = 0,
+	rodSpeedBonus = 1,
+	cannonSpeedBonus = 2,
+	healthShipBonus = 3,
+	cannonPowerBonus = 4,
 	scoreBonus = 5
 };
 
@@ -47,7 +47,7 @@ struct SampleBonus
 	std::string textureName;
 	float speed, depth, value;
 	Vector2 size;
-	Metal_Bonus_Types type;
+	Fishs_Gifts_Types type;
 
 	friend std::ostream & operator<< (std::ostream &w, const SampleBonus &b)
 	{
@@ -58,7 +58,7 @@ struct SampleBonus
 	{
 		int type;
 		w>>b.textureName>>b.speed>>b.value>>b.depth>>b.size>>type;
-		b.type = (Metal_Bonus_Types)type;
+		b.type = (Fishs_Gifts_Types)type;
 		return w;
 	}
 };
