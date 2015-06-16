@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-Player::Player(void): shipHealth(100),playerEnergy(100), scor(0)
+Player::Player(void): carHealth(100),playerEnergy(100), scor(0)
 {
 	atexit(free);
 }
@@ -19,14 +19,21 @@ void Player::free()
 	}
 }
 
+void Player::reset()
+{
+	this->carHealth = 100;
+	this->playerEnergy = 100;
+	this->scor = 0;
+}
+
 std::ostream & operator<< (std::ostream &w, const Player &p)
 {
-	return w<<p.shipHealth<<" "<<p.playerEnergy<<" "<<p.scor<<" ";
+	return w<<p.carHealth<<" "<<p.playerEnergy<<" "<<p.scor<<" ";
 }
 
 std::istream & operator>> (std::istream &w, Player &p)
 {
-	w>>p.shipHealth>>p.playerEnergy>>p.scor;
+	w>>p.carHealth>>p.playerEnergy>>p.scor;
 	return w;
 }
 

@@ -13,7 +13,7 @@ private:
 	float angle, power, requiredEnergy;
 	Vector2 position;
 	Delay interval; 
-	list<Ammo> cannonBalls;
+	list<Ammo> ammos;
 public:
 	Gun(const float, const float, const Vector2,const Delay, float);
 	~Gun(void);

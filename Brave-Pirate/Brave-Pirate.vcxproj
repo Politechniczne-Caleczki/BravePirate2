@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D4DCDF7E-458D-4E99-AD8F-C1C71E74CC8A}</ProjectGuid>
     <RootNamespace>BravePirate</RootNamespace>
+    <ProjectName>Car-Racing</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -98,6 +99,7 @@
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Vector2.cpp" />
+    <ClCompile Include="Wheel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Obstacle.h" />
@@ -128,6 +130,7 @@
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="Wheel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,7 +9,7 @@ class Magnet: public GameObject
 private:
 	GameObject *catchObject;
 	float descentRate,  descent;
-	Vector2 positionOfShip;
+	Vector2 positionOfCar;
 	void checkCollisions(void);
 public:
 	Magnet(const Vector2 position, const Vector2 size, const float angle, const std::string, const float descentRate);

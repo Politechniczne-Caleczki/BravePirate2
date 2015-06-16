@@ -55,22 +55,22 @@ template <>
 InstanceManager<Obstacle>::InstanceManager(const std::string path, Vector2 startPosition,int dispersion, Delay instantionDelay,Delay upgradeDelay)
 :startPosition(startPosition), dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
-	std::ifstream file(resourcesPath+barrelFile);
+	std::ifstream file(resourcesPath+cactosFile);
 	if(file.is_open())//error
 	{
-		while(!file.eof())
+		while (!file.eof())
 		{
 			std::string textureName = "";
-			float speed = 0, hp = 0, dmg = 0, scl = 0;
-			int scor =0;
-			file>>textureName>>speed>>hp>>dmg>>scl>>scor;
-			if(textureName!= "" && speed!=0 && hp!=0 && scl !=0 && scor!=0)
-					listOfAllObjects.push_back(Obstacle(FloatingObject(startPosition, Vector2(scl,scl), 0, textureName,
-						Vector2(startPosition.get_X(),scl), Vector2(startPosition.get_X()+scl,scl)), hp, speed, dmg, scor));
+			float hp = 0, dmg = 0;
+			int scor = 0;
+			Vector2 scale(0, 0);
 
+			file >> textureName >> hp >> dmg >> scale >> scor;
+			if (textureName != "" && hp != 0 && scor != 0)
+				listOfAllObjects.push_back(Obstacle(FloatingObject(startPosition, scale, 0, textureName, Vector2(startPosition.get_X(), scale.get_Y()), Vector2(startPosition.get_X() + scale.get_X(), scale.get_Y())), hp, dmg, scor));
 		}
 		file.close();
-	}else throw GameError("File not found", resourcesPath+barrelFile);
+	}else throw GameError("File not found", resourcesPath+cactosFile);
 	instantionDelay.Start();
 	upgradeDelay.Start();
 }
@@ -79,20 +79,21 @@ template <>
 InstanceManager<Metal>::InstanceManager(const std::string path, Vector2 startPosition, int dispersion, Delay instantionDelay,Delay upgradeDelay)
 :startPosition(startPosition),dispersion(dispersion), instantionDelay(instantionDelay), upgradeDelay(upgradeDelay), range(1)
 {
-	std::ifstream file(resourcesPath+fishesFile);
+	std::ifstream file(resourcesPath+metalFile);
 	if(file.is_open())//error
 	{
 		while(!file.eof())
 		{
 			std::string textureName = "";
-			float speed = 0, hp = 0, sclX = 0, sclY = 0;;
-			file>>textureName>>speed>>hp>>sclX>>sclY;
+			float hp = 0;
+			Vector2 size(0, 0);
+			file >> textureName >> hp >> size;
 
-			if(textureName!= "" && speed!=0 && hp!=0 && sclX !=0 && sclY != 0)
-				listOfAllObjects.push_back(Metal(startPosition, Vector2(sclX,sclY), 0, textureName,hp,speed));
+			if (textureName != "" && hp != 0);
+				listOfAllObjects.push_back(Metal(startPosition,size, 0, textureName,hp));
 		}
 		file.close();
-	}else throw	GameError("File not found", resourcesPath+fishesFile);
+	}else throw	GameError("File not found", resourcesPath+metalFile);
 	instantionDelay.Start();
 	upgradeDelay.Start();
 }
@@ -103,33 +104,33 @@ InstanceManager<typ>::~InstanceManager(){}
 template <>
 InstanceManager<Obstacle>::~InstanceManager()
 {
-	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end();iter++)
+	for(Lista::iterator iter = GameObject::cactosArrayPointer.begin(); iter!= GameObject::cactosArrayPointer.end();iter++)
 	{
 		delete *iter;
 	}
-	GameObject::barrelsArrayPointer.clear();
+	GameObject::cactosArrayPointer.clear();
 }
 
 template <>
 InstanceManager<Metal>::~InstanceManager()
 {
-	for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end();iter++)
+	for(Lista::iterator iter = GameObject::metalArrayPointer.begin(); iter!= GameObject::metalArrayPointer.end();iter++)
 	{
 		delete *iter;
 	}
-	GameObject::fishesArrayPointer.clear();
+	GameObject::metalArrayPointer.clear();
 }
 
 template<>
 void InstanceManager<Obstacle>::listUpdate()
 {
-	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end();)
+	for(Lista::iterator iter = GameObject::cactosArrayPointer.begin(); iter!= GameObject::cactosArrayPointer.end();)
 	{		
 		(*iter)->update();
 		if((*iter)->isDestroyed())
 		{		
 			delete *iter;			
-			iter = GameObject::barrelsArrayPointer.erase(iter);				
+			iter = GameObject::cactosArrayPointer.erase(iter);				
 		}
 		else
 			iter++;		
@@ -139,7 +140,7 @@ void InstanceManager<Obstacle>::listUpdate()
 template<>
 void InstanceManager<Metal>::listUpdate()
 {
-	for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end();)
+	for(Lista::iterator iter = GameObject::metalArrayPointer.begin(); iter!= GameObject::metalArrayPointer.end();)
 	{
 		(*iter)->update();
 
@@ -150,7 +151,7 @@ void InstanceManager<Metal>::listUpdate()
 		if((*iter)->isDestroyed())
 		{		
 			delete *iter;
-			iter = GameObject::fishesArrayPointer.erase(iter);			
+			iter = GameObject::metalArrayPointer.erase(iter);			
 		}
 		else
 			iter++;		
@@ -195,7 +196,7 @@ void InstanceManager<typ>::update()
 template<>
 void InstanceManager<Obstacle>::draw()
 {
-	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end(); iter++)
+	for(Lista::iterator iter = GameObject::cactosArrayPointer.begin(); iter!= GameObject::cactosArrayPointer.end(); iter++)
 	{
 		(*iter)->draw();
 	}
@@ -204,7 +205,7 @@ void InstanceManager<Obstacle>::draw()
 template<>
 void InstanceManager<Metal>::draw()
 {
-	for(Lista::iterator iter = GameObject::fishesArrayPointer.begin(); iter!= GameObject::fishesArrayPointer.end(); iter++)
+	for(Lista::iterator iter = GameObject::metalArrayPointer.begin(); iter!= GameObject::metalArrayPointer.end(); iter++)
 	{
 		(*iter)->draw();
 	}
@@ -215,7 +216,7 @@ void InstanceManager<Obstacle>::add(unsigned int index)
 {
 	std::list<Obstacle>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
-	GameObject::barrelsArrayPointer.push_back(new Obstacle(*iter));	
+	GameObject::cactosArrayPointer.push_back(new Obstacle(*iter));	
 }
 
 template<>
@@ -224,7 +225,7 @@ void InstanceManager<Metal>::add(unsigned int index)
 	std::list<Metal>::iterator iter = listOfAllObjects.begin();
 	for(;index >0;index--)iter++;
 	iter->setPosition(Vector2(startPosition.get_X(), (rand()%dispersion) + startPosition.get_Y()));
-	GameObject::fishesArrayPointer.push_back(new Metal(*iter));
+	GameObject::metalArrayPointer.push_back(new Metal(*iter));
 }
 
 //FISH
@@ -233,22 +234,22 @@ std::istream & operator>> (std::istream &w, InstanceManager<Metal> &i)
 {
 	int typ =0;
 	int size=0;
-	GameObject::fishesArrayPointer.clear();
+	GameObject::metalArrayPointer.clear();
 	w>>i.dispersion>>i.instantionDelay>>i.range>>i.startPosition>>i.upgradeDelay>>size;
 	for(int c=0;c<size;c++)
 	{
 		w>>typ;
 		if(typ == 1)
 		{
-			Metal f(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f);
+			Metal f(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10);
 			w>>f;
-			GameObject::fishesArrayPointer.push_back(new Metal(f));
+			GameObject::metalArrayPointer.push_back(new Metal(f));
 		}
 		if(typ == 2)
 		{
-			Bonus b(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f, 10, energyFish);
+			Bonus b(Vector2(0,0), Vector2(10,10), 0, "cannonball.png", 10, 0.4f, 10, energyBonus);
 			w>>b;
-			GameObject::fishesArrayPointer.push_back(new Bonus(b));
+			GameObject::metalArrayPointer.push_back(new Bonus(b));
 		}
 	}
 	return w;
@@ -258,8 +259,8 @@ template <>
 std::ostream & operator<<(std::ostream &w, const InstanceManager<Metal> &i)
 {
 	 w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition<<" "<<i.upgradeDelay
-		 <<" "<<GameObject::fishesArrayPointer.size()<<std::endl;
-	for(Lista::const_iterator iter = GameObject::fishesArrayPointer.begin(); iter != GameObject::fishesArrayPointer.end(); ++iter){
+		 <<" "<<GameObject::metalArrayPointer.size()<<std::endl;
+	for(Lista::const_iterator iter = GameObject::metalArrayPointer.begin(); iter != GameObject::metalArrayPointer.end(); ++iter){
 		if(typeid(**iter) == typeid(Metal))	 
 			w<< *static_cast<Metal*>((*iter));
 		if(typeid(**iter) == typeid(Bonus))	 
@@ -273,15 +274,15 @@ std::ostream & operator<<(std::ostream &w, const InstanceManager<Metal> &i)
 template <>
 std::istream& operator>> (std::istream &w, InstanceManager<Obstacle> &i)
 {
-	GameObject::barrelsArrayPointer.clear();
+	GameObject::cactosArrayPointer.clear();
 	int size=0;
 	w>>i.dispersion>>i.instantionDelay>>i.range>>i.startPosition>>i.upgradeDelay>>size;
 	for(int c=0;c<size;c++)
 	{
-			Obstacle b(FloatingObject(Vector2(400,400), Vector2(10,10), 0, "barrel.png", 
-					Vector2(100,100), Vector2(100,100)),1,1,1,1);
+			Obstacle b(FloatingObject(Vector2(400,400), Vector2(10,10), 0, "cactos.png", 
+					Vector2(100,100), Vector2(100,100)),1,1,1);
 			w>>b;
-			GameObject::barrelsArrayPointer.push_back(new Obstacle(b));
+			GameObject::cactosArrayPointer.push_back(new Obstacle(b));
 	}
 	return w;
 }
@@ -290,8 +291,8 @@ template <>
 std::ostream& operator<<  (std::ostream &w, const InstanceManager<Obstacle> &i)
 {
         w<<i.dispersion<<" "<<i.instantionDelay<<" "<<i.range<<" "<<i.startPosition<<" "<<i.upgradeDelay
-			<<" "<<GameObject::barrelsArrayPointer.size()<<std::endl;
-        for(Lista::const_iterator iter = GameObject::barrelsArrayPointer.begin(); iter != GameObject::barrelsArrayPointer.end(); ++iter)
+			<<" "<<GameObject::cactosArrayPointer.size()<<std::endl;
+        for(Lista::const_iterator iter = GameObject::cactosArrayPointer.begin(); iter != GameObject::cactosArrayPointer.end(); ++iter)
                w<< *static_cast<Obstacle*>((*iter));
 		w<<std::endl;
         return w;

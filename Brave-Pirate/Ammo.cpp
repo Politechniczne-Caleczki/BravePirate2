@@ -27,7 +27,7 @@ void Ammo::update(void)
 	if(position.get_Y() > Desert::getWaveHeight(position.get_X()))
 		_isDestroyed=true;
 
-	for(Lista::iterator iter = GameObject::barrelsArrayPointer.begin(); iter!= GameObject::barrelsArrayPointer.end(); iter++)
+	for(Lista::iterator iter = GameObject::cactosArrayPointer.begin(); iter!= GameObject::cactosArrayPointer.end(); iter++)
 	{
 		if(onCollision(*(*iter)))
 		{

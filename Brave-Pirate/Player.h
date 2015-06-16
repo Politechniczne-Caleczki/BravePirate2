@@ -5,7 +5,7 @@
 class Player
 {
 private:
-	float shipHealth, playerEnergy;
+	float carHealth, playerEnergy;
 	unsigned int scor;
 	static Player *instance;
 	Player(void);
@@ -13,17 +13,18 @@ private:
 	const float normalize(const float)const;
 	static void free();
 public:
-	void setShipHealth(const float);	
+	void setCarHealth(const float);	
 	void setPlayerEnergy(const float);
 	void setScor(const unsigned int);
 	void addScor(const unsigned int);
-	void addShipHealth(const float);
+	void addCarHealth(const float);
 	void addPlayerEnery(const float);
 	void removeScor(const unsigned int);
-	void removeShipHealth(const float);
+	void removeCarHealth(const float);
 	void removePlayerEnery(const float);
+	void reset();
 
-	const float getShipHealth  ()const;
+	const float getCarHealth  ()const;
 	const float getPlayerEnergy()const;
 	const unsigned int	getScor()const;
 	static Player & getInstance();
@@ -41,9 +42,9 @@ inline const float Player::normalize(const float value)const
 	return value;
 }
 
-inline void Player::setShipHealth(const float shipHealth)
+inline void Player::setCarHealth(const float carHealth)
 {
-	this->shipHealth = normalize(shipHealth);
+	this->carHealth = normalize(carHealth);
 }
 
 inline void Player::setPlayerEnergy(const float playerEnery)
@@ -61,9 +62,9 @@ inline void Player::addScor(const unsigned int scor)
 	this->scor+=scor;
 }
 
-inline void Player::addShipHealth(const float shipHealth)
+inline void Player::addCarHealth(const float carHealth)
 {
-	setShipHealth(this->shipHealth+shipHealth);
+	setCarHealth(this->carHealth+carHealth);
 }
 
 inline void Player::addPlayerEnery(const float playerEnergy)
@@ -76,9 +77,9 @@ inline void Player::removeScor(const unsigned int scor)
 	this->scor-=scor;
 }
 
-inline void Player::removeShipHealth(const float shipHealth)
+inline void Player::removeCarHealth(const float carHealth)
 {
-	setShipHealth(this->shipHealth - shipHealth);
+	setCarHealth(this->carHealth - carHealth);
 }
 
 inline void Player::removePlayerEnery(const float playerEnergy)
@@ -96,9 +97,9 @@ inline const float Player::getPlayerEnergy()const
 	return playerEnergy;
 }
 
-inline const float Player::getShipHealth()const
+inline const float Player::getCarHealth()const
 {
-	return shipHealth;
+	return carHealth;
 }
 
 inline Player & Player::getInstance()

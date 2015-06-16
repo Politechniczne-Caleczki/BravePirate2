@@ -3,6 +3,7 @@
 #pragma once
 #include "BonusObject.h"
 #include "Time.h"
+#include "Desert.h"
 
 
 class Metal: public BonusObject
@@ -10,7 +11,7 @@ class Metal: public BonusObject
 private:
 	
 public:
-	Metal(const Vector2, const Vector2, const float, const std::string , float, float);
+	Metal(const Vector2, const Vector2, const float, const std::string , float);
 	~Metal(void);
 	void update(void);
 

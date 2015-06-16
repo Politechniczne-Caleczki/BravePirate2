@@ -21,19 +21,25 @@ void Desert::draw(void)const
 
 void Desert::update(void)
 {	
+	Desert::delta = Desert::shift;
 	Desert::shift -= Time::deltaTime()*speed;
-	Desert::shift = (float)((int)Desert::shift%(int)size.get_X());
+
+	if (Desert::shift < -size.get_X())
+	{
+		Desert::shift = (float)((int)Desert::shift % (int)size.get_X());
+		Desert::delta = Desert::shift;
+	}
 }
 
 std::ostream & operator<< (std::ostream &w, const Desert &s)
 {
-	return w<<s.angle<<" "<<s.seaLevel<<" "<<s.shift<<" "<<s.size
+	return w<<s.angle<<" "<<s.level<<" "<<s.shift<<" "<<s.size
 		<<" "<<s.speed<<" "<<s.textureName<<std::endl<<std::endl;
 }
 
 std::istream & operator>> (std::istream &w, Desert &s)
 {
-	w>>s.angle>>s.seaLevel>>s.shift>>s.size
+	w>>s.angle>>s.level>>s.shift>>s.size
 		>>s.speed>>s.textureName;
 	s.texture = Textures::getTexture(s.textureName);
 	return w;
@@ -42,6 +48,7 @@ std::istream & operator>> (std::istream &w, Desert &s)
 
 Vector2 Desert::size = Vector2(0,0);
 float Desert::shift = 0;
-float Desert::seaLevel = 0;
+float Desert::level = 0;
 float Desert::waveHeight = 0;
+float Desert::delta = 0;
 

@@ -7,22 +7,22 @@ class BonusObject: public GameObject
 {
 protected:
 	float speed;
-	Fishs_Gifts_Types type;
+	Metal_Bonus_Types type;
 	float value;
 public:
-	BonusObject(const Vector2, const Vector2, const float, const std::string, const Fishs_Gifts_Types, const float, const float);
+	BonusObject(const Vector2, const Vector2, const float, const std::string, const Metal_Bonus_Types, const float, const float);
 	virtual ~BonusObject(void);
 
-	const Fishs_Gifts_Types getType()const;
+	const Metal_Bonus_Types getType()const;
 	const float getValue()const;
 	const float getSpeed()const;
 
 	void setValue(const float);
 	void setSpeed(const float);
-	void setType(const Fishs_Gifts_Types);
+	void setType(const Metal_Bonus_Types);
 };
 
-inline const Fishs_Gifts_Types  BonusObject::getType()const
+inline const Metal_Bonus_Types  BonusObject::getType()const
 {
 	return type;
 }
@@ -47,7 +47,7 @@ inline void BonusObject::setSpeed(const float speed)
 	this->speed = speed;
 }
 
-inline void BonusObject::setType(const Fishs_Gifts_Types type)
+inline void BonusObject::setType(const Metal_Bonus_Types type)
 {
 	this->type = type;
 }
